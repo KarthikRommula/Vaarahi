@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!doctype html>
 <html class="no-js" lang="zxx" dir="ltr">
 
@@ -171,51 +172,19 @@
     <!--********************************
    		Code Start From Here 
 	********************************-->
-    <div class="sidemenu-wrapper sidemenu-cart ">
+    <div class="sidemenu-wrapper sidemenu-cart">
         <div class="sidemenu-content">
             <button class="closeButton sideMenuCls"><i class="far fa-times"></i></button>
             <div class="widget woocommerce widget_shopping_cart">
                 <h3 class="widget_title">Shopping cart</h3>
                 <div class="widget_shopping_cart_content">
-                    <ul class="woocommerce-mini-cart cart_list product_list_widget ">
-                   
-                        <li class="woocommerce-mini-cart-item mini_cart_item">
-                            <a href="#" class="remove remove_from_cart_button"><i class="far fa-times"></i></a>
-                            <a href="#"><img src="assets/img/product/product_thumb_1_2.png" alt="Cart Image">1</a>
-                            <span class="quantity">1 ×
-                                <span class="woocommerce-Price-amount amount">
-                                    <span class="woocommerce-Price-currencySymbol">$</span>899.00</span>
-                            </span>
-                        </li>
-                        <li class="woocommerce-mini-cart-item mini_cart_item">
-                            <a href="#" class="remove remove_from_cart_button"><i class="far fa-times"></i></a>
-                            <a href="#"><img src="assets/img/product/product_thumb_1_3.png" alt="Cart Image">2</a>
-                            <span class="quantity">1 ×
-                                <span class="woocommerce-Price-amount amount">
-                                    <span class="woocommerce-Price-currencySymbol">$</span>756.00</span>
-                            </span>
-                        </li>
-                        <li class="woocommerce-mini-cart-item mini_cart_item">
-                            <a href="#" class="remove remove_from_cart_button"><i class="far fa-times"></i></a>
-                            <a href="#"><img src="assets/img/product/product_thumb_1_4.png" alt="Cart Image">3</a>
-                            <span class="quantity">1 ×
-                                <span class="woocommerce-Price-amount amount">
-                                    <span class="woocommerce-Price-currencySymbol">$</span>723.00</span>
-                            </span>
-                        </li>
-                        <li class="woocommerce-mini-cart-item mini_cart_item">
-                            <a href="#" class="remove remove_from_cart_button"><i class="far fa-times"></i></a>
-                            <a href="#"><img src="assets/img/product/product_thumb_1_5.png" alt="Cart Image">4</a>
-                            <span class="quantity">1 ×
-                                <span class="woocommerce-Price-amount amount">
-                                    <span class="woocommerce-Price-currencySymbol">$</span>1080.00</span>
-                            </span>
-                        </li>
+                    <ul class="woocommerce-mini-cart cart_list product_list_widget">
+                        <!-- Cart items will be dynamically inserted here by cart.js -->
                     </ul>
                     <p class="woocommerce-mini-cart__total total">
                         <strong>Subtotal:</strong>
                         <span class="woocommerce-Price-amount amount">
-                            <span class="woocommerce-Price-currencySymbol">$</span>4398.00</span>
+                            <span class="woocommerce-Price-currencySymbol">$</span>0.00</span>
                     </p>
                     <p class="woocommerce-mini-cart__buttons buttons">
                         <a href="cart.html" class="th-btn wc-forward">View cart</a>
@@ -224,6 +193,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <div class="popup-search-box d-none d-lg-block">
         <button class="searchClose"><i class="far fa-times"></i></button>
@@ -310,7 +280,7 @@
                         <button type="button" class="icon-btn style2 searchBoxToggler d-lg-block d-none"><i
                                 class="far fa-search"></i></button>
                         <button type="button" class="icon-btn sideMenuToggler">
-                            <span class="badge">4</span>
+                            <span class="badge">0</span>
                             <i class="fa-regular fa-cart-shopping"></i>
                         </button>
                     </div>
@@ -569,6 +539,8 @@ Event Area
 
     <!-- Main Js File -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/cart.js"></script>
+
 
 </body>
 

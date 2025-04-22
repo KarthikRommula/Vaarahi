@@ -42,6 +42,7 @@
     <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+<!-- Add this in the head section of all HTML files -->
 
 </head>
 
@@ -59,68 +60,28 @@
     <!--==============================
      Preloader
   ==============================-->
-    <div class="sidemenu-wrapper sidemenu-cart ">
-        <div class="sidemenu-content">
-            <button class="closeButton sideMenuCls"><i class="far fa-times"></i></button>
-            <div class="widget woocommerce widget_shopping_cart">
-                <h3 class="widget_title">Shopping cart</h3>
-                <div class="widget_shopping_cart_content">
-                    <ul class="woocommerce-mini-cart cart_list product_list_widget ">
-                        <li class="woocommerce-mini-cart-item mini_cart_item">
-                            <a href="#" class="remove remove_from_cart_button"><i class="far fa-times"></i></a>
-                            <a href="#"><img src="assets/img/product/product_thumb_1_1.png" alt="Cart Image">Books</a>
-                            <span class="quantity">1 ×
-                                <span class="woocommerce-Price-amount amount">
-                                    <span class="woocommerce-Price-currencySymbol">$</span>940.00</span>
-                            </span>
-                        </li>
-                        <li class="woocommerce-mini-cart-item mini_cart_item">
-                            <a href="#" class="remove remove_from_cart_button"><i class="far fa-times"></i></a>
-                            <a href="#"><img src="assets/img/product/product_thumb_1_2.png"
-                                    alt="Cart Image">Medicine</a>
-                            <span class="quantity">1 ×
-                                <span class="woocommerce-Price-amount amount">
-                                    <span class="woocommerce-Price-currencySymbol">$</span>899.00</span>
-                            </span>
-                        </li>
-                        <li class="woocommerce-mini-cart-item mini_cart_item">
-                            <a href="#" class="remove remove_from_cart_button"><i class="far fa-times"></i></a>
-                            <a href="#"><img src="assets/img/product/product_thumb_1_3.png" alt="Cart Image">Dress</a>
-                            <span class="quantity">1 ×
-                                <span class="woocommerce-Price-amount amount">
-                                    <span class="woocommerce-Price-currencySymbol">$</span>756.00</span>
-                            </span>
-                        </li>
-                        <li class="woocommerce-mini-cart-item mini_cart_item">
-                            <a href="#" class="remove remove_from_cart_button"><i class="far fa-times"></i></a>
-                            <a href="#"><img src="assets/img/product/product_thumb_1_4.png" alt="Cart Image">Chair</a>
-                            <span class="quantity">1 ×
-                                <span class="woocommerce-Price-amount amount">
-                                    <span class="woocommerce-Price-currencySymbol">$</span>723.00</span>
-                            </span>
-                        </li>
-                        <li class="woocommerce-mini-cart-item mini_cart_item">
-                            <a href="#" class="remove remove_from_cart_button"><i class="far fa-times"></i></a>
-                            <a href="#"><img src="assets/img/product/product_thumb_1_5.png" alt="Cart Image">Cloths</a>
-                            <span class="quantity">1 ×
-                                <span class="woocommerce-Price-amount amount">
-                                    <span class="woocommerce-Price-currencySymbol">$</span>1080.00</span>
-                            </span>
-                        </li>
-                    </ul>
-                    <p class="woocommerce-mini-cart__total total">
-                        <strong>Subtotal:</strong>
-                        <span class="woocommerce-Price-amount amount">
-                            <span class="woocommerce-Price-currencySymbol">$</span>4398.00</span>
-                    </p>
-                    <p class="woocommerce-mini-cart__buttons buttons">
-                        <a href="cart.html" class="th-btn wc-forward">View cart</a>
-                        <a href="checkout.html" class="th-btn checkout wc-forward">Checkout</a>
-                    </p>
-                </div>
+  <div class="sidemenu-wrapper sidemenu-cart">
+    <div class="sidemenu-content">
+        <button class="closeButton sideMenuCls"><i class="far fa-times"></i></button>
+        <div class="widget woocommerce widget_shopping_cart">
+            <h3 class="widget_title">Shopping cart</h3>
+            <div class="widget_shopping_cart_content">
+                <ul class="woocommerce-mini-cart cart_list product_list_widget">
+                    <!-- Cart items will be dynamically inserted here by cart.js -->
+                </ul>
+                <p class="woocommerce-mini-cart__total total">
+                    <strong>Subtotal:</strong>
+                    <span class="woocommerce-Price-amount amount">
+                        <span class="woocommerce-Price-currencySymbol">$</span>0.00</span>
+                </p>
+                <p class="woocommerce-mini-cart__buttons buttons">
+                    <a href="cart.html" class="th-btn wc-forward">View cart</a>
+                    <a href="checkout.html" class="th-btn checkout wc-forward">Checkout</a>
+                </p>
             </div>
         </div>
     </div>
+</div>
     <div class="popup-search-box d-none d-lg-block">
         <button class="searchClose"><i class="far fa-times"></i></button>
         <form action="#">
@@ -206,10 +167,11 @@ Mobile Menu
                     <button type="button" class="icon-btn style2 searchBoxToggler d-lg-block d-none"><i
                             class="far fa-search"></i></button>
                     <button type="button" class="icon-btn sideMenuToggler">
-                        <span class="badge">5</span>
+                        <span class="badge">0</span>
                         <i class="fa-regular fa-cart-shopping"></i>
-                    </button>
+                    </button>   
                 </div>
+                
             </div>
         </div>
     </div>
@@ -232,187 +194,166 @@ Mobile Menu
     </div><!--==============================
 Contact Area   
 ==============================-->
-    <div class="space overflow-hidden contact-area-1 position-relative z-index-common">
-        <div class="container">
-            <div class="contact-wrap1">
-                <div class="row gx-60 gy-40">
-                    <div class="col-xl-4 col-lg-5">
-                        <div class="contact-feature">
-                            <div class="box-icon">
-                                <i class="fas fa-map-location-dot"></i>
-                            </div>
-                            <div class="media-body">
-                                <h3 class="box-title">Address</h3>
-                                <p class="box-text">
-                                   MOINABAD
-                                </p>
-                            </div>
+<div class="overflow-hidden contact-area-1 position-relative z-index-common">
+    <div class="container">
+        <div class="contact-wrap1">
+            <div class="row gx-60 gy-40">
+                <div class="col-xl-4 col-lg-5">
+                    <div class="contact-feature">
+                        <div class="box-icon">
+                            <i class="fas fa-map-location-dot"></i>
                         </div>
-                        <div class="contact-feature">
-                            <div class="box-icon" data-theme-color="#FFAC00">
-                                <i class="fas fa-phone-volume"></i>
-                            </div>
-                            <div class="media-body">
-                                <h3 class="box-title">Phone</h3>
-                                <p class="box-text"><a href="tel:12345678910">+123-4567-8910</a></p>
-                            </div>
-                        </div>
-                        <div class="contact-feature">
-                            <div class="box-icon" data-theme-color="#122F2A">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="media-body">
-                                <h3 class="box-title">Email</h3>
-                                <p class="box-text" style="font-size: large;"><a
-                                        href="mailto:info@example.com">example@gmail.com</a></p>
-                            </div>
-                        </div>
-                        <div class="contact-feature" data-theme-color="#FF5528">
-                            <div class="box-icon">
-                                <i class="fas fa-comment-question"></i>
-                            </div>
-                            <div class="media-body">
-                                <h3 class="box-title">Have Questions?</h3>
-                                <p class="box-text">Discover more by visiting us or joining our community</p>
-                            </div>
+                        <div class="media-body">
+                            <h3 class="box-title">Address</h3>
+                            <p class="box-text">
+                               MOINABAD
+                            </p>
                         </div>
                     </div>
-                    <div class="col-xl-8 col-lg-7">
-                        <div class="contact-map">
-                            <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7616.046795726256!2d78.2743!3d17.3284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcbf5b2d8d8d8d9%3A0x1234567890abcdef!2sMoinabad%2C+Telangana%2C+India!5e0!3m2!1sen!2sin!4v1610000000000!5m2!1sen!2sin"
-                                allowfullscreen="" loading="lazy"></iframe>
+                    <div class="contact-feature">
+                        <div class="box-icon" data-theme-color="#FFAC00">
+                            <i class="fas fa-phone-volume"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3 class="box-title">Phone</h3>
+                            <p class="box-text"><a href="tel:12345678910">+123-4567-8910</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-feature">
+                        <div class="box-icon" data-theme-color="#122F2A">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3 class="box-title">Email</h3>
+                            <p class="box-text" style="font-size: large;"><a
+                                    href="mailto:info@example.com">example@gmail.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-feature" data-theme-color="#FF5528">
+                        <div class="box-icon">
+                            <i class="fas fa-comment-question"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3 class="box-title">Have Questions?</h3>
+                            <p class="box-text">Discover more by visiting us or joining our community</p>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="contact-page-form-wrap mt-20">
-                <div class="row gy-40">
-                    <div class="col-xl-6 align-self-end">
-                        <div class="contact-thumb1-1" style="margin-bottom: 20px;">
-                            <img src="assets/img/normal/contact_1_1.png" alt="img">
-                        </div>
+                <div class="col-xl-8 col-lg-7">
+                    <div class="contact-map">
+                        <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7616.046795726256!2d78.2743!3d17.3284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcbf5b2d8d8d8d9%3A0x1234567890abcdef!2sMoinabad%2C+Telangana%2C+India!5e0!3m2!1sen!2sin!4v1610000000000!5m2!1sen!2sin"
+                            allowfullscreen="" loading="lazy"></iframe>
                     </div>
-                    <div class="col-xl-6">
-                        <!--==============================
-Contact Area  
-==============================-->
-                        <div class="contact-form-v1 contact-page-form">
-                         <!--    <form action="https://html.themeholy.com/VAARAHI/demo/mail.php" method="POST" -->
-                                <!-- class="contact-form style-border ajax-contact"> -->
-                                <div class="row">
-                                    <h3 style="font-weight: bolder;">GET IN TOUCH</h3>
-                                    <h2 style="font-weight: 0;">Find us, call us, or drop us a message</h2>
-                                    <div class="accordion-body">
-                                        <p class="faq-text" style="font-size: x-large;margin-left: -5px;">
-                                            Click here to submit or fill out the form for any questions! We'll get back
-                                            to you shortly!</p>
-                                        <div class="form-btn col-12">
-                                            <button class="th-btn" style="font-size: larger"
-                                                onclick="window.location.href='https://docs.google.com/forms/';">Contact
-                                                Form</button>
-                                        </div>
-                                    </div>
-                                    <p class="form-messages mb-0 mt-3"></p>
-                            </form>
+                </div>
+            </div>
+        </div>
+        <div class="contact-page-form-wrap mt-20 mb-40">
+            <div class="row gy-40">
+                <div class="col-xl-6 align-self-end">
+                    <div class="contact-thumb1-1" style="margin-bottom: 20px;">
+                        <img src="assets/img/normal/contact_1_1.png" alt="img">
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="contact-form-v1 contact-page-form">
+                        <div class="row">
+                            <h3 style="font-weight: bolder;">GET IN TOUCH</h3>
+                            <h2 style="font-weight: 0;">Find us, call us, or drop us a message</h2>
+                            <div class="accordion-body">
+                                <p class="faq-text" style="font-size: x-large;margin-left: -5px;">
+                                    Click here to submit or fill out the form for any questions! We'll get back
+                                    to you shortly!</p>
+                                <div class="form-btn col-12">
+                                    <button class="th-btn" style="font-size: larger"
+                                        onclick="window.location.href='https://docs.google.com/forms/';">Contact
+                                        Form</button>
+                                </div>
+                            </div>
+                            <p class="form-messages mb-0 mt-3"></p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
     <!--==============================
 	Footer Area
 ==============================-->
-    <footer class="footer-wrapper footer-default" data-bg-src="assets/img/bg/footer-default-bg-mask.png"
-        style="margin-bottom: -120px;">
-        <div class="footer-bg-shape2 shape-mockup jump" data-top="20%" data-right="0">
-            <img src="assets/img/shape/footer-bg-shape3.png" alt="img">
+<footer class="footer-wrapper footer-layout1">
+    <div class="shape-mockup footer-bg-shape1-1 jump" data-left="0" data-top="0">
+        <img src="assets/img/shape/footer-bg-shape1-1.png" alt="img">
+    </div>
+    <div class="shape-mockup footer-bg-shape1-2 jump-reverse" data-right="0" data-top="15%">
+        <img src="assets/img/shape/footer-bg-shape3.png" alt="img">
+    </div>
+    <div class="shape-mockup footer-bg-shape1-3 jump" data-right="0" data-bottom="0">
+        <div class="color-masking2">
+            <div class="masking-src" data-mask-src="assets/img/shape/footer-bg-shape1-2.png"></div>
+            <img src="assets/img/shape/footer-bg-shape1-2.png" alt="img">
         </div>
-        <div class="footer-bg-shape3 shape-mockup d-none" data-bottom="0" data-right="0">
-            <img src="assets/img/shape/footer-bg-shape2.png" alt="img">
-        </div>
-        <div class="widget-area">
-            <div class="container">
-                <div class="row justify-content-between">
-                    <div class="col-md-6 col-xl-auto">
-                        <div class="widget footer-widget">
-                            <div class="th-widget-about">
-                                <div class="about-logo">
-                                   <!--  <a href="index.html"><img src="assets/img/brand/we strive logo.avif" alt="We Strive"
-                                            style="width: 200px;height: auto;margin-left: 55px;margin-top: 40px;"></a> -->
+    </div>
+    <div class="widget-area">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-md-6 col-xl-auto">
+                    <div class="widget footer-widget">
+                        <div class="th-widget-about">
+                            <p class="about-text mb-3">Our secure VAARAHI platform allows you to make buy & sell products quickly</p>
+                            <div class="info-card style2">
+                                <div class="box-icon bg-theme">
+                                    <i class="fal fa-phone"></i>
                                 </div>
-                                <p class="about-text" style="margin-top: -15px;"> Our secure VAARAHI platform allows you to make buy & sell products quickly</p>
+                                <div class="box-content">
+                                    <p class="box-text">Call us any time:</p>
+                                    <h4 class="box-title"><a href="tel:+12345678910">+123-4567-8910</a></h4>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-auto">
-                        <div class="widget widget_nav_menu footer-widget">
-                            <h3 class="widget_title">Quick Links</h3>
-                            <div class="menu-all-pages-container">
-                                <ul class="menu">
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="products.html">Products</a></li>
-                                    <li><a href="p">Pictures</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-xl-auto">
-                        <div class="widget footer-widget">
-                            <div class="th-widget-contact">
-                                <h3 class="widget_title">Contact Us</h3>
-                                <div class="info-card">
-                                    <div class="box-icon">
-                                        <i class="fal fa-phone"></i>
-                                        <div class="bg-shape1"
-                                            data-mask-src="assets/img/shape/info_card_icon_bg_shape_1_1.png"></div>
-                                        <div class="bg-shape2"
-                                            data-mask-src="assets/img/shape/info_card_icon_bg_shape_1_1.png"></div>
-                                    </div>
-                                    <div class="box-content">
-                                        <p class="box-text">Call us any time:</p>
-                                        <h4 class="box-title"><a href="tel:16336547896">+123-4567-8910</a></h4>
-                                    </div>
+                            <div class="info-card style2">
+                                <div class="box-icon bg-theme2">
+                                    <i class="fal fa-envelope-open"></i>
                                 </div>
-                                <div class="info-card">
-                                    <div class="box-icon">
-                                        <i class="fal fa-envelope-open"></i>
-                                        <div class="bg-shape1"
-                                            data-mask-src="assets/img/shape/info_card_icon_bg_shape_1_1.png"></div>
-                                        <div class="bg-shape2"
-                                            data-mask-src="assets/img/shape/info_card_icon_bg_shape_1_1.png"></div>
-                                    </div>
-                                    <div class="box-content">
-                                        <p class="box-text">Email us any time:</p>
-                                        <h4 class="box-title"><a
-                                                href="example@gmail.com">example@gmail.com</a></h4>
-                                    </div>
-                                </div>
-                                <div class="th-social style2">
-                                    <a href="https://www.facebook.com/"
-                                        style="display: inline-block; margin-top: 55px;">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </a>
-                                    <a href="https://www.instagram.com/"
-                                        style="display: inline-block;margin-bottom: 55px;">
-                                        <i class="fab fa-instagram"></i>
-                                    </a>
-
+                                <div class="box-content">
+                                    <p class="box-text">Email us any time:</p>
+                                    <h4 class="box-title"><a href="mailto:example@gmail.com">example@gmail.com</a></h4>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-sm-6 col-xl-auto">
+                    <div class="widget widget_nav_menu footer-widget">
+                        <h3 class="widget_title">Quick Links</h3>
+                        <div class="menu-all-pages-container">
+                            <ul class="menu">
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="products.html">Products</a></li>
+                                <li><a href="#">Pictures</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-auto">
+                    <div class="widget newsletter-widget footer-widget">
+                        <h3 class="widget_title">Social Media</h3>
+                        <p class="footer-text mb-3">Subscribe to Our Social Media. Regular inspection and feedback mechanisms</p>
+                        <div class="th-social style6">
+                            <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="copyright-wrap bg-theme text-center py-3">
-            <div class="container">
-                <p class="copyright-text mb-0">Copyright 2025 <a href="index.html">VAARAHI</a> All Rights Reserved.</p>
-            </div>
+    </div>
+    <div class="copyright-wrap bg-theme text-center py-3">
+        <div class="container">
+            <p class="copyright-text mb-0">Copyright 2025 <a href="index.html">VAARAHI</a> All Rights Reserved.</p>
         </div>
-    </footer>
+    </div>
+</footer>
 
     <!--********************************
 			Code End  Here 
@@ -448,6 +389,7 @@ Contact Area
 
     <!-- Main Js File -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/cart.js"></script>
 </body>
 
 
