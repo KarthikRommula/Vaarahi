@@ -11,12 +11,26 @@ document.addEventListener('DOMContentLoaded', function() {
     setupEventListeners();
 });
 
+// Function to normalize product ID to ensure consistency
+function normalizeProductId(id) {
+    if (!id) return '';
+    
+    // If the ID contains a hyphen and isn't one of our special cases
+    if (id.includes('-') && !['baby-dress', 'comfort-chair', 'short-table'].includes(id)) {
+        // Extract the first part before the hyphen
+        return id.split('-')[0].toLowerCase();
+    }
+    
+    return id.toLowerCase();
+}
+
 // Update all cart displays on the page
 function updateCartDisplay() {
-    // Update cart count badge
+    // Update cart count badge to show total quantity
     const cartBadges = document.querySelectorAll('.sideMenuToggler .badge');
+    const totalQuantity = cartItems.reduce((total, item) => total + parseInt(item.quantity), 0);
     cartBadges.forEach(badge => {
-        badge.textContent = cartItems.length;
+        badge.textContent = totalQuantity;
     });
     
     // Update mini cart items
@@ -212,6 +226,9 @@ function updateCheckoutPage() {
 
 // Add an item to the cart
 function addToCart(productData) {
+    // Normalize the product ID
+    const normalizedId = normalizeProductId(productData.id);
+    
     // Ensure valid quantity and price values
     productData.quantity = parseInt(productData.quantity) || 1;
     productData.price = parseFloat(productData.price);
@@ -221,17 +238,20 @@ function addToCart(productData) {
         return;
     }
     
-    // Check if item already exists in cart
+    // Check if item already exists in cart using normalized ID
     const existingItemIndex = cartItems.findIndex(item => 
-        item.id === productData.id && item.name === productData.name
+        normalizeProductId(item.id) === normalizedId && item.name === productData.name
     );
     
     if (existingItemIndex !== -1) {
         // Increment quantity if item exists
         cartItems[existingItemIndex].quantity += productData.quantity;
     } else {
-        // Add new item to cart
-        cartItems.push(productData);
+        // Add new item to cart with normalized ID
+        cartItems.push({
+            ...productData,
+            id: normalizedId
+        });
     }
     
     // Calculate cart total first
@@ -421,6 +441,60 @@ function setupEventListeners() {
             if (closeBtn) {
                 closeBtn.click();
             }
+        }
+    });
+    
+    // Shop details page add to cart button
+    document.addEventListener('click', function(e) {
+        // Check if this is the add to cart button on the shop details page
+        if (e.target.classList.contains('th-btn') && 
+            e.target.textContent.includes('Add to Cart') && 
+            e.target.closest('.product-about') && 
+            !e.target.closest('#QuickView')) {
+            
+            e.preventDefault();
+            
+            // Get product data from the product details page
+            const productAbout = e.target.closest('.product-about');
+            if (!productAbout) return;
+            
+            const name = productAbout.querySelector('.product-title').textContent;
+            const priceText = productAbout.querySelector('.price').textContent;
+            
+            // Carefully extract the price
+            let price = 0;
+            const priceMatch = priceText.match(/\$\s*(\d+(\.\d+)?)/);
+            if (priceMatch && priceMatch[1]) {
+                price = parseFloat(priceMatch[1]);
+            }
+            
+            const imageContainer = document.querySelector('.product-big-img img');
+            const image = imageContainer ? imageContainer.getAttribute('src') : '';
+            const skuElement = productAbout.querySelector('.sku');
+            let id = '';
+            
+            // Get product ID from URL or SKU
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlId = urlParams.get('id');
+            if (urlId) {
+                id = urlId;
+            } else if (skuElement) {
+                id = skuElement.textContent.split('-')[0].toLowerCase();
+            } else {
+                id = name.toLowerCase().replace(/\s+/g, '-');
+            }
+            
+            const quantityInput = productAbout.querySelector('.qty-input');
+            const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
+            
+            // Add to cart
+            addToCart({
+                id,
+                name,
+                price,
+                image,
+                quantity
+            });
         }
     });
     

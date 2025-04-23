@@ -41,7 +41,50 @@
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 <!-- Add this in the head section of all HTML files -->
-
+<style>
+    .logo-gradient {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      position: relative;
+  }
+  
+  .logo-gradient::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: -10px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #FFAC00, #FFD700);
+      opacity: 0.1;
+      border-radius: 8px;
+      transform: rotate(-10deg);
+      z-index: -1;
+      transition: all 0.3s ease;
+  }
+  
+  .logo-gradient .text {
+      font-family: 'Audiowide', cursive;
+      font-size: 26px;
+      color: #1a1a1a;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      position: relative;
+  }
+  
+  .logo-gradient .highlight {
+      background: linear-gradient(45deg, #FFAC00, #FFD700);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+  }
+  
+  .logo-gradient:hover::before {
+      transform: rotate(0deg) scale(1.1);
+  }
+</style>
 </head>
 
 <body>
@@ -142,9 +185,10 @@ Product Lightbox
     <div class="th-menu-area text-center">
         <button class="th-menu-toggle"><i class="fal fa-times"></i></button>
         <div class="mobile-logo">
-            <a href="index.html"
-                style="font-family: 'Audiowide', cursive; font-size: 30px; color: black; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; display: inline-block;margin-top: 6px;margin-left: -10px;">
-                <span style="color:#FFAC00;">V</span> <span style="color:#FFAC00;"></span>AARAHI
+            <a href="index.html" class="logo-gradient">
+                <span class="text">
+                    <span class="highlight">V</span>AARAHI
+                </span>
             </a>
         </div>
         <div class="th-mobile-menu">
@@ -177,9 +221,10 @@ Product Lightbox
         <div class="container">
             <div class="menu-area">
                 <div class="header-logo">
-                    <a href="index.html"
-                        style="font-family: 'Audiowide', cursive; font-size: 35px; color: black; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; display: inline-block;margin-top: 6px;margin-left: 10px;">
-                        <span style="color:#FFAC00;">V</span> <span style="color:#FFAC00;"></span>AARAHI
+                    <a href="index.html" class="logo-gradient">
+                        <span class="text">
+                            <span class="highlight">V</span>AARAHI
+                        </span>
                     </a>
                 </div>
                 <div class="menu-area-wrap" style="margin-left: -50px;">
@@ -203,7 +248,7 @@ Product Lightbox
                         </ul>
                     </nav>
                     <p class="header-notice"><img class="me-1" src="assets/img/icon/heart-icon.svg" alt="img">Are
-                        you ready to buy products? Let’s become buyer</p>
+                        you ready to buy products? Let's become buyer</p>
                 </div>
                 <div class="header-button">
                     <button type="button" class="icon-btn th-menu-toggle d-lg-none"><i
@@ -276,7 +321,7 @@ Product Area
                             </div>
                         </div>
                         <div class="product-content">
-                            <h3 class="product-title"><a href="shop-details.html">Medicine</a></h3>
+                            <h3 class="product-title"><a href="shop-details.html?id=medicine">Medicine</a></h3>
                             <span class="price">$177.85</span>
                             <div class="woocommerce-product-rating">
                                 <span class="count">(120 Reviews)</span>
@@ -287,8 +332,7 @@ Product Area
                         </div>
                     </div>
                 </div>
-
-
+                
                 <div class="col-xl-3 col-lg-4 col-sm-6">
                     <div class="th-product product-grid">
                         <div class="product-img">
@@ -301,12 +345,7 @@ Product Area
                             </div>
                         </div>
                         <div class="product-content">
-                            <!-- <a href="shop-details.html" class="product-category"><br />
-<b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\donat-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-<br />
-<b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\donat-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-</a> -->
-                            <h3 class="product-title"><a href="shop-details.html">Dress</a></h3>
+                            <h3 class="product-title"><a href="shop-details.html?id=dress">Dress</a></h3>
                             <span class="price">$39.85</span>
                             <div class="woocommerce-product-rating">
                                 <span class="count">(120 Reviews)</span>
@@ -317,8 +356,7 @@ Product Area
                         </div>
                     </div>
                 </div>
-
-
+                
                 <div class="col-xl-3 col-lg-4 col-sm-6">
                     <div class="th-product product-grid">
                         <div class="product-img">
@@ -331,12 +369,7 @@ Product Area
                             </div>
                         </div>
                         <div class="product-content">
-                            <!-- <a href="shop-details.html" class="product-category"><br />
-<b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\donat-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-<br />
-<b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\donat-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-</a> -->
-                            <h3 class="product-title"><a href="shop-details.html">Books</a></h3>
+                            <h3 class="product-title"><a href="shop-details.html?id=books">Books</a></h3>
                             <span class="price">$96.85</span>
                             <div class="woocommerce-product-rating">
                                 <span class="count">(120 Reviews)</span>
@@ -361,12 +394,7 @@ Product Area
                             </div>
                         </div>
                         <div class="product-content">
-                            <!-- <a href="shop-details.html" class="product-category"><br />
-<b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\donat-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-<br />
-<b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\donat-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-</a> -->
-                            <h3 class="product-title"><a href="shop-details.html">Chair</a></h3>
+                            <h3 class="product-title"><a href="shop-details.html?id=chair">Chair</a></h3>
                             <span class="price">$08.85<del>$06.99</del></span>
                             <div class="woocommerce-product-rating">
                                 <span class="count">(120 Reviews)</span>
@@ -391,12 +419,7 @@ Product Area
                             </div>
                         </div>
                         <div class="product-content">
-                            <!-- <a href="shop-details.html" class="product-category"><br />
-<b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\donat-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-<br />
-<b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\donat-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-</a> -->
-                            <h3 class="product-title"><a href="shop-details.html">Chair</a></h3>
+                            <h3 class="product-title"><a href="shop-details.html?id=chair-2">Chair</a></h3>
                             <span class="price">$32.85</span>
                             <div class="woocommerce-product-rating">
                                 <span class="count">(120 Reviews)</span>
@@ -421,12 +444,7 @@ Product Area
                             </div>
                         </div>
                         <div class="product-content">
-                            <!-- <a href="shop-details.html" class="product-category"><br />
-<b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\donat-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-<br />
-<b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\donat-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-</a> -->
-                            <h3 class="product-title"><a href="shop-details.html">Baby Dress</a></h3>
+                            <h3 class="product-title"><a href="shop-details.html?id=baby-dress">Baby Dress</a></h3>
                             <span class="price">$30.85</span>
                             <div class="woocommerce-product-rating">
                                 <span class="count">(120 Reviews)</span>
@@ -451,12 +469,7 @@ Product Area
                             </div>
                         </div>
                         <div class="product-content">
-                            <!-- <a href="shop-details.html" class="product-category"><br />
-<b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\donat-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-<br />
-<b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\donat-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-</a> -->
-                            <h3 class="product-title"><a href="shop-details.html">Comfort Chair</a></h3>
+                            <h3 class="product-title"><a href="shop-details.html?id=comfort-chair">Comfort Chair</a></h3>
                             <span class="price">$232.85</span>
                             <div class="woocommerce-product-rating">
                                 <span class="count">(120 Reviews)</span>
@@ -481,12 +494,7 @@ Product Area
                             </div>
                         </div>
                         <div class="product-content">
-                            <!-- <a href="shop-details.html" class="product-category"><br />
-<b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\donat-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-<br />
-<b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\donat-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-</a> -->
-                            <h3 class="product-title"><a href="shop-details.html">Short Table</a></h3>
+                            <h3 class="product-title"><a href="shop-details.html?id=short-table">Short Table</a></h3>
                             <span class="price">$30.85</span>
                             <div class="woocommerce-product-rating">
                                 <span class="count">(120 Reviews)</span>
@@ -511,12 +519,7 @@ Product Area
                             </div>
                         </div>
                         <div class="product-content">
-                            <!-- <a href="shop-details.html" class="product-category"><br />
-<b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\donat-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-<br />
-<b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\donat-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-</a> -->
-                            <h3 class="product-title"><a href="shop-details.html">Cloths</a></h3>
+                            <h3 class="product-title"><a href="shop-details.html?id=cloths">Cloths</a></h3>
                             <span class="price">$32.85</span>
                             <div class="woocommerce-product-rating">
                                 <span class="count">(120 Reviews)</span>
@@ -541,12 +544,7 @@ Product Area
                             </div>
                         </div>
                         <div class="product-content">
-                            <!-- <a href="shop-details.html" class="product-category"><br />
-<b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\donat-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-<br />
-<b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\donat-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-</a> -->
-                            <h3 class="product-title"><a href="shop-details.html">Hat</a></h3>
+                            <h3 class="product-title"><a href="shop-details.html?id=hat">Hat</a></h3>
                             <span class="price">$30.85</span>
                             <div class="woocommerce-product-rating">
                                 <span class="count">(120 Reviews)</span>
@@ -571,12 +569,7 @@ Product Area
                             </div>
                         </div>
                         <div class="product-content">
-                            <!-- <a href="shop-details.html" class="product-category"><br />
-<b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\donat-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-<br />
-<b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\donat-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-</a> -->
-                            <h3 class="product-title"><a href="shop-details.html">Shoes</a></h3>
+                            <h3 class="product-title"><a href="shop-details.html?id=shoes">Shoes</a></h3>
                             <span class="price">$232.85</span>
                             <div class="woocommerce-product-rating">
                                 <span class="count">(120 Reviews)</span>
@@ -601,12 +594,7 @@ Product Area
                             </div>
                         </div>
                         <div class="product-content">
-                            <!-- <a href="shop-details.html" class="product-category"><br />
-<b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\donat-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-<br />
-<b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\donat-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-</a> -->
-                            <h3 class="product-title"><a href="shop-details.html">Jacket</a></h3>
+                            <h3 class="product-title"><a href="shop-details.html?id=jacket">Jacket</a></h3>
                             <span class="price">$30.85</span>
                             <div class="woocommerce-product-rating">
                                 <span class="count">(120 Reviews)</span>
@@ -620,7 +608,7 @@ Product Area
 
             </div>
             <div class="th-pagination text-center pt-50">
-                <ul>
+                <ul>    
                     <li><a href="blog.html"><i class="fas fa-arrow-left"></i></a></li>
                     <li><a href="blog.html">1</a></li>
                     <li><a href="blog.html">2</a></li>
@@ -746,8 +734,9 @@ All Js File
 <script src="assets/js/main.js"></script>
 <script src="assets/js/cart.js"></script>
 <script src="assets/js/product-sort.js"></script>
+<script src="assets/js/update-product-links.js"></script>
 
-</body>
-
+</body> 
+    
 
 </html>
