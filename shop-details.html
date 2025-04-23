@@ -1,0 +1,917 @@
+    <!-- shop-details.html -->
+    <!doctype html>
+    <html class="no-js" lang="zxx" dir="ltr">
+
+
+    <!-- Mirrored from html.themeholy.com/vaarahi/demo/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 28 Jan 2025 18:45:35 GMT -->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>VAARAHI - Products</title>
+
+
+        <!-- Mobile Specific Metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Favicons - Place favicon.ico in the root directory -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/assets/FAVICONS/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/assets/FAVICONS/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/assets/FAVICONS/favicon-16x16.png">
+        <link rel="manifest" href="/assets/FAVICONS/site.webmanifest">
+
+        <!--==============================
+        Google Fonts
+        ============================== -->
+        <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com/">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&amp;family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&amp;family=Nunito:ital,wght@0,200..1000;1,200..1000&amp;display=swap" rel="stylesheet">
+
+        <!--==============================
+            All CSS File
+        ============================== -->
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <!-- Fontawesome Icon -->
+        <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+        <!-- Magnific Popup -->
+        <link rel="stylesheet" href="assets/css/magnific-popup.min.css">
+        <!-- Swiper Js -->
+        <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+        <!-- Theme Custom CSS -->
+        <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Add this in the head section of all HTML files -->
+    <style>
+        .logo-gradient {
+          display: inline-flex;
+          align-items: center;
+          text-decoration: none;
+          position: relative;
+      }
+      
+      .logo-gradient::before {
+          content: '';
+          position: absolute;
+          top: -5px;
+          left: -10px;
+          width: 50px;
+          height: 50px;
+          background: linear-gradient(135deg, #FFAC00, #FFD700);
+          opacity: 0.1;
+          border-radius: 8px;
+          transform: rotate(-10deg);
+          z-index: -1;
+          transition: all 0.3s ease;
+      }
+      
+      .logo-gradient .text {
+          font-family: 'Audiowide', cursive;
+          font-size: 26px;
+          color: #1a1a1a;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+          position: relative;
+      }
+      
+      .logo-gradient .highlight {
+          background: linear-gradient(45deg, #FFAC00, #FFD700);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-weight: bold;
+      }
+      
+      .logo-gradient:hover::before {
+          transform: rotate(0deg) scale(1.1);
+      }
+   </style>
+    </head>
+
+    <body>
+
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+
+        <!--********************************
+            Code Start From Here 
+        ******************************** -->
+
+        <!--==============================
+        Preloader
+    ==============================-->
+        <!--==============================
+    Product Lightbox
+    ==============================-->
+    <!-- Replace the existing QuickView div with this one -->
+    <div id="QuickView" class="white-popup mfp-hide">
+        <div class="container bg-white rounded-10">
+            <div class="row gx-60">
+                <div class="col-lg-6">
+                    <div class="product-big-img">
+                        <div class="img"><img src="assets/img/product/product_details_1_1.png" alt="Product Image"></div>
+                    </div>
+                </div>
+                <div class="col-lg-6 align-self-center">
+                    <div class="product-about">
+                        <p class="price">$0.00</p>
+                        <h2 class="product-title">Product Name</h2>
+                        <div class="product-rating">
+                            <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5 based on <span class="rating">1</span> customer rating</span></div>
+                            <a href="#" class="woocommerce-review-link">(<span class="count">4</span> customer reviews)</a>
+                        </div>
+                        <p class="text">This premium product combines quality craftsmanship with modern design. Perfect for those seeking both functionality and style, it's a great addition to your collection.</p>
+                        <div class="mt-2 link-inherit">
+                            <p>
+                                <strong class="text-title me-3">Availability:</strong>
+                                <span class="stock in-stock"><i class="far fa-check-square me-2 ms-1"></i>In Stock</span>
+                            </p>
+                        </div>
+                        <div class="actions">
+                            <div class="quantity">
+                                <input type="number" class="qty-input" step="1" min="1" max="100" name="quantity" value="1" title="Qty">
+                                <button class="quantity-plus qty-btn"><i class="far fa-chevron-up"></i></button>
+                                <button class="quantity-minus qty-btn"><i class="far fa-chevron-down"></i></button>
+                            </div>
+                            <button class="th-btn">Add to Cart</button>
+                            <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
+                        </div>
+                        <div class="product_meta">
+                            <span class="sku_wrapper">SKU: <span class="sku">product-id</span></span>
+                            <span class="posted_in">Category: <a href="#">General</a></span>
+                            <span>Tags: <a href="#">Product</a><a href="#">Retail</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+        </div>
+    </div><!--==============================
+        Sidemenu
+    ============================== -->
+    <div class="sidemenu-wrapper sidemenu-cart">
+        <div class="sidemenu-content">
+            <button class="closeButton sideMenuCls"><i class="far fa-times"></i></button>
+            <div class="widget woocommerce widget_shopping_cart">
+                <h3 class="widget_title">Shopping cart</h3>
+                <div class="widget_shopping_cart_content">
+                    <ul class="woocommerce-mini-cart cart_list product_list_widget">
+                        <!-- Cart items will be dynamically inserted here by cart.js -->
+                    </ul>
+                    <p class="woocommerce-mini-cart__total total">
+                        <strong>Subtotal:</strong>
+                        <span class="woocommerce-Price-amount amount">
+                            <span class="woocommerce-Price-currencySymbol">$</span>0.00</span>
+                    </p>
+                    <p class="woocommerce-mini-cart__buttons buttons">
+                        <a href="cart.html" class="th-btn wc-forward">View cart</a>
+                        <a href="checkout.html" class="th-btn checkout wc-forward">Checkout</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="popup-search-box d-none d-lg-block">
+            <button class="searchClose"><i class="far fa-times"></i></button>
+            <form action="#">
+                <input type="text" placeholder="What are you looking for?">
+                <button type="submit"><i class="fal fa-search"></i></button>
+            </form>
+        </div><!--==============================
+        Mobile Menu
+    ============================== -->
+    <div class="th-menu-wrapper">
+        <div class="th-menu-area text-center">
+            <button class="th-menu-toggle"><i class="fal fa-times"></i></button>
+            <div class="mobile-logo">
+                <a href="index.html" class="logo-gradient">
+                    <span class="text">
+                        <span class="highlight">V</span>AARAHI
+                    </span>
+                </a>
+            </div>
+            <div class="th-mobile-menu">
+                <ul>
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li><a href="about.html">About</a></li>
+                    <li>
+                        <a href="products.html">Products</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Pictures</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Contact</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+        <!--==============================
+        Header Area
+    ==============================-->
+    <header class="th-header header-layout1">
+        <div class="sticky-wrapper">
+            <!-- Main Menu Area -->
+            <div class="container">
+                <div class="menu-area">
+                    <div class="header-logo">
+                        <a href="index.html" class="logo-gradient">
+                            <span class="text">
+                                <span class="highlight">V</span>AARAHI
+                            </span>
+                        </a>
+                    </div>
+                    <div class="menu-area-wrap" style="margin-left: -50px;">
+                        <nav class="main-menu d-none d-lg-block">
+                            <ul>
+                                <li>
+                                    <a href="index.html">Home</a>
+                                </li>
+                                <li><a href="about.html">About</a></li>
+                                <li>
+                                    <a href="products.html">Products</a>
+                                </li>
+
+                                <li>
+                                    <a href="p">Pictures</a>
+                                </li>
+                                <li>
+                                    <a href="contact.html">Contact</a>
+                                </li>
+
+                            </ul>
+                        </nav>
+                        <p class="header-notice"><img class="me-1" src="assets/img/icon/heart-icon.svg" alt="img">Are
+                            you ready to buy products? Let’s become buyer</p>
+                    </div>
+                    <div class="header-button">
+                        <button type="button" class="icon-btn th-menu-toggle d-lg-none"><i
+                                class="far fa-bars"></i></button>
+                    </div>
+                    <div class="header-button">
+                        <button type="button" class="icon-btn style2 searchBoxToggler d-lg-block d-none"><i
+                                class="far fa-search"></i></button>
+                        <button type="button" class="icon-btn sideMenuToggler">
+                            <span class="badge">0</span>
+                            <i class="fa-regular fa-cart-shopping"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+
+        <!--==============================
+        Breadcumb
+    ============================== -->
+        <div class="breadcumb-wrapper " data-bg-src="assets/img/bg/breadcumb-bg.jpg" data-overlay="theme">
+            <div class="container">
+                <div class="breadcumb-content">
+                    <h1 class="breadcumb-title">Shop Details</h1>
+                    <ul class="breadcumb-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li>Shop Details</li>
+                    </ul>
+                </div>
+            </div>
+        </div><!--==============================
+        Product Details
+        ==============================-->
+        <section class="product-details space-top space-extra-bottom">
+            <div class="container">
+                <div class="row gx-60">
+                    <div class="col-lg-6">
+                        <div class="product-big-img">
+                            <div class="img"><img src="assets/img/product/product_details_1_1.png" alt="Product Image"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 align-self-center">
+                        <div class="product-about">
+                            <p class="price">$120.85<del>$150.99</del></p>
+                            <h2 class="product-title">Medicine</h2>
+                            <div class="product-rating">
+                                <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5 based on <span class="rating">1</span> customer rating</span></div>
+                                <a href="shop-details.html" class="woocommerce-review-link">(<span class="count">4</span> customer reviews)</a>
+                            </div>
+                            <p class="text">Prepare to embark on a sensory journey with the Bosco Apple, a fruit that transcends the ordinary and promises an unparalleled taste experience. These apples are nothing short of nature’s masterpiece, celebrated for their distinctive blend of flavors and their captivating visual allure.</p>
+                            <div class="mt-2 link-inherit">
+                                <p>
+                                    <strong class="text-title me-3">Availability:</strong>
+                                    <span class="stock in-stock"><i class="far fa-check-square me-2 ms-1"></i>In Stock</span>
+                                </p>
+                            </div>
+                            <div class="actions">
+                                <div class="quantity">
+                                    <input type="number" class="qty-input" step="1" min="1" max="100" name="quantity" value="1" title="Qty">
+                                    <button class="quantity-plus qty-btn"><i class="far fa-chevron-up"></i></button>
+                                    <button class="quantity-minus qty-btn"><i class="far fa-chevron-down"></i></button>
+                                </div>
+                                <button class="th-btn">Add to Cart</button>
+                                <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
+                            </div>
+                            <div class="product_meta">
+                                <span class="sku_wrapper">SKU: <span class="sku">Medicine-fits-chevy-camaro</span></span>
+                                <span class="posted_in">Category: <a href="shop.html">Vitamin & Medicine</a></span>
+                                <span>Tags: <a href="shop.html">Medicine</a><a href="shop.html">Drug</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ul class="nav product-tab-style1" id="productTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link th-btn" id="description-tab" data-bs-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="false">Product Description</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link th-btn active" id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="true">Customer Reviews</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="productTabContent">
+                    <div class="tab-pane fade" id="description" role="tabpanel" aria-labelledby="description-tab">
+                        <p>Prepare to embark on a sensory journey with the Bosco Apple, a fruit that transcends the ordinary and promises an unparalleled taste experience. These apples are nothing short of nature’s masterpiece, celebrated for their distinctive blend of flavors and their captivating visual allure. Bosco Apples are a revelation for your taste buds. Their impeccable balance of sweetness and tartness creates a complex, layered taste profile that keeps you coming back for more. Each bite is a symphony of sweet and tangy notes, making these apples a gastronomic delight whether enjoyed fresh or as a key ingredient in your favorite culinary creations.</p>
+                        <p>The Bosco Apple is not just a fruit; it’s a work of art. Its striking, deep red skin is adorned with intricate speckles, making it a showstopper in the world of fruit aesthetics. Display these apples with pride in your kitchen, and you’ll undoubtedly draw admiration from all who see them. We take our commitment to the environment seriously. Bosco Apples are cultivated on eco-friendly orchards that prioritize sustainable farming practices. You can savor these apples knowing they are grown with respect for the planet, aligning with your values of environmental responsibility. Whether you’re a culinary aficionado or a casual home chef, Bosco Apples offer limitless possibilities in the kitchen. Slice them into a vibrant salad, transform them into mouthwatering pies, or blend them into wholesome applesauce. The culinary canvas is yours to paint with these versatile apples.</p>
+                    </div>
+                    <div class="tab-pane fade show active" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                        <div class="woocommerce-Reviews">
+                            <div class="th-comments-wrap ">
+                                <ul class="comment-list">
+                                    <li class="review th-comment-item">
+                                        <div class="th-post-comment">
+                                            <div class="comment-avater">
+                                                <img src="assets/img/blog/comment-author-1.jpg" alt="Comment Author">
+                                            </div>
+                                            <div class="comment-content">
+                                                <h4 class="name">Jacklin July</h4>
+                                                <span class="commented-on"><i class="far fa-calendar"></i>22 April, 2023</span>
+                                                <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
+                                                    <span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5 based on <span class="rating">1</span> customer rating</span>
+                                                </div>
+                                                <p class="text">This product is very much qualityful and I love this working system and speed.</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="review th-comment-item">
+                                        <div class="th-post-comment">
+                                            <div class="comment-avater">
+                                                <img src="assets/img/blog/comment-author-2.jpg" alt="Comment Author">
+                                            </div>
+                                            <div class="comment-content">
+                                                <h4 class="name">Jusctin Dacon</h4>
+                                                <span class="commented-on"><i class="far fa-calendar"></i>26 April, 2023</span>
+                                                <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
+                                                    <span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5 based on <span class="rating">1</span> customer rating</span>
+                                                </div>
+                                                <p class="text">They delivered the product in a few time. Product quality is also very good.</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="review th-comment-item">
+                                        <div class="th-post-comment">
+                                            <div class="comment-avater">
+                                                <img src="assets/img/blog/comment-author-3.jpg" alt="Comment Author">
+                                            </div>
+                                            <div class="comment-content">
+                                                <h4 class="name">Adam Jhon</h4>
+                                                <span class="commented-on"><i class="far fa-calendar"></i>26 April, 2023</span>
+                                                <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
+                                                    <span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5 based on <span class="rating">1</span> customer rating</span>
+                                                </div>
+                                                <p class="text">Their product and service is very satisfying. I highly recommend their services.</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="review th-comment-item">
+                                        <div class="th-post-comment">
+                                            <div class="comment-avater">
+                                                <img src="assets/img/blog/comment-author-4.jpg" alt="Comment Author">
+                                            </div>
+                                            <div class="comment-content">
+                                                <h4 class="name">Adison Smith</h4>
+                                                <span class="commented-on"><i class="far fa-calendar"></i>26 April, 2023</span>
+                                                <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
+                                                    <span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5 based on <span class="rating">1</span> customer rating</span>
+                                                </div>
+                                                <p class="text">I am just in love with this product. Their service is also very good you can also try.</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div> <!-- Comment Form -->
+                            <div class="th-comment-form ">
+                                <div class="form-title">
+                                    <h3 class="blog-inner-title ">Add a review</h3>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group rating-select d-flex align-items-center">
+                                        <label>Your Rating</label>
+                                        <p class="stars">
+                                            <span>
+                                                <a class="star-1" href="#">1</a>
+                                                <a class="star-2" href="#">2</a>
+                                                <a class="star-3" href="#">3</a>
+                                                <a class="star-4" href="#">4</a>
+                                                <a class="star-5" href="#">5</a>
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="col-12 form-group">
+                                        <textarea placeholder="Write a Message" class="form-control"></textarea>
+                                        <i class="text-title far fa-pencil-alt"></i>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <input type="text" placeholder="Your Name" class="form-control">
+                                        <i class="text-title far fa-user"></i>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <input type="text" placeholder="Your Email" class="form-control">
+                                        <i class="text-title far fa-envelope"></i>
+                                    </div>
+                                    <div class="col-12 form-group">
+                                        <input id="reviewcheck" name="reviewcheck" type="checkbox">
+                                        <label for="reviewcheck">Save my name, email, and website in this browser for the next time I comment.<span class="checkmark"></span></label>
+                                    </div>
+                                    <div class="col-12 form-group mb-0">
+                                        <button class="th-btn style2 style-radius">Post Review</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--==============================
+            Related Product  
+            ==============================-->
+                <div class="space-extra-top mb-30">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-md-auto">
+                            <h2 class="sec-title text-center">Related Products</h2>
+                        </div>
+                        <div class="col-md d-none d-sm-block">
+                            <hr class="title-line">
+                        </div>
+                        <div class="col-md-auto d-none d-md-block">
+                            <div class="sec-btn">
+                                <div class="icon-box">
+                                    <button data-slider-prev="#productSlider1" class="slider-arrow default"><i class="far fa-arrow-left"></i></button>
+                                    <button data-slider-next="#productSlider1" class="slider-arrow default"><i class="far fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper th-slider has-shadow" id="productSlider1" data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"2"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"3"},"1200":{"slidesPerView":"4"}}}'>
+                        <div class="swiper-wrapper">
+
+                            <div class="swiper-slide">
+                                <div class="th-product product-grid">
+                                    <div class="product-img">
+                                        <img src="assets/img/product/product_1_1.png" alt="Product Image">
+                                        <span class="product-tag">Hot</span>
+                                        <div class="actions">
+                                            <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
+                                            <a href="cart.html" class="icon-btn"><i class="far fa-cart-plus"></i></a>
+                                            <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <!-- <a href="shop-details.html" class="product-category"><br />
+    <b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
+    <br />
+    <b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
+    </a> -->
+                                        <h3 class="product-title"><a href="shop-details.html">Medicine</a></h3>
+                                        <span class="price">$177.85</span>
+                                        <div class="woocommerce-product-rating">
+                                            <span class="count">(120 Reviews)</span>
+                                            <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
+                                                <span>Rated <strong class="rating">5.00</strong> out of 5 based on <span class="rating">1</span> customer rating</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="swiper-slide">
+                                <div class="th-product product-grid">
+                                    <div class="product-img">
+                                        <img src="assets/img/product/product_1_2.png" alt="Product Image">
+                                        <span class="product-tag">New</span>
+                                        <div class="actions">
+                                            <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
+                                            <a href="cart.html" class="icon-btn"><i class="far fa-cart-plus"></i></a>
+                                            <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <!-- <a href="shop-details.html" class="product-category"><br />
+    <b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
+    <br />
+    <b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
+    </a> -->
+                                        <h3 class="product-title"><a href="shop-details.html?id=dress">Dress</a></h3>
+                                        <span class="price">$39.85</span>
+                                        <div class="woocommerce-product-rating">    
+                                            <span class="count">(120 Reviews)</span>
+                                            <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
+                                                <span>Rated <strong class="rating">5.00</strong> out of 5 based on <span class="rating">1</span> customer rating</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="swiper-slide">
+                                <div class="th-product product-grid">
+                                    <div class="product-img">
+                                        <img src="assets/img/product/product_1_3.png" alt="Product Image">
+                                        <span class="product-tag">Hot</span>
+                                        <div class="actions">
+                                            <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
+                                            <a href="cart.html" class="icon-btn"><i class="far fa-cart-plus"></i></a>
+                                            <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <!-- <a href="shop-details.html" class="product-category"><br />
+    <b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
+    <br />
+    <b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
+    </a> -->
+                                        <h3 class="product-title"><a href="shop-details.html">Books</a></h3>
+                                        <span class="price">$96.85</span>
+                                        <div class="woocommerce-product-rating">
+                                            <span class="count">(120 Reviews)</span>
+                                            <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
+                                                <span>Rated <strong class="rating">5.00</strong> out of 5 based on <span class="rating">1</span> customer rating</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="swiper-slide">
+                                <div class="th-product product-grid">
+                                    <div class="product-img">
+                                        <img src="assets/img/product/product_1_4.png" alt="Product Image">
+                                        <span class="product-tag">Sale</span>
+                                        <div class="actions">
+                                            <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
+                                            <a href="cart.html" class="icon-btn"><i class="far fa-cart-plus"></i></a>
+                                            <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <!-- <a href="shop-details.html" class="product-category"><br />
+    <b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
+    <br />
+    <b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
+    </a> -->
+                                        <h3 class="product-title"><a href="shop-details.html">Chair</a></h3>
+                                        <span class="price">$08.85<del>$06.99</del></span>
+                                        <div class="woocommerce-product-rating">
+                                            <span class="count">(120 Reviews)</span>
+                                            <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
+                                                <span>Rated <strong class="rating">5.00</strong> out of 5 based on <span class="rating">1</span> customer rating</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="swiper-slide">
+                                <div class="th-product product-grid">
+                                    <div class="product-img">
+                                        <img src="assets/img/product/product_1_5.png" alt="Product Image">
+                                        <span class="product-tag">New</span>
+                                        <div class="actions">
+                                            <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
+                                            <a href="cart.html" class="icon-btn"><i class="far fa-cart-plus"></i></a>
+                                            <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <!-- <a href="shop-details.html" class="product-category"><br />
+    <b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
+    <br />
+    <b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
+    </a> -->
+                                        <h3 class="product-title"><a href="shop-details.html">Chair</a></h3>
+                                        <span class="price">$32.85</span>
+                                        <div class="woocommerce-product-rating">
+                                            <span class="count">(120 Reviews)</span>
+                                            <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
+                                                <span>Rated <strong class="rating">5.00</strong> out of 5 based on <span class="rating">1</span> customer rating</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="swiper-slide">
+                                <div class="th-product product-grid">
+                                    <div class="product-img">
+                                        <img src="assets/img/product/product_1_6.png" alt="Product Image">
+                                        <span class="product-tag">Hot</span>
+                                        <div class="actions">
+                                            <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
+                                            <a href="cart.html" class="icon-btn"><i class="far fa-cart-plus"></i></a>
+                                            <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <!-- <a href="shop-details.html" class="product-category"><br />
+    <b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
+    <br />
+    <b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
+    </a> -->
+                                        <h3 class="product-title"><a href="shop-details.html">Baby Dress</a></h3>
+                                        <span class="price">$30.85</span>
+                                        <div class="woocommerce-product-rating">
+                                            <span class="count">(120 Reviews)</span>
+                                            <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
+                                                <span>Rated <strong class="rating">5.00</strong> out of 5 based on <span class="rating">1</span> customer rating</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="swiper-slide">
+                                <div class="th-product product-grid">
+                                    <div class="product-img">
+                                        <img src="assets/img/product/product_1_7.png" alt="Product Image">
+                                        <span class="product-tag">New</span>
+                                        <div class="actions">
+                                            <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
+                                            <a href="cart.html" class="icon-btn"><i class="far fa-cart-plus"></i></a>
+                                            <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <!-- <a href="shop-details.html" class="product-category"><br />
+    <b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
+    <br />
+    <b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
+    </a> -->
+                                        <h3 class="product-title"><a href="shop-details.html">Comfort Chair</a></h3>
+                                        <span class="price">$232.85</span>
+                                        <div class="woocommerce-product-rating">
+                                            <span class="count">(120 Reviews)</span>
+                                            <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
+                                                <span>Rated <strong class="rating">5.00</strong> out of 5 based on <span class="rating">1</span> customer rating</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="swiper-slide">
+                                <div class="th-product product-grid">
+                                    <div class="product-img">
+                                        <img src="assets/img/product/product_1_8.png" alt="Product Image">
+                                        <span class="product-tag">Hot</span>
+                                        <div class="actions">
+                                            <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
+                                            <a href="cart.html" class="icon-btn"><i class="far fa-cart-plus"></i></a>
+                                            <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <!-- <a href="shop-details.html" class="product-category"><br />
+    <b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
+    <br />
+    <b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
+    </a> -->
+                                        <h3 class="product-title"><a href="shop-details.html">Short Table</a></h3>
+                                        <span class="price">$30.85</span>
+                                        <div class="woocommerce-product-rating">
+                                            <span class="count">(120 Reviews)</span>
+                                            <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
+                                                <span>Rated <strong class="rating">5.00</strong> out of 5 based on <span class="rating">1</span> customer rating</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="d-block d-md-none mt-40 text-center">
+                        <div class="icon-box">
+                            <button data-slider-prev="#productSlider1" class="slider-arrow default"><i class="far fa-arrow-left"></i></button>
+                            <button data-slider-next="#productSlider1" class="slider-arrow default"><i class="far fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--==============================
+        Footer Area
+    ==============================-->
+    <footer class="footer-wrapper footer-layout1">
+        <div class="shape-mockup footer-bg-shape1-1 jump" data-left="0" data-top="0">
+            <img src="assets/img/shape/footer-bg-shape1-1.png" alt="img">
+        </div>
+        <div class="shape-mockup footer-bg-shape1-2 jump-reverse" data-right="0" data-top="15%">
+            <img src="assets/img/shape/footer-bg-shape3.png" alt="img">
+        </div>
+        <div class="shape-mockup footer-bg-shape1-3 jump" data-right="0" data-bottom="0">
+            <div class="color-masking2">
+                <div class="masking-src" data-mask-src="assets/img/shape/footer-bg-shape1-2.png"></div>
+                <img src="assets/img/shape/footer-bg-shape1-2.png" alt="img">
+            </div>
+        </div>
+        <div class="widget-area">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-md-6 col-xl-auto">
+                        <div class="widget footer-widget">
+                            <div class="th-widget-about">
+                                <p class="about-text mb-3">Our secure VAARAHI platform allows you to make buy & sell products quickly</p>
+                                <div class="info-card style2">
+                                    <div class="box-icon bg-theme">
+                                        <i class="fal fa-phone"></i>
+                                    </div>
+                                    <div class="box-content">
+                                        <p class="box-text">Call us any time:</p>
+                                        <h4 class="box-title"><a href="tel:+12345678910">+123-4567-8910</a></h4>
+                                    </div>
+                                </div>
+                                <div class="info-card style2">
+                                    <div class="box-icon bg-theme2">
+                                        <i class="fal fa-envelope-open"></i>
+                                    </div>
+                                    <div class="box-content">
+                                        <p class="box-text">Email us any time:</p>
+                                        <h4 class="box-title"><a href="mailto:example@gmail.com">example@gmail.com</a></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-auto">
+                        <div class="widget widget_nav_menu footer-widget">
+                            <h3 class="widget_title">Quick Links</h3>
+                            <div class="menu-all-pages-container">
+                                <ul class="menu">
+                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="products.html">Products</a></li>
+                                    <li><a href="#">Pictures</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-auto">
+                        <div class="widget newsletter-widget footer-widget">
+                            <h3 class="widget_title">Social Media</h3>
+                            <p class="footer-text mb-3">Subscribe to Our Social Media. Regular inspection and feedback mechanisms</p>
+                            <div class="th-social style6">
+                                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-wrap bg-theme text-center py-3">
+            <div class="container">
+                <p class="copyright-text mb-0">Copyright 2025 <a href="index.html">VAARAHI</a> All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+        <!--********************************
+                Code End  Here 
+        ******************************** -->
+
+        <!-- Scroll To Top -->
+        <div class="scroll-top">
+            <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 307.919;"></path>
+            </svg>
+        </div>
+
+        <!--==============================
+        All Js File
+    ============================== -->
+        <!-- Jquery -->
+        <script src="assets/js/vendor/jquery-3.7.1.min.js"></script>
+        <!-- Swiper Js -->
+        <script src="assets/js/swiper-bundle.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="assets/js/bootstrap.min.js"></script>
+        <!-- Magnific Popup -->
+        <script src="assets/js/jquery.magnific-popup.min.js"></script>
+        <!-- Counter Up -->
+        <script src="assets/js/jquery.counterup.min.js"></script>
+        <!-- Range Slider -->
+        <script src="assets/js/jquery-ui.min.js"></script>
+        <!-- Isotope Filter -->
+        <script src="assets/js/imagesloaded.pkgd.min.js"></script>
+        <script src="assets/js/isotope.pkgd.min.js"></script>
+
+        <!-- Main Js File -->
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/cart.js"></script>
+        <script src="assets/js/product-sort.js"></script>
+        <script src="assets/js/product-details.js"></script>
+    </body>
+    <script>
+         // Setup event listeners for the cart
+function setupEventListeners() {
+    // Setup Quick View
+    setupQuickView();
+    
+    // Add to cart buttons
+    document.querySelectorAll('.icon-btn[href="cart.html"]').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Get product data
+            const product = button.closest('.th-product');
+            if (!product) return;
+            
+            const name = product.querySelector('.product-title a').textContent;
+            const priceText = product.querySelector('.price').textContent;
+            
+            // Carefully extract the price
+            let price = 0;
+            const priceMatch = priceText.match(/\$\s*(\d+(\.\d+)?)/);
+            if (priceMatch && priceMatch[1]) {
+                price = parseFloat(priceMatch[1]);
+            }
+            
+            const image = product.querySelector('.product-img img').getAttribute('src');
+            const id = name.toLowerCase().replace(/\s+/g, '-');
+            
+            // Add to cart
+            addToCart({
+                id,
+                name,
+                price,
+                image,
+                quantity: 1
+            });
+        });
+    });
+    
+    // Shop details page add to cart button - using event delegation to handle all cases
+    document.addEventListener('click', function(e) {
+        // Check if this is the add to cart button on the shop details page
+        if (e.target.classList.contains('th-btn') && 
+            e.target.textContent.includes('Add to Cart') && 
+            e.target.closest('.product-about') && 
+            !e.target.closest('#QuickView')) {
+            
+            e.preventDefault();
+            
+            // Get product data from the product details page
+            const productAbout = e.target.closest('.product-about');
+            if (!productAbout) return;
+            
+            const name = productAbout.querySelector('.product-title').textContent;
+            const priceText = productAbout.querySelector('.price').textContent;
+            
+            // Carefully extract the price
+            let price = 0;
+            const priceMatch = priceText.match(/\$\s*(\d+(\.\d+)?)/);
+            if (priceMatch && priceMatch[1]) {
+                price = parseFloat(priceMatch[1]);
+            }
+            
+            const imageContainer = document.querySelector('.product-big-img img');
+            const image = imageContainer ? imageContainer.getAttribute('src') : '';
+            const skuElement = productAbout.querySelector('.sku');
+            const id = skuElement ? skuElement.textContent : name.toLowerCase().replace(/\s+/g, '-');
+            const quantityInput = productAbout.querySelector('.qty-input');
+            const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
+            
+            // Add to cart
+            addToCart({
+                id,
+                name,
+                price,
+                image,
+                quantity
+            });
+        }
+    });
+}
+    </script>
+    </html>

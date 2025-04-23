@@ -1,15 +1,13 @@
-<!-- about.html -->
 <!doctype html>
 <html class="no-js" lang="zxx" dir="ltr">
 
 
-<!-- Mirrored from html.themeholy.com/VAARAHI/demo/about.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 28 Jan 2025 18:45:21 GMT -->
-
+<!-- Mirrored from html.themeholy.com/donat/demo/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 28 Jan 2025 18:45:35 GMT -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>VAARAHI - About</title>
-    <meta name="author" content="VAARAHI">
+    <title>VAARAHI - Products</title>
+
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,16 +18,13 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/FAVICONS/favicon-16x16.png">
     <link rel="manifest" href="/assets/FAVICONS/site.webmanifest">
 
-
     <!--==============================
 	  Google Fonts
 	============================== -->
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&amp;family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&amp;family=Nunito:ital,wght@0,200..1000;1,200..1000&amp;display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&amp;family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&amp;family=Nunito:ital,wght@0,200..1000;1,200..1000&amp;display=swap" rel="stylesheet">
 
     <!--==============================
 	    All CSS File
@@ -44,6 +39,51 @@
     <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+<!-- Add this in the head section of all HTML files -->
+ <style>
+      .logo-gradient {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        position: relative;
+    }
+    
+    .logo-gradient::before {
+        content: '';
+        position: absolute;
+        top: -5px;
+        left: -10px;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #FFAC00, #FFD700);
+        opacity: 0.1;
+        border-radius: 8px;
+        transform: rotate(-10deg);
+        z-index: -1;
+        transition: all 0.3s ease;
+    }
+    
+    .logo-gradient .text {
+        font-family: 'Audiowide', cursive;
+        font-size: 26px;
+        color: #1a1a1a;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        position: relative;
+    }
+    
+    .logo-gradient .highlight {
+        background: linear-gradient(45deg, #FFAC00, #FFD700);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+    }
+    
+    .logo-gradient:hover::before {
+        transform: rotate(0deg) scale(1.1);
+    }
+ </style>
 
 </head>
 
@@ -62,7 +102,52 @@
      Preloader
   ==============================-->
     <!--==============================
-
+Product Lightbox
+==============================-->
+<!-- Replace the existing QuickView div with this one -->
+<div id="QuickView" class="white-popup mfp-hide">
+    <div class="container bg-white rounded-10">
+        <div class="row gx-60">
+            <div class="col-lg-6">
+                <div class="product-big-img">
+                    <div class="img"><img src="assets/img/product/product_details_1_1.png" alt="Product Image"></div>
+                </div>
+            </div>
+            <div class="col-lg-6 align-self-center">
+                <div class="product-about">
+                    <p class="price">$0.00</p>
+                    <h2 class="product-title">Product Name</h2>
+                    <div class="product-rating">
+                        <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5 based on <span class="rating">1</span> customer rating</span></div>
+                        <a href="#" class="woocommerce-review-link">(<span class="count">4</span> customer reviews)</a>
+                    </div>
+                    <p class="text">This premium product combines quality craftsmanship with modern design. Perfect for those seeking both functionality and style, it's a great addition to your collection.</p>
+                    <div class="mt-2 link-inherit">
+                        <p>
+                            <strong class="text-title me-3">Availability:</strong>
+                            <span class="stock in-stock"><i class="far fa-check-square me-2 ms-1"></i>In Stock</span>
+                        </p>
+                    </div>
+                    <div class="actions">
+                        <div class="quantity">
+                            <input type="number" class="qty-input" step="1" min="1" max="100" name="quantity" value="1" title="Qty">
+                            <button class="quantity-plus qty-btn"><i class="far fa-chevron-up"></i></button>
+                            <button class="quantity-minus qty-btn"><i class="far fa-chevron-down"></i></button>
+                        </div>
+                        <button class="th-btn">Add to Cart</button>
+                        <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
+                    </div>
+                    <div class="product_meta">
+                        <span class="sku_wrapper">SKU: <span class="sku">product-id</span></span>
+                        <span class="posted_in">Category: <a href="#">General</a></span>
+                        <span>Tags: <a href="#">Product</a><a href="#">Retail</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+    </div>
+</div><!--==============================
     Sidemenu
 ============================== -->
 <div class="sidemenu-wrapper sidemenu-cart">
@@ -87,23 +172,23 @@
         </div>
     </div>
 </div>
-<div class="popup-search-box d-none d-lg-block">
-    <button class="searchClose"><i class="far fa-times"></i></button>
-    <form action="#">
-        <input type="text" placeholder="What are you looking for?">
-        <button type="submit"><i class="fal fa-search"></i></button>
-    </form>
-</div>
-<!--==============================
-Mobile Menu
-==============================-->
-<div class="th-menu-wrapper">
+    <div class="popup-search-box d-none d-lg-block">
+        <button class="searchClose"><i class="far fa-times"></i></button>
+        <form action="#">
+            <input type="text" placeholder="What are you looking for?">
+            <button type="submit"><i class="fal fa-search"></i></button>
+        </form>
+    </div><!--==============================
+    Mobile Menu
+  ============================== -->
+  <div class="th-menu-wrapper">
     <div class="th-menu-area text-center">
         <button class="th-menu-toggle"><i class="fal fa-times"></i></button>
         <div class="mobile-logo">
-            <a href="index.html"
-                style="font-family: 'Audiowide', cursive; font-size: 30px; color: black; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; display: inline-block;margin-top: 6px;margin-left: -10px;">
-                <span style="color:#FFAC00;">V</span> <span style="color:#FFAC00;"></span>AARAHI
+            <a href="index.html" class="logo-gradient">
+                <span class="text">
+                    <span class="highlight">V</span>AARAHI
+                </span>
             </a>
         </div>
         <div class="th-mobile-menu">
@@ -127,7 +212,7 @@ Mobile Menu
         </div>
     </div>
 </div>
-<!--==============================
+     <!--==============================
 	Header Area
 ==============================-->
 <header class="th-header header-layout1">
@@ -136,9 +221,10 @@ Mobile Menu
         <div class="container">
             <div class="menu-area">
                 <div class="header-logo">
-                    <a href="index.html"
-                        style="font-family: 'Audiowide', cursive; font-size: 35px; color: black; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; display: inline-block;margin-top: 6px;margin-left: 10px;">
-                        <span style="color:#FFAC00;">V</span> <span style="color:#FFAC00;"></span>AARAHI
+                    <a href="index.html" class="logo-gradient">
+                        <span class="text">
+                            <span class="highlight">V</span>AARAHI
+                        </span>
                     </a>
                 </div>
                 <div class="menu-area-wrap" style="margin-left: -50px;">
@@ -153,7 +239,7 @@ Mobile Menu
                             </li>
 
                             <li>
-                                <a href="#">Pictures</a>
+                                <a href="p">Pictures</a>
                             </li>
                             <li>
                                 <a href="contact.html">Contact</a>
@@ -162,7 +248,7 @@ Mobile Menu
                         </ul>
                     </nav>
                     <p class="header-notice"><img class="me-1" src="assets/img/icon/heart-icon.svg" alt="img">Are
-                        you ready to buy products? Let’s become buyer</p>
+                        you ready to buy products? Let's become buyer</p>
                 </div>
                 <div class="header-button">
                     <button type="button" class="icon-btn th-menu-toggle d-lg-none"><i
@@ -176,12 +262,10 @@ Mobile Menu
                         <i class="fa-regular fa-cart-shopping"></i>
                     </button>
                 </div>
-                
             </div>
         </div>
     </div>
 </header>
-
 
     <!--==============================
     Breadcumb
@@ -199,7 +283,64 @@ Mobile Menu
     </div><!--==============================
 Feature Area  
 ==============================-->
-    <!--==============================
+    <section class="space-top">
+        <div class="container">
+            <div class="row gy-4 justify-content-center">
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-card-bg-shape">
+                            <img src="assets/img/shape/feature-card-bg-shape1-1.png" alt="img">
+                        </div>
+                        <div class="box-icon">
+                            <img src="assets/img/icon/feature-icon1-2.svg" alt="icon">
+                        </div>
+                        <h3 class="box-title">Donor Friendly</h3>
+                        <p class="box-text">Stay updated with the latest news, events, and impact stories from our organization. Subscribe to our newsletter.</p>
+                        <a class="link-btn style2" href="about.html">View Details <i class="fa-solid fa-arrow-up-right ms-2"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-card-bg-shape">
+                            <img src="assets/img/shape/feature-card-bg-shape1-1.png" alt="img">
+                        </div>
+                        <div class="box-icon">
+                            <img src="assets/img/icon/feature-icon1-1.svg" alt="icon">
+                        </div>
+                        <h3 class="box-title">Fundraising Trust</h3>
+                        <p class="box-text">Stay updated with the latest news, events, and impact stories from our organization. Subscribe to our newsletter.</p>
+                        <a class="link-btn style2" href="about.html">View Details <i class="fa-solid fa-arrow-up-right ms-2"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-card-bg-shape">
+                            <img src="assets/img/shape/feature-card-bg-shape1-1.png" alt="img">
+                        </div>
+                        <div class="box-icon">
+                            <img src="assets/img/icon/feature-icon1-2.svg" alt="icon">
+                        </div>
+                        <h3 class="box-title">Charity Donate</h3>
+                        <p class="box-text">Stay updated with the latest news, events, and impact stories from our organization. Subscribe to our newsletter.</p>
+                        <a class="link-btn style2" href="about.html">View Details <i class="fa-solid fa-arrow-up-right ms-2"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-card-bg-shape">
+                            <img src="assets/img/shape/feature-card-bg-shape1-1.png" alt="img">
+                        </div>
+                        <div class="box-icon">
+                            <img src="assets/img/icon/feature-icon1-1.svg" alt="icon">
+                        </div>
+                        <h3 class="box-title">Treatment Help</h3>
+                        <p class="box-text">Stay updated with the latest news, events, and impact stories from our organization. Subscribe to our newsletter.</p>
+                        <a class="link-btn style2" href="about.html">View Details <i class="fa-solid fa-arrow-up-right ms-2"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> <!--==============================
 About Area  
 ==============================-->
     <div class="overflow-hidden space" id="about-sec">
@@ -221,18 +362,20 @@ About Area
                 <div class="col-xl-5">
                     <div class="about-wrap1">
                         <div class="title-area mb-30">
-                            <span class="sub-title before-none">About Us</span>
-                            <p>
-                                Vaarahi – The Next Generation Farming Limited is committed to transforming *waste into wealth* by innovating sustainable solutions for modern agriculture.
-                            </p>
-                         
-                            <p>
-                                Our startup specializes in *manufacturing agarbatti-making machines, producing and selling Eco friendly agarbattis, and developing **advanced farming tools* tailored for next-generation agricultural practices. 
-                            </p>
-                          
-                            <p>
-                                By integrating technology with sustainability, Vaarahi empowers farmers and entrepreneurs with efficient, eco-friendly solutions that enhance productivity and create new economic opportunities.
-                            </p>
+                            <span class="sub-title before-none">About Us Donat</span>
+                            <h2 class="sec-title">We Believe that We can Save More Life's with you</h2>
+                            <p class="">Donet is the largest global crowdfunding community connecting nonprofits, donors, and companies in nearly every country. We help nonprofits from Afghanistan to Zimbabwe (and hundreds of places in between) access the tools, training, and support they need to be more effective and make our world a better place.</p>
+                        </div>
+                        <div class="checklist style2 list-two-column">
+                            <ul>
+                                <li>Charity For Foods</li>
+                                <li data-theme-color="var(--theme-color2)">Charity For Water</li>
+                                <li data-theme-color="#FF5528">Charity For Education</li>
+                                <li data-theme-color="#122F2A">Charity For Medical</li>
+                            </ul>
+                        </div>
+                        <div class="btn-wrap mt-40">
+                            <a href="about.html" class="th-btn">About More<i class="fas fa-arrow-up-right ms-2"></i></a>
                         </div>
                     </div>
                 </div>
@@ -242,7 +385,208 @@ About Area
     </div><!--==============================
 Team Area  
 ==============================-->
+    <section class="space" id="team-sec" data-bg-src="assets/img/bg/gray-bg2.png">
+        <div class="shape-mockup team-bg-shape3-1 d-xxl-block d-none" data-top="0%" data-left="0%" data-bottom="0"><img src="assets/img/shape/team_bg_shape3_1.png" alt="img"></div>
+        <div class="shape-mockup team-bg-shape3-2 d-xxl-block d-none" data-top="0%" data-right="0%" data-bottom="0"><img src="assets/img/shape/team_bg_shape3_2.png" alt="img"></div>
+        <div class="shape-mockup team-bg-shape3-3 spin d-xxl-block d-none" data-top="15%" data-left="20%">
+            <div class="color-masking2">
+                <div class="masking-src" data-mask-src="assets/img/shape/team_bg_shape3_3.png"></div>
+                <img src="assets/img/shape/team_bg_shape3_3.png" alt="img">
+            </div>
+        </div>
+        <div class="shape-mockup team-bg-shape3-4 jump d-xxl-block d-none" data-top="18%" data-right="10%">
+            <img src="assets/img/shape/team_bg_shape3_4.png" alt="img">
+        </div>
+        <div class="shape-mockup team-bg-shape3-5 spin d-xxl-block d-none" data-bottom="18%" data-left="10%">
+            <img src="assets/img/shape/team_bg_shape3_5.png" alt="img">
+        </div>
+        <div class="shape-mockup team-bg-shape3-6 spin d-xxl-block d-none" data-bottom="10%" data-right="10%">
+            <div class="color-masking">
+                <div class="masking-src" data-mask-src="assets/img/shape/team_bg_shape3_6.png"></div>
+                <img src="assets/img/shape/team_bg_shape3_6.png" alt="img">
+            </div>
+        </div>
+        <div class="container">
+            <div class="title-area text-center">
+                <span class="sub-title after-none before-none"><i class="far fa-heart text-theme"></i> Our Volunteer</span>
+                <h2 class="sec-title">Meet The Optimistic Volunteer</h2>
+            </div>
+            <div class="slider-area">
+                <div class="swiper th-slider has-shadow" id="teamSlider3" data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"2"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"3"},"1200":{"slidesPerView":"4"}}}'>
+                    <div class="swiper-wrapper">
+                        <!-- Single Item -->
+                        <div class="swiper-slide">
+                            <div class="th-team team-card3">
+                                <div class="team-img">
+                                    <img src="assets/img/team/team_3_1.png" alt="Team">
+                                </div>
+                                <div class="team-card-content">
+                                    <h3 class="box-title"><a href="team-details.html">Michel Connor</a></h3>
+                                    <span class="team-desig">Volunteer</span>
+                                    <div class="th-social style2">
+                                        <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                                        <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                                        <a target="_blank" href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
+                                        <a target="_blank" href="https://behance.com/"><i class="fab fa-behance"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                        <!-- Single Item -->
+                        <div class="swiper-slide">
+                            <div class="th-team team-card3">
+                                <div class="team-img">
+                                    <img src="assets/img/team/team_3_2.png" alt="Team">
+                                </div>
+                                <div class="team-card-content">
+                                    <h3 class="box-title"><a href="team-details.html">Jessica Lauren</a></h3>
+                                    <span class="team-desig">Volunteer</span>
+                                    <div class="th-social style2">
+                                        <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                                        <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                                        <a target="_blank" href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
+                                        <a target="_blank" href="https://behance.com/"><i class="fab fa-behance"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Item -->
+                        <div class="swiper-slide">
+                            <div class="th-team team-card3">
+                                <div class="team-img">
+                                    <img src="assets/img/team/team_3_3.png" alt="Team">
+                                </div>
+                                <div class="team-card-content">
+                                    <h3 class="box-title"><a href="team-details.html">Daniel Thomas</a></h3>
+                                    <span class="team-desig">Volunteer</span>
+                                    <div class="th-social style2">
+                                        <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                                        <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                                        <a target="_blank" href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
+                                        <a target="_blank" href="https://behance.com/"><i class="fab fa-behance"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Item -->
+                        <div class="swiper-slide">
+                            <div class="th-team team-card3">
+                                <div class="team-img">
+                                    <img src="assets/img/team/team_3_4.png" alt="Team">
+                                </div>
+                                <div class="team-card-content">
+                                    <h3 class="box-title"><a href="team-details.html">Michel Vetory</a></h3>
+                                    <span class="team-desig">Volunteer</span>
+                                    <div class="th-social style2">
+                                        <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                                        <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                                        <a target="_blank" href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
+                                        <a target="_blank" href="https://behance.com/"><i class="fab fa-behance"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Item -->
+                        <div class="swiper-slide">
+                            <div class="th-team team-card3">
+                                <div class="team-img">
+                                    <img src="assets/img/team/team_3_5.png" alt="Team">
+                                </div>
+                                <div class="team-card-content">
+                                    <h3 class="box-title"><a href="team-details.html">Emma Mary</a></h3>
+                                    <span class="team-desig">Volunteer</span>
+                                    <div class="th-social style2">
+                                        <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                                        <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                                        <a target="_blank" href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
+                                        <a target="_blank" href="https://behance.com/"><i class="fab fa-behance"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Item -->
+                        <div class="swiper-slide">
+                            <div class="th-team team-card3">
+                                <div class="team-img">
+                                    <img src="assets/img/team/team_3_6.png" alt="Team">
+                                </div>
+                                <div class="team-card-content">
+                                    <h3 class="box-title"><a href="team-details.html">Alexander Joseph</a></h3>
+                                    <span class="team-desig">Volunteer</span>
+                                    <div class="th-social style2">
+                                        <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                                        <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                                        <a target="_blank" href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
+                                        <a target="_blank" href="https://behance.com/"><i class="fab fa-behance"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Item -->
+                        <div class="swiper-slide">
+                            <div class="th-team team-card3">
+                                <div class="team-img">
+                                    <img src="assets/img/team/team_3_7.png" alt="Team">
+                                </div>
+                                <div class="team-card-content">
+                                    <h3 class="box-title"><a href="team-details.html">Olivia Patricia</a></h3>
+                                    <span class="team-desig">Volunteer</span>
+                                    <div class="th-social style2">
+                                        <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                                        <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                                        <a target="_blank" href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
+                                        <a target="_blank" href="https://behance.com/"><i class="fab fa-behance"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Item -->
+                        <div class="swiper-slide">
+                            <div class="th-team team-card3">
+                                <div class="team-img">
+                                    <img src="assets/img/team/team_3_8.png" alt="Team">
+                                </div>
+                                <div class="team-card-content">
+                                    <h3 class="box-title"><a href="team-details.html">Ethan David</a></h3>
+                                    <span class="team-desig">Volunteer</span>
+                                    <div class="th-social style2">
+                                        <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                                        <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                                        <a target="_blank" href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
+                                        <a target="_blank" href="https://behance.com/"><i class="fab fa-behance"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--==============================
+Video Area  
+==============================-->
+    <div class="video-area-3">
+        <div class="shape-mockup video-bg-shape3-1" data-top="0" data-left="0" data-bottom="0">
+            <img src="assets/img/shape/video_bg_shape3_1.png" alt="img">
+        </div>
+        <div class="shape-mockup video-bg-shape3-2" data-top="0" data-right="0" data-bottom="0">
+            <img src="assets/img/shape/video_bg_shape3_2.png" alt="img">
+        </div>
+        <div class="video-thumb3-1 video-box-center">
+            <img src="assets/img/normal/video-thumb3-1.png" alt="img">
+            <a href="https://www.youtube.com/watch?v=_sI_Ps7JSEk" class="play-btn style7 popup-video"><i class="fa-sharp fa-solid fa-play"></i></a>
+        </div>
+    </div>
     <!--==============================
 Counter Area  
 ==============================-->
@@ -251,32 +595,28 @@ Counter Area
             <div class="counter-wrap style2 bg-light">
                 <div class="counter-card">
                     <div class="media-body">
-                        <h2 class="box-number text-white"><span class="counter-number">0</span>k<span
-                                class="fw-light">+</span></h2>
+                        <h2 class="box-number text-white"><span class="counter-number">15</span>k<span class="fw-light">+</span></h2>
                         <p class="box-text text-white">Incredible Volunteers</p>
                     </div>
                 </div>
                 <div class="divider"></div>
                 <div class="counter-card">
                     <div class="media-body">
-                        <h2 class="box-number text-white"><span class="counter-number">0</span>k<span
-                                class="fw-light">+</span></h2>
+                        <h2 class="box-number text-white"><span class="counter-number">1</span>k<span class="fw-light">+</span></h2>
                         <p class="box-text text-white">Successful Campaigns</p>
                     </div>
                 </div>
                 <div class="divider"></div>
                 <div class="counter-card">
                     <div class="media-body">
-                        <h2 class="box-number text-white"><span class="counter-number">0</span><span
-                                class="fw-light">+</span></h2>
+                        <h2 class="box-number text-white"><span class="counter-number">400</span><span class="fw-light">+</span></h2>
                         <p class="box-text text-white">Monthly Donors</p>
                     </div>
                 </div>
                 <div class="divider"></div>
                 <div class="counter-card">
                     <div class="media-body">
-                        <h2 class="box-number text-white"><span class="counter-number">0</span>k<span
-                                class="fw-light">+</span></h2>
+                        <h2 class="box-number text-white"><span class="counter-number">35</span>k<span class="fw-light">+</span></h2>
                         <p class="box-text text-white">Team Support</p>
                     </div>
                 </div>
@@ -287,15 +627,11 @@ Counter Area
 Process Area  
 ==============================-->
     <section class="space-top">
-        <div class="shape-mockup process-shape1-1 jump-reverse d-xxl-block d-none" data-top="20%" data-left="0"><img
-                src="assets/img/shape/hand-bg-shape2-1.png" alt="img"></div>
+        <div class="shape-mockup process-shape1-1 jump-reverse d-xxl-block d-none" data-top="20%" data-left="0"><img src="assets/img/shape/hand-bg-shape2-1.png" alt="img"></div>
         <div class="container">
             <div class="title-area text-center">
-                <span class="sub-title after-none before-none" style="font-size: xx-large;">What Defines Vaarahi
-                    </span>
-                <h2 class="sec-title" style="font-size: xx-large">At our youth nonprofit, our mission, vision, and
-                    values drive us to empower young
-                    people and foster positive change in our communities.</h2>
+                <span class="sub-title after-none before-none">Work Process</span>
+                <h2 class="sec-title">Our Donating Work Process</h2>
             </div>
             <div class="row gy-40 justify-content-center">
                 <div class="col-lg-4 col-md-6 process-card-wrap">
@@ -312,9 +648,8 @@ Process Area
                             </div>
                         </div>
                         <div class="box-content">
-                            <h3 class="box-title">Our Vision</h3>
-                            <p class="box-text">We want to enable the young generation around the world and community to
-                                learn, grow, and contribute to society through us.</p>
+                            <h3 class="box-title">Awareness & Engagement</h3>
+                            <p class="box-text">To inform and engage potential donors and supporters about the charity’s mission and the cause it supports. Utilize various channels such as social media.</p>
                         </div>
                     </div>
                 </div>
@@ -332,19 +667,8 @@ Process Area
                             </div>
                         </div>
                         <div class="box-content">
-                            <h3 class="box-title">Our Values</h3>
-                            <p class="box-text" style="margin-bottom: 20px;">Service
-                                <br>
-                                ​Teamwork
-                                <br>
-                                Empower & excellence
-                                <br>
-                                Accountability
-                                <br>
-                                DEI
-                                <br>
-                                Integrity
-                            </p>
+                            <h3 class="box-title">Donation Collection</h3>
+                            <p class="box-text">Set up a secure and user-friendly online donation platform that accepts multiple payment methods and allows for both one-time and recurring donations.</p>
                         </div>
                     </div>
                 </div>
@@ -362,9 +686,8 @@ Process Area
                             </div>
                         </div>
                         <div class="box-content">
-                            <h3 class="box-title">Our Mission</h3>
-                            <p class="box-text">We want to create a better future by serving one child, one family, and
-                                one community at a time​. </p>
+                            <h3 class="box-title">Impact and Accountability</h3>
+                            <p class="box-text">Allocate funds to specific projects and initiatives that align with the charity’s mission, ensuring that resources are used efficiently and effectively.</p>
                         </div>
                     </div>
                 </div>
@@ -374,12 +697,181 @@ Process Area
     <!--==============================
 Testimonial Area  
 ==============================-->
-
+    <section class="testi-area-1 space" id="testi-sec">
+        <div class="shape-mockup testi-bg-shape1-1 jump-reverse d-xl-block d-none" data-top="5%" data-right="0">
+            <img src="assets/img/shape/footer-bg-shape3.png" alt="img">
+        </div>
+        <div class="shape-mockup testi-bg-shape1-2" data-top="28%" data-left="5%">
+            <img src="assets/img/shape/testimonial_shape1_1.png" alt="img">
+        </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="title-area text-center">
+                        <span class="sub-title">Testimonials</span>
+                        <h2 class="sec-title">What People Say About
+                            Our Charity</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row gx-0 justify-content-end">
+                <div class="col-lg-5">
+                    <div class="swiper th-slider testi-thumb-slider1" data-slider-options='{"effect":"fade","loop":false}'>
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="testi-box-img">
+                                    <img class="testi-img" src="assets/img/testimonial/testi_1_1.png" alt="img">
+                                    <div class="testi-card_review">
+                                        <i class="fas fa-star"></i>
+                                        5.0
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testi-box-img">
+                                    <img class="testi-img" src="assets/img/testimonial/testi_1_2.png" alt="img">
+                                    <div class="testi-card_review">
+                                        <i class="fas fa-star"></i>
+                                        5.0
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testi-box-img">
+                                    <img class="testi-img" src="assets/img/testimonial/testi_1_1.png" alt="img">
+                                    <div class="testi-card_review">
+                                        <i class="fas fa-star"></i>
+                                        5.0
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testi-box-img">
+                                    <img class="testi-img" src="assets/img/testimonial/testi_1_2.png" alt="img">
+                                    <div class="testi-card_review">
+                                        <i class="fas fa-star"></i>
+                                        5.0
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="testi-slider1">
+                        <div class="swiper th-slider testimonial-slider1" id="testiSlide1" data-slider-options='{"loop":false,"paginationType":"progressbar","effect":"fade", "autoHeight": "true", "thumbs":{"swiper":".testi-thumb-slider1"}}'>
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="testi-card">
+                                        <p class="box-text">“Stay informed about our upcoming events and campaigns. Whether it's a fundraising gala, a charity run, or a community outreach program, there are plenty of ways to get involved and support our cause. Check our event calendar for details. We prioritize your security. Our donation process uses the latest encryption technology to protect your personal and financial information. Donate with confidence knowing”</p>
+                                        <h3 class="box-title">Alex Furnandes</h3>
+                                        <p class="box-desig">CEO, Founder</p>
+                                        <div class="quote-icon" data-mask-src="assets/img/icon/quote2.svg"></div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="testi-card">
+                                        <p class="box-text">“Our donation process uses the latest encryption technology to protect your personal and financial information. Donate with confidence knowing Stay informed about our upcoming events and campaigns. Whether it's a fundraising gala, a charity run, or a community outreach program, there are plenty of ways to get involved and support our cause. Check our event calendar for details. We prioritize your security.”</p>
+                                        <h3 class="box-title">Mustafa Kamal</h3>
+                                        <p class="box-desig">CEO, Founder</p>
+                                        <div class="quote-icon" data-mask-src="assets/img/icon/quote2.svg"></div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="testi-card">
+                                        <p class="box-text">“Stay informed about our upcoming events and campaigns. Whether it's a fundraising gala, a charity run, or a community outreach program, there are plenty of ways to get involved and support our cause. Check our event calendar for details. We prioritize your security. Our donation process uses the latest encryption technology to protect your personal and financial information. Donate with confidence knowing”</p>
+                                        <h3 class="box-title">Alex Furnandes</h3>
+                                        <p class="box-desig">CEO, Founder</p>
+                                        <div class="quote-icon" data-mask-src="assets/img/icon/quote2.svg"></div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="testi-card">
+                                        <p class="box-text">“Our donation process uses the latest encryption technology to protect your personal and financial information. Donate with confidence knowing Stay informed about our upcoming events and campaigns. Whether it's a fundraising gala, a charity run, or a community outreach program, there are plenty of ways to get involved and support our cause. Check our event calendar for details. We prioritize your security.”</p>
+                                        <h3 class="box-title">Mustafa Kamal</h3>
+                                        <p class="box-desig">CEO, Founder</p>
+                                        <div class="quote-icon" data-mask-src="assets/img/icon/quote2.svg"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slider-pagination"></div>
+                            <div class="slider-pagination2"></div>
+                        </div>
+                        <div class="icon-box">
+                            <button data-slider-prev="#testiSlide1" class="slider-arrow default style-border slider-prev"><i class="far fa-arrow-left"></i></button>
+                            <button data-slider-next="#testiSlide1" class="slider-arrow default style-border slider-next"><i class="far fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!--==============================
 Brand Area  
 ==============================-->
+    <div class="space-bottom overflow-hidden brand-area-1">
+        <div class="container">
+            <div class="brand-wrap1 p-0 m-0 text-center">
+                <h3 class="brand-wrap-title">Trusted by over <span class="text-theme2"><span class="counter-number">90</span>K+</span> companies worldwide</h3>
+                <div class="swiper th-slider" id="brandSlider1" data-slider-options='{"breakpoints":{"0":{"slidesPerView":2},"576":{"slidesPerView":"2"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"3"},"1200":{"slidesPerView":"4"},"1400":{"slidesPerView":"5", "spaceBetween": "90"}}}'>
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <a href="blog.html" class="brand-box">
+                                <img src="assets/img/brand/brand1-1.svg" alt="Brand Logo">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="blog.html" class="brand-box">
+                                <img src="assets/img/brand/brand1-2.svg" alt="Brand Logo">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="blog.html" class="brand-box">
+                                <img src="assets/img/brand/brand1-3.svg" alt="Brand Logo">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="blog.html" class="brand-box">
+                                <img src="assets/img/brand/brand1-4.svg" alt="Brand Logo">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="blog.html" class="brand-box">
+                                <img src="assets/img/brand/brand1-5.svg" alt="Brand Logo">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="blog.html" class="brand-box">
+                                <img src="assets/img/brand/brand1-1.svg" alt="Brand Logo">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="blog.html" class="brand-box">
+                                <img src="assets/img/brand/brand1-2.svg" alt="Brand Logo">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="blog.html" class="brand-box">
+                                <img src="assets/img/brand/brand1-3.svg" alt="Brand Logo">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="blog.html" class="brand-box">
+                                <img src="assets/img/brand/brand1-4.svg" alt="Brand Logo">
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="blog.html" class="brand-box">
+                                <img src="assets/img/brand/brand1-5.svg" alt="Brand Logo">
+                            </a>
+                        </div>
+                    </div>
 
+                </div>
+            </div>
+        </div>
+    </div>
     <!--==============================
 	Footer Area
 ==============================-->
@@ -457,6 +949,7 @@ Brand Area
     </div>
 </footer>
 
+
     <!--********************************
 			Code End  Here 
 	******************************** -->
@@ -464,37 +957,36 @@ Brand Area
     <!-- Scroll To Top -->
     <div class="scroll-top">
         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
-                style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 307.919;">
-            </path>
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 307.919;"></path>
         </svg>
     </div>
 
     <!--==============================
     All Js File
 ============================== -->
-    <!-- Jquery -->
-    <script src="assets/js/vendor/jquery-3.7.1.min.js"></script>
-    <!-- Swiper Js -->
-    <script src="assets/js/swiper-bundle.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <!-- Magnific Popup -->
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-    <!-- Counter Up -->
-    <script src="assets/js/jquery.counterup.min.js"></script>
-    <!-- Range Slider -->
-    <script src="assets/js/jquery-ui.min.js"></script>
-    <!-- Isotope Filter -->
-    <script src="assets/js/imagesloaded.pkgd.min.js"></script>
-    <script src="assets/js/isotope.pkgd.min.js"></script>
+   
+<script src="assets/js/vendor/jquery-3.7.1.min.js"></script>
+<!-- Swiper Js -->
+<script src="assets/js/swiper-bundle.min.js"></script>
+<!-- Bootstrap -->
+<script src="assets/js/bootstrap.min.js"></script>
+<!-- Magnific Popup -->
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+<!-- Counter Up -->
+<script src="assets/js/jquery.counterup.min.js"></script>
+<!-- Range Slider -->
+<script src="assets/js/jquery-ui.min.js"></script>
+<!-- Isotope Filter -->
+<script src="assets/js/imagesloaded.pkgd.min.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
 
-    <!-- Main Js File -->
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/cart.js"></script>
-</body>
+<!-- Main Js File -->
+<script src="assets/js/main.js"></script>
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/product-sort.js"></script>
+<script src="assets/js/update-product-links.js"></script>
 
-
-<!-- Mirrored from html.themeholy.com/VAARAHI/demo/about.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 28 Jan 2025 18:45:21 GMT -->
+</body> 
+    
 
 </html>

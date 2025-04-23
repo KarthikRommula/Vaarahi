@@ -2,7 +2,6 @@
 <!doctype html>
 <html class="no-js" lang="zxx" dir="ltr">
 
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -39,23 +38,116 @@
     <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
-
+    <style>
+        .logo-gradient {
+          display: inline-flex;
+          align-items: center;
+          text-decoration: none;
+          position: relative;
+      }
+      
+      .logo-gradient::before {
+          content: '';
+          position: absolute;
+          top: -5px;
+          left: -10px;
+          width: 50px;
+          height: 50px;
+          background: linear-gradient(135deg, #FFAC00, #FFD700);
+          opacity: 0.1;
+          border-radius: 8px;
+          transform: rotate(-10deg);
+          z-index: -1;
+          transition: all 0.3s ease;
+      }
+      
+      .logo-gradient .text {
+          font-family: 'Audiowide', cursive;
+          font-size: 26px;
+          color: #1a1a1a;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+          position: relative;
+      }
+      
+      .logo-gradient .highlight {
+          background: linear-gradient(45deg, #FFAC00, #FFD700);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-weight: bold;
+      }
+      
+      .logo-gradient:hover::before {
+          transform: rotate(0deg) scale(1.1);
+      }
+      
+      /* PhonePe styling */
+      .phonepe-button {
+          background: #5f259f;
+          color: white;
+          border: none;
+          padding: 12px 30px;
+          border-radius: 5px;
+          font-size: 16px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          transition: background 0.3s ease;
+      }
+      
+      .phonepe-button:hover {
+          background: #4b1d7d;
+      }
+      
+      .phonepe-button img {
+          width: 30px;
+          height: 30px;
+      }
+      
+      /* Loading spinner */
+      .loading-spinner {
+          display: none;
+          width: 20px;
+          height: 20px;
+          border: 3px solid #f3f3f3;
+          border-top: 3px solid #5f259f;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+      }
+      
+      /* Success message */
+      .order-success {
+          display: none;
+          text-align: center;
+          padding: 20px;
+          background: #d4edda;
+          color: #155724;
+          border: 1px solid #c3e6cb;
+          border-radius: 5px;
+          margin: 20px 0;
+      }
+      
+      .error-message {
+          color: #dc3545;
+          font-size: 14px;
+          margin-top: 5px;
+          display: none;
+      }
+      
+      .form-control.error {
+          border-color: #dc3545;
+      }
+   </style>
 </head>
 
 <body>
-
-    <!--[if lte IE 9]>
-    	<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-  	<![endif]-->
-
-
-    <!--********************************
-   		Code Start From Here 
-	******************************** -->
-
-    <!--==============================
-     Preloader
-  ==============================-->
     <!--==============================
     Sidemenu
 ============================== -->
@@ -94,9 +186,10 @@
     <div class="th-menu-area text-center">
         <button class="th-menu-toggle"><i class="fal fa-times"></i></button>
         <div class="mobile-logo">
-            <a href="index.html"
-                style="font-family: 'Audiowide', cursive; font-size: 30px; color: black; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; display: inline-block;margin-top: 6px;margin-left: -10px;">
-                <span style="color:#FFAC00;">V</span> <span style="color:#FFAC00;"></span>AARAHI
+            <a href="index.html" class="logo-gradient">
+                <span class="text">
+                    <span class="highlight">V</span>AARAHI
+                </span>
             </a>
         </div>
         <div class="th-mobile-menu">
@@ -129,9 +222,10 @@
         <div class="container">
             <div class="menu-area">
                 <div class="header-logo">
-                    <a href="index.html"
-                        style="font-family: 'Audiowide', cursive; font-size: 35px; color: black; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; display: inline-block;margin-top: 6px;margin-left: 10px;">
-                        <span style="color:#FFAC00;">V</span> <span style="color:#FFAC00;"></span>AARAHI
+                    <a href="index.html" class="logo-gradient">
+                        <span class="text">
+                            <span class="highlight">V</span>AARAHI
+                        </span>
                     </a>
                 </div>
                 <div class="menu-area-wrap" style="margin-left: -50px;">
@@ -193,150 +287,65 @@ Checkout Arae
 ==============================-->
     <div class="th-checkout-wrapper space-top space-extra-bottom">
         <div class="container">
-            <div class="woocommerce-form-login-toggle">
-                <div class="woocommerce-info">Returning customer? <a href="#" class="showlogin">Click here to login</a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <form action="#" class="woocommerce-form-login mb-3">
-                        <div class="form-group">
-                            <label>Username or email *</label>
-                            <input type="text" class="form-control" placeholder="Username or email">
-                        </div>
-                        <div class="form-group">
-                            <label>Password *</label>
-                            <input type="text" class="form-control" placeholder="Password">
-                        </div>
-                        <div class="form-group">
-                            <div class="custom-checkbox">
-                                <input type="checkbox" id="remembermylogin">
-                                <label for="remembermylogin">Remember Me</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="th-btn">Login</button>
-                            <p class="mt-3 mb-0"><a class="text-reset" href="#">Lost your password?</a></p>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="woocommerce-form-coupon-toggle">
-                <div class="woocommerce-info">Have a coupon? <a href="#" class="showcoupon">Click here to enter your
-                        code</a> </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <form action="#" class="woocommerce-form-coupon">
-                        <div class="form-group">
-                            <label>Coupon code</label>
-                            <input type="text" class="form-control" placeholder="Write your coupon code">
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="th-btn">Apply coupon</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <form action="#" class="woocommerce-checkout mt-40">
+            <form id="checkout-form" class="woocommerce-checkout mt-40">
                 <div class="row ">
                     <div class="col-lg-6">
                         <h2 class="h4 fw-semibold">Billing Details</h2>
                         <div class="row">
+                            <div class="col-md-6 form-group">
+                                <input type="text" id="firstName" class="form-control" placeholder="First Name *" required>
+                                <div class="error-message">First name is required</div>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <input type="text" id="lastName" class="form-control" placeholder="Last Name *" required>
+                                <div class="error-message">Last name is required</div>
+                            </div>
                             <div class="col-12 form-group">
-                                <select class="form-select">
-                                    <option>United Kingdom (UK)</option>
-                                    <option>United State (US)</option>
-                                    <option>Equatorial Guinea (GQ)</option>
-                                    <option>Australia (AU)</option>
-                                    <option>Germany (DE)</option>
+                                <input type="email" id="email" class="form-control" placeholder="Email Address *" required>
+                                <div class="error-message">Valid email is required</div>
+                            </div>
+                            <div class="col-12 form-group">
+                                <input type="tel" id="phone" class="form-control" placeholder="Phone Number *" required pattern="[0-9]{10}">
+                                <div class="error-message">Valid 10-digit phone number is required</div>
+                            </div>
+                            <div class="col-12 form-group">
+                                <input type="text" id="streetAddress" class="form-control" placeholder="Street Address *" required>
+                                <div class="error-message">Street address is required</div>
+                            </div>
+                            <div class="col-12 form-group">
+                                <input type="text" class="form-control" placeholder="Apartment, suite, unit etc. (optional)">
+                            </div>
+                            <div class="col-12 form-group">
+                                <input type="text" id="city" class="form-control" placeholder="Town / City *" required>
+                                <div class="error-message">City is required</div>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <select id="state" class="form-select" required>
+                                    <option value="">Select State *</option>
+                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                    <option value="Maharashtra">Maharashtra</option>
+                                    <option value="Tamil Nadu">Tamil Nadu</option>
+                                    <option value="Karnataka">Karnataka</option>
+                                    <option value="Delhi">Delhi</option>
+                                    <!-- Add more states as needed -->
                                 </select>
+                                <div class="error-message">State is required</div>
                             </div>
                             <div class="col-md-6 form-group">
-                                <input type="text" class="form-control" placeholder="First Name">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <input type="text" class="form-control" placeholder="Last Name">
-                            </div>
-                            <div class="col-12 form-group">
-                                <input type="text" class="form-control" placeholder="Your Company Name">
-                            </div>
-                            <div class="col-12 form-group">
-                                <input type="text" class="form-control" placeholder="Street Address">
-                                <input type="text" class="form-control"
-                                    placeholder="Apartment, suite, unit etc. (optional)">
-                            </div>
-                            <div class="col-12 form-group">
-                                <input type="text" class="form-control" placeholder="Town / City">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <input type="text" class="form-control" placeholder="Country">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <input type="text" class="form-control" placeholder="Postcode / Zip">
-                            </div>
-                            <div class="col-12 form-group">
-                                <input type="text" class="form-control" placeholder="Email Address">
-                                <input type="text" class="form-control" placeholder="Phone number">
-                            </div>
-                            <div class="col-12 form-group">
-                                <input type="checkbox" id="accountNewCreate">
-                                <label for="accountNewCreate">Create An Account?</label>
+                                <input type="text" id="pincode" class="form-control" placeholder="Pincode *" required pattern="[0-9]{6}">
+                                <div class="error-message">Valid 6-digit pincode is required</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <p id="ship-to-different-address">
-                            <input id="ship-to-different-address-checkbox" type="checkbox"
-                                name="ship_to_different_address" value="1" checked>
-                            <label for="ship-to-different-address-checkbox">
-                                Ship to a different address?
-                                <span class="checkmark"></span>
-                            </label>
-                        </p>
                         <div class="shipping_address">
                             <div class="row">
-                                <div class="col-12 form-group">
-                                    <select class="form-select">
-                                        <option>United Kingdom (UK)</option>
-                                        <option>United State (US)</option>
-                                        <option>Equatorial Guinea (GQ)</option>
-                                        <option>Australia (AU)</option>
-                                        <option>Germany (DE)</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <input type="text" class="form-control" placeholder="First Name">
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <input type="text" class="form-control" placeholder="Last Name">
-                                </div>
-                                <div class="col-12 form-group">
-                                    <input type="text" class="form-control" placeholder="Your Company Name">
-                                </div>
-                                <div class="col-12 form-group">
-                                    <input type="text" class="form-control" placeholder="Street Address">
-                                    <input type="text" class="form-control"
-                                        placeholder="Apartment, suite, unit etc. (optional)">
-                                </div>
-                                <div class="col-12 form-group">
-                                    <input type="text" class="form-control" placeholder="Town / City">
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <input type="text" class="form-control" placeholder="Country">
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <input type="text" class="form-control" placeholder="Postcode / Zip">
-                                </div>
-                                <div class="col-12 form-group">
-                                    <input type="text" class="form-control" placeholder="Email Address">
-                                    <input type="text" class="form-control" placeholder="Phone number">
+                                <div class="col-12 form-group mt-4 mt-lg-0">
+                                    <h2 class="h4 fw-semibold mb-4">Additional Information</h2>
+                                    <textarea cols="20" rows="5" class="form-control"
+                                        placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-12 form-group">
-                            <textarea cols="20" rows="5" class="form-control"
-                                placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
                         </div>
                     </div>
                 </div>
@@ -365,8 +374,7 @@ Checkout Arae
                         </tr>
                         <tr class="woocommerce-shipping-totals shipping">
                             <th>Shipping</th>
-                            <td data-title="Shipping" colspan="4"> Enter your address to view shipping options.
-                            </td>
+                            <td data-title="Shipping" colspan="4">Free shipping</td>
                         </tr>
                         <tr class="order-total">
                             <th>Total</th>
@@ -381,47 +389,28 @@ Checkout Arae
             <div class="mt-lg-3 mb-30">
                 <div class="woocommerce-checkout-payment">
                     <ul class="wc_payment_methods payment_methods methods">
-                        <li class="wc_payment_method payment_method_bacs">
-                            <input id="payment_method_bacs" type="radio" class="input-radio" name="payment_method"
-                                value="bacs" checked="checked">
-                            <label for="payment_method_bacs">Direct bank transfer</label>
-                            <div class="payment_box payment_method_bacs">
-                                <p>Make your payment directly into our bank account. Please use your Order ID as the
-                                    payment reference. Your order will not be shipped until the funds have cleared in
-                                    our account.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="wc_payment_method payment_method_cheque">
-                            <input id="payment_method_cheque" type="radio" class="input-radio" name="payment_method"
-                                value="cheque">
-                            <label for="payment_method_cheque">Cheque Payment</label>
-                            <div class="payment_box payment_method_cheque">
-                                <p>Please send a check to Store Name, Store Street, Store Town, Store State / County,
-                                    Store Postcode.</p>
-                            </div>
-                        </li>
-                        <li class="wc_payment_method payment_method_cod">
-                            <input id="payment_method_cod" type="radio" class="input-radio" name="payment_method">
-                            <label for="payment_method_cod">Credit Cart</label>
-                            <div class="payment_box payment_method_cod">
-                                <p>Pay with cash upon delivery.</p>
-                            </div>
-                        </li>
-                        <li class="wc_payment_method payment_method_paypal">
-                            <input id="payment_method_paypal" type="radio" class="input-radio" name="payment_method"
-                                value="paypal">
-                            <label for="payment_method_paypal">Paypal</label>
-                            <div class="payment_box payment_method_paypal">
-                                <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.
-                                </p>
+                        <li class="wc_payment_method payment_method_phonepe">
+                            <input id="payment_method_phonepe" type="radio" class="input-radio" name="payment_method"
+                                value="phonepe" checked="checked">
+                            <label for="payment_method_phonepe">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8yIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxMzIgNDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxzdHlsZT4uc3Qwe2ZpbGw6IzVmMjU5Zn08L3N0eWxlPjxjaXJjbGUgdHJhbnNmb3JtPSJyb3RhdGUoLTc2LjcxNCAxNy44NyAyNC4wMDEpIiBjbGFzcz0ic3QwIiBjeD0iMTcuOSIgY3k9IjI0IiByPSIxNy45Ii8+PHBhdGggY2xhc3M9InN0MCIgZD0iTTkwLjUgMzQuMnYtNi41YzAtMS42LS42LTIuNC0yLjEtMi40LS42IDAtMS4zLjEtMS43LjJWMzVjMCAuMy0uMy42LS42LjZoLTIuM2MtLjMgMC0uNi0uMy0uNi0uNlYyMy45YzAtLjQuMy0uNy42LS44IDEuNS0uNSAzLS44IDQuNi0uOCAzLjYgMCA1LjYgMS45IDUuNiA1LjR2Ny40YzAgLjMtLjMuNi0uNi42SDkyYy0uOSAwLTEuNS0uNy0xLjUtMS41em05LTMuOWwtLjEuOWMwIDEuMi44IDEuOSAyLjEgMS45IDEgMCAxLjktLjMgMi45LS44LjEgMCAuMi0uMS4zLS4xLjIgMCAuMy4xLjQuMi4xLjEuMy40LjMuNC4yLjMuNC43LjQgMSAwIC41LS4zIDEtLjcgMS4yLTEuMS42LTIuNC45LTMuOC45LTEuNiAwLTIuOS0uNC0zLjktMS4yLTEtLjktMS42LTIuMS0xLjYtMy42di0zLjljMC0zLjEgMi01IDUuNC01IDMuMyAwIDUuMiAxLjggNS4yIDV2Mi40YzAgLjMtLjMuNi0uNi42aC02LjN6bS0uMS0yLjJIMTAzLjJ2LTFjMC0xLjItLjctMi0xLjktMnMtMS45LjctMS45IDJ2MXptMjUuNSAyLjJsLS4xLjljMCAxLjIuOCAxLjkgMi4xIDEuOSAxIDAgMS45LS4zIDIuOS0uOC4xIDAgLjItLjEuMy0uMS4yIDAgLjMuMS40LjIuMS4xLjMuNC4zLjQuMi4zLjQuNy40IDEgMCAuNS0uMyAxLS43IDEuMi0xLjEuNi0yLjQuOS0zLjguOS0xLjYgMC0yLjktLjQtMy45LTEuMi0xLS45LTEuNi0yLjEtMS42LTMuNnYtMy45YzAtMy4xIDItNSA1LjQtNSAzLjMgMCA1LjIgMS44IDUuMiA1djIuNGMwIC4zLS4zLjYtLjYuNmgtNi4zem0tLjEtMi4ySDEyOC42di0xYzAtMS4yLS43LTItMS45LTJzLTEuOS43LTEuOSAydjF6TTY2IDM1LjdoMS40Yy4zIDAgLjYtLjMuNi0uNnYtNy40YzAtMy40LTEuOC01LjQtNC44LTUuNC0uOSAwLTEuOS4yLTIuNS40VjE5YzAtLjgtLjctMS41LTEuNS0xLjVoLTEuNGMtLjMgMC0uNi4zLS42LjZ2MTdjMCAuMy4zLjYuNi42aDIuM2MuMyAwIC42LS4zLjYtLjZ2LTkuNGMuNS0uMiAxLjItLjMgMS43LS4zIDEuNSAwIDIuMS43IDIuMSAyLjR2Ni41Yy4xLjcuNyAxLjQgMS41IDEuNHptMTUuMS04LjRWMzFjMCAzLjEtMi4xIDUtNS42IDUtMy40IDAtNS42LTEuOS01LjYtNXYtMy43YzAtMy4xIDIuMS01IDUuNi01IDMuNSAwIDUuNiAxLjkgNS42IDV6bS0zLjUgMGMwLTEuMi0uNy0yLTItMnMtMiAuNy0yIDJWMzFjMCAxLjIuNyAxLjkgMiAxLjlzMi0uNyAyLTEuOXYtMy43em0tMjIuMy0xLjdjMCAzLjItMi40IDUuNC01LjYgNS40LS44IDAtMS41LS4xLTIuMi0uNHY0LjVjMCAuMy0uMy42LS42LjZoLTIuM2MtLjMgMC0uNi0uMy0uNi0uNlYxOS4yYzAtLjQuMy0uNy42LS44IDEuNS0uNSAzLS44IDQuNi0uOCAzLjYgMCA2LjEgMi4yIDYuMSA1LjZ2Mi40ek01MS43IDIzYzAtMS42LTEuMS0yLjQtMi42LTIuNC0uOSAwLTEuNS4zLTEuNS4zdjYuNmMuNi4zLjkuNCAxLjYuNCAxLjUgMCAyLjYtLjkgMi42LTIuNFYyM3ptNjguMiAyLjZjMCAzLjItMi40IDUuNC01LjYgNS40LS44IDAtMS41LS4xLTIuMi0uNHY0LjVjMCAuMy0uMy42LS42LjZoLTIuM2MtLjMgMC0uNi0uMy0uNi0uNlYxOS4yYzAtLjQuMy0uNy42LS44IDEuNS0uNSAzLS44IDQuNi0uOCAzLjYgMCA2LjEgMi4yIDYuMSA1LjZ2Mi40em0tMy42LTIuNmMwLTEuNi0xLjEtMi40LTIuNi0yLjQtLjkgMC0xLjUuMy0xLjUuM3Y2LjZjLjYuMy45LjQgMS42LjQgMS41IDAgMi42LS45IDIuNi0yLjRWMjN6Ii8+PHBhdGggZD0iTTI2IDE5LjNjMC0uNy0uNi0xLjMtMS4zLTEuM2gtMi40bC01LjUtNi4zYy0uNS0uNi0xLjMtLjgtMi4xLS42bC0xLjkuNmMtLjMuMS0uNC41LS4yLjdsNiA1LjdIOS41Yy0uMyAwLS41LjItLjUuNXYxYzAgLjcuNiAxLjMgMS4zIDEuM2gxLjR2NC44YzAgMy42IDEuOSA1LjcgNS4xIDUuNyAxIDAgMS44LS4xIDIuOC0uNXYzLjJjMCAuOS43IDEuNiAxLjYgMS42aDEuNGMuMyAwIC42LS4zLjYtLjZWMjAuOGgyLjNjLjMgMCAuNS0uMi41LS41di0xem0tNi40IDguNmMtLjYuMy0xLjQuNC0yIC40LTEuNiAwLTIuNC0uOC0yLjQtMi42di00LjhoNC40djd6IiBmaWxsPSIjZmZmIi8+PC9zdmc+" alt="PhonePe" style="height: 25px; margin-left: 5px; margin-top: -5px;">
+                            </label>
+                            <div class="payment_box payment_method_phonepe">
+                                <p>Pay securely using PhonePe. You will be redirected to PhonePe to complete your payment.</p>
                             </div>
                         </li>
                     </ul>
                     <div class="form-row place-order">
-                        <button type="submit" class="th-btn">Place order</button>
+                        <button type="submit" id="place-order-btn" class="phonepe-button">
+                            Pay with PhonePe
+                            <span class="loading-spinner"></span>
+                        </button>
                     </div>
-                    
+                    <div class="order-success">
+                        <h3>Order Placed Successfully!</h3>
+                        <p>Thank you for your order. A confirmation email has been sent to your email address.</p>
+                        <p>Order ID: <span id="order-id"></span></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -538,5 +527,171 @@ Checkout Arae
     <!-- Main Js File -->
     <script src="assets/js/main.js"></script>
     <script src="assets/js/cart.js"></script>
+    <script src="assets/js/phonepe-integration.js"></script>
+    
+    <!-- Checkout functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkoutForm = document.getElementById('checkout-form');
+            const placeOrderBtn = document.getElementById('place-order-btn');
+            const loadingSpinner = document.querySelector('.loading-spinner');
+            const orderSuccess = document.querySelector('.order-success');
+            
+            // Form validation
+            function validateForm() {
+                let isValid = true;
+                const requiredFields = [
+                    'firstName', 'lastName', 'email', 'phone', 
+                    'streetAddress', 'city', 'state', 'pincode'
+                ];
+                
+                requiredFields.forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    const errorMessage = field.parentElement.querySelector('.error-message');
+                    
+                    if (!field.value.trim()) {
+                        field.classList.add('error');
+                        errorMessage.style.display = 'block';
+                        isValid = false;
+                    } else {
+                        field.classList.remove('error');
+                        errorMessage.style.display = 'none';
+                    }
+                });
+                
+                // Email validation
+                const emailField = document.getElementById('email');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (emailField.value && !emailRegex.test(emailField.value)) {
+                    emailField.classList.add('error');
+                    emailField.parentElement.querySelector('.error-message').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Phone validation (10 digits)
+                const phoneField = document.getElementById('phone');
+                const phoneRegex = /^[0-9]{10}$/;
+                if (phoneField.value && !phoneRegex.test(phoneField.value)) {
+                    phoneField.classList.add('error');
+                    phoneField.parentElement.querySelector('.error-message').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Pincode validation (6 digits)
+                const pincodeField = document.getElementById('pincode');
+                const pincodeRegex = /^[0-9]{6}$/;
+                if (pincodeField.value && !pincodeRegex.test(pincodeField.value)) {
+                    pincodeField.classList.add('error');
+                    pincodeField.parentElement.querySelector('.error-message').style.display = 'block';
+                    isValid = false;
+                }
+                
+                return isValid;
+            }
+            
+            // Handle place order
+            placeOrderBtn.addEventListener('click', async function(e) {
+                e.preventDefault();
+                
+                if (!validateForm()) {
+                    alert('Please fill in all required fields correctly.');
+                    return;
+                }
+                
+                // Get cart items from localStorage
+                const cartItems = JSON.parse(localStorage.getItem('vaarahiCart')) || [];
+                if (cartItems.length === 0) {
+                    alert('Your cart is empty. Please add items to your cart before checking out.');
+                    return;
+                }
+                
+                // Show loading spinner
+                loadingSpinner.style.display = 'inline-block';
+                placeOrderBtn.disabled = true;
+                
+                // Collect form data
+                const formData = {
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    streetAddress: document.getElementById('streetAddress').value,
+                    city: document.getElementById('city').value,
+                    state: document.getElementById('state').value,
+                    pincode: document.getElementById('pincode').value,
+                    cartItems: cartItems,
+                    total: calculateCartTotal(cartItems)
+                };
+                
+                try {
+                    // Generate order ID
+                    const orderId = 'ORD' + Date.now();
+                    
+                    // Prepare order data
+                    const orderData = {
+                        ...formData,
+                        orderId: orderId
+                    };
+                    
+                    // Initialize PhonePe payment
+                    await PhonePeIntegration.initializePayment(orderData);
+                    
+                    // Note: In a real implementation, the following would happen after
+                    // the user completes payment and is redirected back to your site
+                    
+                    // For demo purposes, we'll simulate the success flow
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    
+                    // Send confirmation email
+                    await PhonePeIntegration.sendOrderConfirmationEmail(orderData, orderId);
+                    
+                    // Show success message
+                    document.getElementById('order-id').textContent = orderId;
+                    orderSuccess.style.display = 'block';
+                    checkoutForm.style.display = 'none';
+                    document.querySelector('.woocommerce-cart-form').style.display = 'none';
+                    document.querySelector('.woocommerce-checkout-payment').style.display = 'none';
+                    
+                    // Clear cart
+                    localStorage.removeItem('vaarahiCart');
+                    
+                    // Redirect to home page after 5 seconds
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 5000);
+                    
+                } catch (error) {
+                    alert('Payment failed. Please try again.');
+                    console.error('Payment error:', error);
+                } finally {
+                    loadingSpinner.style.display = 'none';
+                    placeOrderBtn.disabled = false;
+                }
+            });
+            
+
+            
+            // Calculate cart total
+            function calculateCartTotal(cartItems) {
+                return cartItems.reduce((total, item) => {
+                                            return total + (parseFloat(item.price) * parseInt(item.quantity));
+                }, 0);
+            }
+            
+            // Add input event listeners for real-time validation
+            const inputFields = document.querySelectorAll('.form-control, .form-select');
+            inputFields.forEach(field => {
+                field.addEventListener('input', function() {
+                    if (this.value.trim()) {
+                        this.classList.remove('error');
+                        const errorMessage = this.parentElement.querySelector('.error-message');
+                        if (errorMessage) {
+                            errorMessage.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
