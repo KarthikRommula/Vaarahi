@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Profile - E-COMMERCE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <header class="th-header header-layout1">
+        <div class="sticky-wrapper">
+            <div class="container">
+                <div class="menu-area">
+                    <div class="header-logo">
+                        <a href="index.html"
+                            style="font-family: 'Audiowide', cursive; font-size: 35px; color: black; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; display: inline-block;margin-top: 6px;margin-left: 10px;">
+                            <span style="color:#FFAC00;">E</span> <span style="color:#FFAC00;"></span>COMM
+                        </a>
+                    </div>
+                    <div class="menu-area-wrap" style="margin-left: -50px;">
+                        <nav class="main-menu d-none d-lg-block">
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="products.html">Products</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="profile.html">Profile</a></li>
+                                <li><a href="login.html">Login</a></li>
+                                <li><a href="register.html">Register</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container py-5">
+        <h2>User Profile</h2>
+        <div id="profileInfo" class="mb-4">
+            <p><strong>Name:</strong> <span id="userName"></span></p>
+            <p><strong>Email:</strong> <span id="userEmail"></span></p>
+        </div>
+        <button id="logoutBtn" class="btn btn-danger">Logout</button>
+    </div>
+
+    <footer class="footer-wrapper footer-layout1">
+        <div class="copyright-wrap bg-theme text-center">
+            <div class="container">
+                <p class="copyright-text">Copyright 2025 <a href="index.html">E Commerce</a> All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/vendor/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Check if user is logged in
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            if (!isLoggedIn) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Display user info
+            $('#userName').text(localStorage.getItem('userName') || 'N/A');
+            $('#userEmail').text(localStorage.getItem('userEmail') || 'N/A');
+
+            // Logout button handler
+            $('#logoutBtn').on('click', function() {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userEmail');
+                localStorage.removeItem('userName');
+                localStorage.removeItem('rememberMe');
+                window.location.href = 'login.html';
+            });
+        });
+    </script>
+</body>
+
+</html>
