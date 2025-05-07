@@ -1,0 +1,620 @@
+<!doctype html>
+<html class="no-js" lang="zxx" dir="ltr">
+
+
+<!-- Mirrored from html.themeholy.com/donat/demo/gallery.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 28 Jan 2025 18:45:52 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Vaarahi Pictures</title>
+    <meta name="author" content="Donat">
+    <meta name="description" content="Donat - Charity & Donation HTML Template">
+    <meta name="keywords" content="Donat - Charity & Donation HTML Template">
+    <meta name="robots" content="INDEX,FOLLOW">
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Favicons - Place favicon.ico in the root directory -->
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/img/favicons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/img/favicons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/img/favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/img/favicons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/img/favicons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
+    <link rel="manifest" href="assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="assets/img/favicons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <!--==============================
+	  Google Fonts
+	============================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&amp;family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&amp;family=Nunito:ital,wght@0,200..1000;1,200..1000&amp;display=swap" rel="stylesheet">
+
+    <!--==============================
+	    All CSS File
+	============================== -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- Fontawesome Icon -->
+    <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="assets/css/magnific-popup.min.css">
+    <!-- Swiper Js -->
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    
+    <style>
+      .logo-gradient {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        position: relative;
+      }
+    
+      .logo-gradient::before {
+        content: '';
+        position: absolute;
+        top: -5px;
+        left: -10px;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #FFAC00, #FFD700);
+        opacity: 0.1;
+        border-radius: 8px;
+        transform: rotate(-10deg);
+        z-index: -1;
+        transition: all 0.3s ease;
+      }
+    
+      .logo-gradient .text {
+        font-family: 'Audiowide', cursive;
+        font-size: 26px;
+        color: #1a1a1a;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        position: relative;
+      }
+    
+      .logo-gradient .highlight {
+        background: linear-gradient(45deg, #FFAC00, #FFD700);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+      }
+    
+      .logo-gradient:hover::before {
+        transform: rotate(0deg) scale(1.1);
+      }
+      
+      /* Gallery Styles */
+      .gallery-card {
+        position: relative;
+        margin-bottom: 25px;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      
+      .gallery-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+      
+      .gallery-img {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+      }
+      
+      .gallery-img img {
+        transition: transform 0.5s ease;
+      }
+      
+      .gallery-img:hover img {
+        transform: scale(1.05);
+      }
+      
+      .gallery-img .icon-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        width: 50px;
+        height: 50px;
+        background-color: rgba(255, 172, 0, 0.8);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        opacity: 0;
+      }
+      
+      .gallery-img:hover .icon-btn {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+      
+      .filter-active {
+        margin-top: 20px;
+      }
+      
+      /* Filter Menu Styles */
+      .filter-menu-active {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 30px;
+      }
+      
+      .filter-menu-active button {
+        background: #f5f5f5;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 30px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      .filter-menu-active button.active,
+      .filter-menu-active button:hover {
+        background: linear-gradient(45deg, #FFAC00, #FFD700);
+        color: #fff;
+        box-shadow: 0 5px 15px rgba(255, 172, 0, 0.3);
+      }
+      
+      /* Gallery Content Styles */
+      .gallery-content {
+        background-color: #fff;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        transition: all 0.3s ease;
+      }
+      
+      .gallery-content h5 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+        padding: 10px 0;
+      }
+      
+      .gallery-card:hover .gallery-content {
+        background-color: #f9f9f9;
+      }
+      
+      /* Pagination Styles */
+      .th-pagination {
+        margin-top: 50px;
+      }
+      
+      .th-pagination ul {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      
+      .th-pagination ul li a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: #f5f5f5;
+        color: #333;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      
+      .th-pagination ul li a.active,
+      .th-pagination ul li a:hover {
+        background: linear-gradient(45deg, #FFAC00, #FFD700);
+        color: #fff;
+        box-shadow: 0 5px 15px rgba(255, 172, 0, 0.3);
+      }
+    </style>
+</head>
+
+<body>
+
+    <!--[if lte IE 9]>
+    	<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  	<![endif]-->
+
+
+    <!--********************************
+   		Code Start From Here 
+	******************************** -->
+
+    <!--==============================
+     Preloader
+  ==============================-->
+    <!--==============================
+    Sidemenu
+============================== -->
+<div class="sidemenu-wrapper sidemenu-cart">
+    <div class="sidemenu-content">
+        <button class="closeButton sideMenuCls"><i class="far fa-times"></i></button>
+        <div class="widget woocommerce widget_shopping_cart">
+            <h3 class="widget_title">Shopping cart</h3>
+            <div class="widget_shopping_cart_content">
+                <ul class="woocommerce-mini-cart cart_list product_list_widget">
+                    <!-- Cart items will be dynamically inserted here by cart.js -->
+                </ul>
+                <p class="woocommerce-mini-cart__total total">
+                    <strong>Subtotal:</strong>
+                    <span class="woocommerce-Price-amount amount">
+                        <span class="woocommerce-Price-currencySymbol">$</span>0.00</span>
+                </p>
+                <p class="woocommerce-mini-cart__buttons buttons">
+                    <a href="cart.html" class="th-btn wc-forward">View cart</a>
+                    <a href="checkout.html" class="th-btn checkout wc-forward">Checkout</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="popup-search-box d-none d-lg-block">
+        <button class="searchClose"><i class="far fa-times"></i></button>
+        <form action="#">
+            <input type="text" placeholder="What are you looking for?">
+            <button type="submit"><i class="fal fa-search"></i></button>
+        </form>
+    </div><!--==============================
+    Mobile Menu
+  ============================== -->
+  <div class="th-menu-wrapper">
+    <div class="th-menu-area text-center">
+        <button class="th-menu-toggle"><i class="fal fa-times"></i></button>
+        <div class="mobile-logo">
+            <a href="index.html" class="logo-gradient">
+                <span class="text">
+                    <span class="highlight">V</span>AARAHI
+                </span>
+            </a>
+        </div>
+        <div class="th-mobile-menu">
+            <ul>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li><a href="about.html">About</a></li>
+                <li>
+                    <a href="products.html">Products</a>
+                </li>
+
+                <li>
+                    <a href="pictures.html">Pictures</a>
+                </li>
+                <li>
+                    <a href="contact.html">Contact</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div><!--==============================
+	Header Area
+==============================-->
+<header class="th-header header-layout1">
+    <div class="sticky-wrapper">
+        <!-- Main Menu Area -->
+        <div class="container">
+            <div class="menu-area">
+                <div class="header-logo">
+                    <a href="index.html" class="logo-gradient">
+                        <span class="text">
+                            <span class="highlight">V</span>AARAHI
+                        </span>
+                    </a>
+                </div>
+                <div class="menu-area-wrap" style="margin-left: -50px;">
+                    <nav class="main-menu d-none d-lg-block">
+                        <ul>
+                            <li>
+                                <a href="index.html">Home</a>
+                            </li>
+                            <li><a href="about.html">About</a></li>
+                            <li>
+                                <a href="products.html">Products</a>
+                            </li>
+
+                            <li>
+                                <a href="pictures.html">Pictures</a>
+                            </li>
+                            <li>
+                                <a href="contact.html">Contact</a>
+                            </li>
+
+                        </ul>
+                    </nav>
+                    <p class="header-notice"><img class="me-1" src="assets/img/icon/heart-icon.svg" alt="img">Are
+                        you ready to buy products? Let's become buyer</p>
+                </div>
+                <div class="header-button">
+                    <button type="button" class="icon-btn th-menu-toggle d-lg-none"><i
+                            class="far fa-bars"></i></button>
+                </div>
+                <div class="header-button">
+                    <button type="button" class="icon-btn style2 searchBoxToggler d-lg-block d-none"><i
+                            class="far fa-search"></i></button>
+                    <button type="button" class="icon-btn sideMenuToggler">
+                        <span class="badge">0</span>
+                        <i class="fa-regular fa-cart-shopping"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+    <!--==============================
+    Breadcumb
+============================== -->
+    <div class="breadcumb-wrapper " data-bg-src="assets/img/bg/breadcumb-bg.jpg" data-overlay="theme">
+        <div class="container">
+            <div class="breadcumb-content">
+                <h1 class="breadcumb-title">Pictures</h1>
+                <ul class="breadcumb-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li>Pictures</li>
+                </ul>
+            </div>
+        </div>
+    </div><!--==============================
+Gallery Area  
+==============================-->
+    <div class="overflow-hidden space">
+        <div class="container">
+            <div class="section-title text-center mb-5">
+            </div>
+            <div class="filter-menu-active text-center mb-4">
+                <button data-filter="*" class="active">All</button>
+                <button data-filter=".cat1">Products</button>
+                <button data-filter=".cat2">Services</button>
+                <button data-filter=".cat3">Events</button>
+            </div>
+            <div class="row gy-4 gx-4 filter-active justify-content-center">
+                <div class="col-md-4 col-lg-4 filter-item cat1">
+                    <div class="gallery-card">
+                        <div class="gallery-img">
+                            <img src="assets/img/gallery/gallery_1_1.png" alt="gallery image" class="img-fluid rounded" style="width: 100%; height: 280px; object-fit: cover;">
+                            <a href="assets/img/gallery/gallery_1_1.png" class="icon-btn popup-image"><i class="fas fa-eye"></i></a>
+                        </div>
+                        <div class="gallery-content text-center p-2">
+                            <h5>Product Display</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 filter-item cat1">
+                    <div class="gallery-card">
+                        <div class="gallery-img">
+                            <img src="assets/img/gallery/gallery_1_2.png" alt="gallery image" class="img-fluid rounded" style="width: 100%; height: 280px; object-fit: cover;">
+                            <a href="assets/img/gallery/gallery_1_2.png" class="icon-btn popup-image"><i class="fas fa-eye"></i></a>
+                        </div>
+                        <div class="gallery-content text-center p-2">
+                            <h5>Featured Items</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 filter-item cat2">
+                    <div class="gallery-card">
+                        <div class="gallery-img">
+                            <img src="assets/img/gallery/gallery_1_3.png" alt="gallery image" class="img-fluid rounded" style="width: 100%; height: 280px; object-fit: cover;">
+                            <a href="assets/img/gallery/gallery_1_3.png" class="icon-btn popup-image"><i class="fas fa-eye"></i></a>
+                        </div>
+                        <div class="gallery-content text-center p-2">
+                            <h5>Service Showcase</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 filter-item cat2">
+                    <div class="gallery-card">
+                        <div class="gallery-img">
+                            <img src="assets/img/gallery/gallery_1_4.png" alt="gallery image" class="img-fluid rounded" style="width: 100%; height: 280px; object-fit: cover;">
+                            <a href="assets/img/gallery/gallery_1_4.png" class="icon-btn popup-image"><i class="fas fa-eye"></i></a>
+                        </div>
+                        <div class="gallery-content text-center p-2">
+                            <h5>Customer Support</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 filter-item cat3">
+                    <div class="gallery-card">
+                        <div class="gallery-img">
+                            <img src="assets/img/gallery/gallery_1_6.png" alt="gallery image" class="img-fluid rounded" style="width: 100%; height: 280px; object-fit: cover;">
+                            <a href="assets/img/gallery/gallery_1_6.png" class="icon-btn popup-image"><i class="fas fa-eye"></i></a>
+                        </div>
+                        <div class="gallery-content text-center p-2">
+                            <h5>Annual Meeting</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 filter-item cat1">
+                    <div class="gallery-card">
+                        <div class="gallery-img">
+                            <img src="assets/img/gallery/gallery_1_5.png" alt="gallery image" class="img-fluid rounded" style="width: 100%; height: 280px; object-fit: cover;">
+                            <a href="assets/img/gallery/gallery_1_5.png" class="icon-btn popup-image"><i class="fas fa-eye"></i></a>
+                        </div>
+                        <div class="gallery-content text-center p-2">
+                            <h5>New Collection</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 filter-item cat3">
+                    <div class="gallery-card">
+                        <div class="gallery-img">
+                            <img src="assets/img/gallery/gallery_1_7.png" alt="gallery image" class="img-fluid rounded" style="width: 100%; height: 280px; object-fit: cover;">
+                            <a href="assets/img/gallery/gallery_1_7.png" class="icon-btn popup-image"><i class="fas fa-eye"></i></a>
+                        </div>
+                        <div class="gallery-content text-center p-2">
+                            <h5>Product Launch</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 filter-item cat2">
+                    <div class="gallery-card">
+                        <div class="gallery-img">
+                            <img src="assets/img/gallery/gallery_1_9.png" alt="gallery image" class="img-fluid rounded" style="width: 100%; height: 280px; object-fit: cover;">
+                            <a href="assets/img/gallery/gallery_1_9.png" class="icon-btn popup-image"><i class="fas fa-eye"></i></a>
+                        </div>
+                        <div class="gallery-content text-center p-2">
+                            <h5>Delivery Service</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 filter-item cat3">
+                    <div class="gallery-card">
+                        <div class="gallery-img">
+                            <img src="assets/img/gallery/gallery_1_8.png" alt="gallery image" class="img-fluid rounded" style="width: 100%; height: 280px; object-fit: cover;">
+                            <a href="assets/img/gallery/gallery_1_8.png" class="icon-btn popup-image"><i class="fas fa-eye"></i></a>
+                        </div>
+                        <div class="gallery-content text-center p-2">
+                            <h5>Community Event</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!--==============================
+	Footer Area
+==============================-->
+<footer class="footer-wrapper footer-layout1">
+    <div class="shape-mockup footer-bg-shape1-1 jump" data-left="0" data-top="0">
+        <img src="assets/img/shape/footer-bg-shape1-1.png" alt="img">
+    </div>
+    <div class="shape-mockup footer-bg-shape1-2 jump-reverse" data-right="0" data-top="15%">
+        <img src="assets/img/shape/footer-bg-shape3.png" alt="img">
+    </div>
+    <div class="shape-mockup footer-bg-shape1-3 jump" data-right="0" data-bottom="0">
+        <div class="color-masking2">
+            <div class="masking-src" data-mask-src="assets/img/shape/footer-bg-shape1-2.png"></div>
+            <img src="assets/img/shape/footer-bg-shape1-2.png" alt="img">
+        </div>
+    </div>
+    <div class="widget-area">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-md-6 col-xl-auto">
+                    <div class="widget footer-widget">
+                        <div class="th-widget-about">
+                            <p class="about-text mb-3">Our secure VAARAHI platform allows you to make buy & sell products quickly</p>
+                            <div class="info-card style2">
+                                <div class="box-icon bg-theme">
+                                    <i class="fal fa-phone"></i>
+                                </div>
+                                <div class="box-content">
+                                    <p class="box-text">Call us any time:</p>
+                                    <h4 class="box-title"><a href="tel:+12345678910">+123-4567-8910</a></h4>
+                                </div>
+                            </div>
+                            <div class="info-card style2">
+                                <div class="box-icon bg-theme2">
+                                    <i class="fal fa-envelope-open"></i>
+                                </div>
+                                <div class="box-content">
+                                    <p class="box-text">Email us any time:</p>
+                                    <h4 class="box-title"><a href="mailto:example@gmail.com">example@gmail.com</a></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-auto">
+                    <div class="widget widget_nav_menu footer-widget">
+                        <h3 class="widget_title">Quick Links</h3>
+                        <div class="menu-all-pages-container">
+                            <ul class="menu">
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="products.html">Products</a></li>
+                                <li><a href="pictures.html">Pictures</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-auto">
+                    <div class="widget newsletter-widget footer-widget">
+                        <h3 class="widget_title">Social Media</h3>
+                        <p class="footer-text mb-3">Subscribe to Our Social Media. Regular inspection and feedback mechanisms</p>
+                        <div class="th-social style6">
+                            <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright-wrap bg-theme text-center py-3">
+        <div class="container">
+            <p class="copyright-text mb-0">Copyright 2025 <a href="index.html">VAARAHI</a> All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+    <!--********************************
+			Code End  Here 
+	******************************** -->
+
+    <!-- Scroll To Top -->
+    <div class="scroll-top">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 307.919;"></path>
+        </svg>
+    </div>
+
+    <!--==============================
+    All Js File
+============================== -->
+    <!-- Jquery -->
+    <script src="assets/js/vendor/jquery-3.7.1.min.js"></script>
+    <!-- Swiper Js -->
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- Magnific Popup -->
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <!-- Counter Up -->
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <!-- Range Slider -->
+    <script src="assets/js/jquery-ui.min.js"></script>
+    <!-- Isotope Filter -->
+    <script src="assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/js/isotope.pkgd.min.js"></script>
+
+    <!-- Main Js File -->
+    <script src="assets/js/main.js"></script>
+</body>
+
+
+<!-- Mirrored from html.themeholy.com/donat/demo/gallery.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 28 Jan 2025 18:46:00 GMT -->
+</html>

@@ -84,6 +84,72 @@
     .logo-gradient:hover::before {
         transform: rotate(0deg) scale(1.1);
     }
+
+    /* Remove all underlines from links */
+    a {
+        text-decoration: none !important;
+    }
+    
+    /* Equal height feature cards */
+    .feature-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 380px;
+    }
+    
+    .feature-card .box-text {
+        flex-grow: 1;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        height: 96px; /* Fixed height for text - approx 4 lines */
+        margin-bottom: 20px; /* Add consistent spacing before the button */
+    }
+    
+    .feature-card .box-title {
+        min-height: 60px; /* Ensure consistent title height */
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Enhanced button styling */
+    .feature-card .link-btn.style2 {
+        display: inline-block;
+        padding: 10px 20px;
+        background: linear-gradient(45deg, #FFAC00, #FFD700);
+        color: #fff !important;
+        border-radius: 30px;
+        font-weight: 600;
+        text-align: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(255, 172, 0, 0.2);
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto;
+        text-decoration: none;
+    }
+    
+    .feature-card .link-btn.style2:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(255, 172, 0, 0.3);
+        background: linear-gradient(45deg, #FFD700, #FFAC00);
+    }
+    
+    .feature-card .link-btn.style2 i {
+        transition: transform 0.3s ease;
+    }
+    
+    .feature-card .link-btn.style2:hover i {
+        transform: translateX(4px);
+    }
+    
+    /* Remove the :before pseudo-element from feature card links */
+    .feature-card .link-btn:before {
+        display: none !important;
+    }
  </style>
 
 </head>
@@ -203,7 +269,7 @@ Product Lightbox
                 </li>
 
                 <li>
-                    <a href="#">Pictures</a>
+                    <a href="pictures.html">Pictures</a>
                 </li>
                 <li>
                     <a href="contact.html">Contact</a>
@@ -295,9 +361,11 @@ Feature Area
                         <div class="box-icon">
                             <img src="assets/img/icon/feature-icon1-2.svg" alt="icon">
                         </div>
-                        <h3 class="box-title">Donor Friendly</h3>
-                        <p class="box-text">Stay updated with the latest news, events, and impact stories from our organization. Subscribe to our newsletter.</p>
-                        <a class="link-btn style2" href="about.html">View Details <i class="fa-solid fa-arrow-up-right ms-2"></i></a>
+                        <h3 class="box-title">Eco-Friendly Products</h3>
+                        <p class="box-text">Our agarbattis and other products are made with sustainable materials, reducing environmental impact while maintaining quality.</p>
+                        <div class="text-center">
+                            <a class="link-btn style2" href="products.html">View Products <i class="fa-solid fa-arrow-up-right ms-2"></i></a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -308,9 +376,11 @@ Feature Area
                         <div class="box-icon">
                             <img src="assets/img/icon/feature-icon1-1.svg" alt="icon">
                         </div>
-                        <h3 class="box-title">Fundraising Trust</h3>
-                        <p class="box-text">Stay updated with the latest news, events, and impact stories from our organization. Subscribe to our newsletter.</p>
-                        <a class="link-btn style2" href="about.html">View Details <i class="fa-solid fa-arrow-up-right ms-2"></i></a>
+                        <h3 class="box-title">Agarbatti Machines</h3>
+                        <p class="box-text">We manufacture high-quality agarbatti-making machines designed for efficiency, durability, and ease of use for entrepreneurs.</p>
+                        <div class="text-center">
+                            <a class="link-btn style2" href="products.html">View Machines <i class="fa-solid fa-arrow-up-right ms-2"></i></a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -321,9 +391,11 @@ Feature Area
                         <div class="box-icon">
                             <img src="assets/img/icon/feature-icon1-2.svg" alt="icon">
                         </div>
-                        <h3 class="box-title">Charity Donate</h3>
-                        <p class="box-text">Stay updated with the latest news, events, and impact stories from our organization. Subscribe to our newsletter.</p>
-                        <a class="link-btn style2" href="about.html">View Details <i class="fa-solid fa-arrow-up-right ms-2"></i></a>
+                        <h3 class="box-title">Farming Tools</h3>
+                        <p class="box-text">Our advanced farming tools are designed to enhance productivity and efficiency for next-generation agricultural practices.</p>
+                        <div class="text-center">
+                            <a class="link-btn style2" href="products.html">View Tools <i class="fa-solid fa-arrow-up-right ms-2"></i></a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -334,9 +406,11 @@ Feature Area
                         <div class="box-icon">
                             <img src="assets/img/icon/feature-icon1-1.svg" alt="icon">
                         </div>
-                        <h3 class="box-title">Treatment Help</h3>
-                        <p class="box-text">Stay updated with the latest news, events, and impact stories from our organization. Subscribe to our newsletter.</p>
-                        <a class="link-btn style2" href="about.html">View Details <i class="fa-solid fa-arrow-up-right ms-2"></i></a>
+                        <h3 class="box-title">Waste to Wealth</h3>
+                        <p class="box-text">We transform agricultural waste into valuable products, creating economic opportunities while promoting sustainability.</p>
+                        <div class="text-center">
+                            <a class="link-btn style2" href="contact.html">Contact Us <i class="fa-solid fa-arrow-up-right ms-2"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -363,16 +437,18 @@ About Area
                 <div class="col-xl-5">
                     <div class="about-wrap1">
                         <div class="title-area mb-30">
-                            <span class="sub-title before-none">About Us Donat</span>
-                            <h2 class="sec-title">We Believe that We can Save More Life's with you</h2>
-                            <p class="">Donet is the largest global crowdfunding community connecting nonprofits, donors, and companies in nearly every country. We help nonprofits from Afghanistan to Zimbabwe (and hundreds of places in between) access the tools, training, and support they need to be more effective and make our world a better place.</p>
+                            <span class="sub-title before-none">About Us</span>
+                            <h2 class="sec-title">Vaarahi – The Next Generation Farming Limited</h2>
+                            <p class="">Vaarahi – The Next Generation Farming Limited is committed to transforming <strong>waste into wealth</strong> by innovating sustainable solutions for modern agriculture.</p>
+                            <p class="mt-3">Our startup specializes in <strong>manufacturing agarbatti-making machines, producing and selling Eco friendly agarbattis, and developing advanced farming tools</strong> tailored for next-generation agricultural practices.</p>
+                            <p class="mt-3">By integrating technology with sustainability, Vaarahi empowers farmers and entrepreneurs with efficient, eco-friendly solutions that enhance productivity and create new economic opportunities.</p>
                         </div>
                         <div class="checklist style2 list-two-column">
                             <ul>
-                                <li>Charity For Foods</li>
-                                <li data-theme-color="var(--theme-color2)">Charity For Water</li>
-                                <li data-theme-color="#FF5528">Charity For Education</li>
-                                <li data-theme-color="#122F2A">Charity For Medical</li>
+                                <li>Sustainable Agriculture</li>
+                                <li data-theme-color="var(--theme-color2)">Eco-Friendly Agarbattis</li>
+                                <li data-theme-color="#FF5528">Innovative Farming Tools</li>
+                                <li data-theme-color="#122F2A">Waste to Wealth Solutions</li>
                             </ul>
                         </div>
                         <div class="btn-wrap mt-40">
@@ -409,8 +485,8 @@ Team Area
         </div>
         <div class="container">
             <div class="title-area text-center">
-                <span class="sub-title after-none before-none"><i class="far fa-heart text-theme"></i> Our Volunteer</span>
-                <h2 class="sec-title">Meet The Optimistic Volunteer</h2>
+                <span class="sub-title after-none before-none"><i class="far fa-heart text-theme"></i> Our Team</span>
+                <h2 class="sec-title">Meet Our Innovative Team</h2>
             </div>
             <div class="slider-area">
                 <div class="swiper th-slider has-shadow" id="teamSlider3" data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"2"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"3"},"1200":{"slidesPerView":"4"}}}'>
@@ -423,7 +499,7 @@ Team Area
                                 </div>
                                 <div class="team-card-content">
                                     <h3 class="box-title"><a href="team-details.html">Michel Connor</a></h3>
-                                    <span class="team-desig">Volunteer</span>
+                                    <span class="team-desig">Agricultural Engineer</span>
                                     <div class="th-social style2">
                                         <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
                                         <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
@@ -442,7 +518,7 @@ Team Area
                                 </div>
                                 <div class="team-card-content">
                                     <h3 class="box-title"><a href="team-details.html">Jessica Lauren</a></h3>
-                                    <span class="team-desig">Volunteer</span>
+                                    <span class="team-desig">Product Designer</span>
                                     <div class="th-social style2">
                                         <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
                                         <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
@@ -461,7 +537,7 @@ Team Area
                                 </div>
                                 <div class="team-card-content">
                                     <h3 class="box-title"><a href="team-details.html">Daniel Thomas</a></h3>
-                                    <span class="team-desig">Volunteer</span>
+                                    <span class="team-desig">Manufacturing Lead</span>
                                     <div class="th-social style2">
                                         <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
                                         <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
@@ -480,7 +556,7 @@ Team Area
                                 </div>
                                 <div class="team-card-content">
                                     <h3 class="box-title"><a href="team-details.html">Michel Vetory</a></h3>
-                                    <span class="team-desig">Volunteer</span>
+                                    <span class="team-desig">Sustainability Expert</span>
                                     <div class="th-social style2">
                                         <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
                                         <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
@@ -499,7 +575,7 @@ Team Area
                                 </div>
                                 <div class="team-card-content">
                                     <h3 class="box-title"><a href="team-details.html">Emma Mary</a></h3>
-                                    <span class="team-desig">Volunteer</span>
+                                    <span class="team-desig">Marketing Director</span>
                                     <div class="th-social style2">
                                         <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
                                         <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
@@ -518,7 +594,7 @@ Team Area
                                 </div>
                                 <div class="team-card-content">
                                     <h3 class="box-title"><a href="team-details.html">Alexander Joseph</a></h3>
-                                    <span class="team-desig">Volunteer</span>
+                                    <span class="team-desig">Research Specialist</span>
                                     <div class="th-social style2">
                                         <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
                                         <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
@@ -537,7 +613,7 @@ Team Area
                                 </div>
                                 <div class="team-card-content">
                                     <h3 class="box-title"><a href="team-details.html">Olivia Patricia</a></h3>
-                                    <span class="team-desig">Volunteer</span>
+                                    <span class="team-desig">Operations Manager</span>
                                     <div class="th-social style2">
                                         <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
                                         <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
@@ -556,7 +632,7 @@ Team Area
                                 </div>
                                 <div class="team-card-content">
                                     <h3 class="box-title"><a href="team-details.html">Ethan David</a></h3>
-                                    <span class="team-desig">Volunteer</span>
+                                    <span class="team-desig">Technology Lead</span>
                                     <div class="th-social style2">
                                         <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
                                         <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
@@ -924,7 +1000,7 @@ Brand Area
                             <ul class="menu">
                                 <li><a href="about.html">About</a></li>
                                 <li><a href="products.html">Products</a></li>
-                                <li><a href="#">Pictures</a></li>
+                                <li><a href="pictures.html">Pictures</a></li>
                                 <li><a href="contact.html">Contact</a></li>
                             </ul>
                         </div>
