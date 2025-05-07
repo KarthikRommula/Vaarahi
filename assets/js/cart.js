@@ -9,6 +9,18 @@ document.addEventListener('DOMContentLoaded', function() {
     calculateCartTotal(); // Calculate total first
     updateCartDisplay(); // Then update display
     setupEventListeners();
+    
+    // Check for payment status in URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const paymentStatus = urlParams.get('payment');
+    
+    if (paymentStatus === 'failed') {
+        showNotification('Payment failed. Please try again.', 'error');
+    } else if (paymentStatus === 'error') {
+        showNotification('Payment verification error. Please contact support.', 'error');
+    } else if (paymentStatus === 'success') {
+        showNotification('Payment successful! Thank you for your order.', 'success');
+    }
 });
 
 // Function to normalize product ID to ensure consistency
@@ -226,42 +238,37 @@ function updateCheckoutPage() {
 
 // Add an item to the cart
 function addToCart(productData) {
-    // Normalize the product ID
-    const normalizedId = normalizeProductId(productData.id);
-    
-    // Ensure valid quantity and price values
-    productData.quantity = parseInt(productData.quantity) || 1;
-    productData.price = parseFloat(productData.price);
-    
-    if (isNaN(productData.price)) {
-        console.error('Invalid price for product:', productData);
-        return;
+    // Check if cart is locked during payment
+    if (window.PhonePeIntegration && window.PhonePeIntegration.isCartLocked && window.PhonePeIntegration.isCartLocked()) {
+        showNotification('Cannot modify cart during payment processing', 'error');
+        return false;
     }
     
-    // Check if item already exists in cart using normalized ID
-    const existingItemIndex = cartItems.findIndex(item => 
-        normalizeProductId(item.id) === normalizedId && item.name === productData.name
-    );
+    // Normalize product ID
+    productData.id = normalizeProductId(productData.id);
+    
+    // Check if item already exists in cart
+    const existingItemIndex = cartItems.findIndex(item => normalizeProductId(item.id) === productData.id);
     
     if (existingItemIndex !== -1) {
-        // Increment quantity if item exists
-        cartItems[existingItemIndex].quantity += productData.quantity;
+        // Update quantity if item exists
+        cartItems[existingItemIndex].quantity = parseInt(cartItems[existingItemIndex].quantity) + parseInt(productData.quantity);
     } else {
-        // Add new item to cart with normalized ID
-        cartItems.push({
-            ...productData,
-            id: normalizedId
-        });
+        // Add new item
+        cartItems.push(productData);
     }
     
-    // Calculate cart total first
-    calculateCartTotal();
-    
-    // Then update display
-    updateCartDisplay();
+    // Update cart
+    calculateCartTotal(); // Calculate first
+    updateCartDisplay(); // Then update display
     
     // Show notification
     showNotification(`${productData.name} added to cart!`);
+    
+    // Cart sidebar is no longer opened automatically when items are added
+    // This behavior was removed as per user request
+    
+    return true;
 }
 
 // Remove an item from the cart
@@ -280,38 +287,80 @@ function removeFromCart(index) {
 
 // Update item quantity
 function updateItemQuantity(index, quantity) {
-    if (index >= 0 && index < cartItems.length) {
-        const newQuantity = parseInt(quantity);
-        
-        // Validate quantity
-        if (isNaN(newQuantity) || newQuantity < 1) {
-            cartItems[index].quantity = 1;
-        } else {
-            cartItems[index].quantity = newQuantity;
-        }
-        
-        // Calculate cart total first
-        calculateCartTotal();
-        
-        // Then update display
-        updateCartDisplay();
+    // Check if cart is locked during payment
+    if (window.PhonePeIntegration && window.PhonePeIntegration.isCartLocked && window.PhonePeIntegration.isCartLocked()) {
+        showNotification('Cannot modify cart during payment processing', 'error');
+        return false;
     }
+    
+    // Ensure quantity is a number and at least 1
+    quantity = parseInt(quantity);
+    if (isNaN(quantity) || quantity < 1) quantity = 1;
+    
+    // Update quantity
+    cartItems[index].quantity = quantity;
+    
+    // Update cart
+    calculateCartTotal(); // Calculate first
+    updateCartDisplay(); // Then update display
+    
+    // Show notification
+    const item = cartItems[index];
+    if (item) {
+        showNotification(`${item.name} quantity updated!`);
+    }
+    
+    return true;
 }
 
 // Show notification
-function showNotification(message) {
-    const notification = document.createElement('div');
-    notification.className = 'cart-notification';
+function showNotification(message, type = 'success') {
+    // Create notification element if it doesn't exist
+    if (!document.getElementById('cart-notification')) {
+        const notification = document.createElement('div');
+        notification.id = 'cart-notification';
+        notification.style.position = 'fixed';
+        notification.style.bottom = '20px';
+        notification.style.right = '20px';
+        notification.style.color = 'white';
+        notification.style.padding = '15px 20px';
+        notification.style.borderRadius = '5px';
+        notification.style.zIndex = '1000';
+        notification.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+        notification.style.transition = 'all 0.3s ease';
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateY(20px)';
+        document.body.appendChild(notification);
+    }
+    
+    // Update notification message and show it
+    const notification = document.getElementById('cart-notification');
     notification.textContent = message;
     
+    // Set color based on notification type
+    if (type === 'error') {
+        notification.style.backgroundColor = '#dc3545'; // Red for errors
+    } else if (type === 'warning') {
+        notification.style.backgroundColor = '#ffc107'; // Yellow for warnings
+        notification.style.color = '#212529'; // Darker text for visibility
+    } else {
+        notification.style.backgroundColor = '#28a745'; // Green for success
+    }
     
-    document.body.appendChild(notification);
-    
-    // Remove notification after animation
+    // Show notification with animation
+    notification.style.display = 'block';
     setTimeout(() => {
-        if (document.body.contains(notification)) {
-            document.body.removeChild(notification);
-        }
+        notification.style.opacity = '1';
+        notification.style.transform = 'translateY(0)';
+    }, 10);
+    
+    // Hide notification after 3 seconds
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 300);
     }, 3000);
 }
 
@@ -575,19 +624,57 @@ function setupEventListeners() {
     // Place order button
     const placeOrderBtn = document.querySelector('.place-order .th-btn');
     if (placeOrderBtn) {
-        placeOrderBtn.addEventListener('click', function(e) {
+        placeOrderBtn.addEventListener('click', async function(e) {
             e.preventDefault();
-            showNotification('Order placed successfully!');
             
-            // Clear cart after order is placed
-            cartItems = [];
-            calculateCartTotal(); // Calculate first
-            updateCartDisplay(); // Then update display
+            // Check if cart is empty
+            if (cartItems.length === 0) {
+                showNotification('Your cart is empty!', 'warning');
+                return;
+            }
             
-            // Redirect to home page after a delay
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 3000);
+            // Get form data for checkout
+            const checkoutForm = document.querySelector('#checkout-form');
+            if (!checkoutForm) {
+                showNotification('Checkout form not found!', 'error');
+                return;
+            }
+            
+            // Collect order data
+            const orderData = {
+                firstName: document.getElementById('firstName')?.value || '',
+                lastName: document.getElementById('lastName')?.value || '',
+                email: document.getElementById('email')?.value || '',
+                phone: document.getElementById('phone')?.value || '',
+                streetAddress: document.getElementById('streetAddress')?.value || '',
+                city: document.getElementById('city')?.value || '',
+                state: document.getElementById('state')?.value || '',
+                pincode: document.getElementById('pincode')?.value || '',
+                total: cartTotal,
+                cartItems: cartItems
+            };
+            
+            // Validate required fields
+            const requiredFields = ['firstName', 'email', 'phone', 'streetAddress', 'city', 'state', 'pincode'];
+            const missingFields = requiredFields.filter(field => !orderData[field]);
+            
+            if (missingFields.length > 0) {
+                showNotification('Please fill all required fields!', 'error');
+                return;
+            }
+            
+            try {
+                // Initialize PhonePe payment
+                if (window.PhonePeIntegration && window.PhonePeIntegration.initializePayment) {
+                    await window.PhonePeIntegration.initializePayment(orderData);
+                } else {
+                    // Fallback if PhonePe integration is not available
+                    showNotification('Payment gateway not available!', 'error');
+                }
+            } catch (error) {
+                console.error('Payment error:', error);
+                showNotification('Payment failed: ' + error.message, 'error');
+            }
         });
     }
 }

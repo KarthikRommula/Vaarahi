@@ -40,6 +40,8 @@
         <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
         <!-- Theme Custom CSS -->
         <link rel="stylesheet" href="assets/css/style.css">
+        <!-- Rating UI CSS -->
+        <link rel="stylesheet" href="assets/css/rating-ui.css">
     <!-- Add this in the head section of all HTML files -->
     <style>
         .logo-gradient {
@@ -202,7 +204,7 @@
                     </li>
 
                     <li>
-                        <a href="#">Pictures</a>
+                        <a href="pictures.html">Pictures</a>
                     </li>
                     <li>
                         <a href="contact.html">Contact</a>
@@ -239,7 +241,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="p">Pictures</a>
+                                    <a href="pictures.html">Pictures</a>
                                 </li>
                                 <li>
                                     <a href="contact.html">Contact</a>
@@ -409,17 +411,20 @@
                                     <h3 class="blog-inner-title ">Add a review</h3>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group rating-select d-flex align-items-center">
+                                    <div class="form-group rating-select">
                                         <label>Your Rating</label>
-                                        <p class="stars">
-                                            <span>
-                                                <a class="star-1" href="#">1</a>
-                                                <a class="star-2" href="#">2</a>
-                                                <a class="star-3" href="#">3</a>
-                                                <a class="star-4" href="#">4</a>
-                                                <a class="star-5" href="#">5</a>
-                                            </span>
-                                        </p>
+                                        <div class="rating-container">
+                                            <div class="rating-stars">
+                                                <i class="far fa-star" data-rating="1"></i>
+                                                <i class="far fa-star" data-rating="2"></i>
+                                                <i class="far fa-star" data-rating="3"></i>
+                                                <i class="far fa-star" data-rating="4"></i>
+                                                <i class="far fa-star" data-rating="5"></i>
+                                            </div>
+                                            <div class="rating-value">0</div>
+                                            <div class="rating-text"></div>
+                                        </div>
+                                        <input type="hidden" name="rating" value="0">
                                     </div>
                                     <div class="col-12 form-group">
                                         <textarea placeholder="Write a Message" class="form-control"></textarea>
@@ -770,7 +775,7 @@
                                 <ul class="menu">
                                     <li><a href="about.html">About</a></li>
                                     <li><a href="products.html">Products</a></li>
-                                    <li><a href="#">Pictures</a></li>
+                                    <li><a href="pictures.html">Pictures</a></li>
                                     <li><a href="contact.html">Contact</a></li>
                                 </ul>
                             </div>
@@ -831,6 +836,7 @@
         <script src="assets/js/cart.js"></script>
         <script src="assets/js/product-sort.js"></script>
         <script src="assets/js/product-details.js"></script>
+        <script src="assets/js/product-reviews.js"></script>
     </body>
     <script>
          // Setup event listeners for the cart

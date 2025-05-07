@@ -1,0 +1,156 @@
+/* Modern Rating UI Styles */
+.form-group.rating-select {
+    margin-bottom: 25px;
+    display: block;
+}
+
+.form-group.rating-select label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: #333;
+    font-size: 16px;
+}
+
+.rating-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.rating-stars {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.rating-stars i {
+    font-size: 26px;
+    margin-right: 8px;
+    cursor: pointer;
+    color: #ddd;
+    transition: all 0.3s ease;
+}
+
+.rating-stars i:hover {
+    transform: scale(1.2);
+}
+
+.rating-stars i.fas {
+    color: #FFAC00;
+}
+
+.rating-stars i.far {
+    color: #ddd;
+}
+
+.rating-stars i.hovered {
+    color: #FFD700;
+}
+
+.rating-value {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFAC00;
+    margin: 5px 0;
+    display: none;
+}
+
+.rating-text {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+    height: 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.rating-text.active {
+    color: #FFAC00;
+    font-weight: 600;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.rating-stars i.selected {
+    animation: pulse 0.5s;
+}
+
+/* Improve the submit button */
+.th-btn.style2.style-radius {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.th-btn.style2.style-radius:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.th-btn.style2.style-radius:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.th-btn.style2.style-radius:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    20% {
+        transform: scale(25, 25);
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40, 40);
+    }
+}
+
+.rating-text {
+    margin-top: 10px;
+    font-weight: 600;
+    color: #FFAC00;
+    animation: fadeIn 0.5s;
+    height: 24px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Improve the submit button */
+.th-btn.style2.style-radius {
+    transition: all 0.3s ease;
+}
+
+.th-btn.style2.style-radius:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
