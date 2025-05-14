@@ -129,7 +129,13 @@ Product Lightbox
                         </p>
                     </div>
                     <div class="actions">
-                        <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
+                        <div class="quantity">
+                            <input type="number" class="qty-input" step="1" min="1" max="100" name="quantity" value="1" title="Qty">
+                            <button class="quantity-plus qty-btn"><i class="far fa-chevron-up"></i></button>
+                            <button class="quantity-minus qty-btn"><i class="far fa-chevron-down"></i></button>
+                        </div>
+                        <button class="th-btn">Add to Cart</button>
+                        <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
                     </div>
                     <div class="product_meta">
                         <span class="sku_wrapper">SKU: <span class="sku">product-id</span></span>
@@ -141,8 +147,10 @@ Product Lightbox
         </div>
         <button title="Close (Esc)" type="button" class="mfp-close">×</button>
     </div>
-</div>
-</div>
+</div><!--==============================
+    Sidemenu
+============================== -->
+<!-- Shopping cart removed -->
     <div class="popup-search-box d-none d-lg-block">
         <button class="searchClose"><i class="far fa-times"></i></button>
         <form action="#">
@@ -177,9 +185,6 @@ Product Lightbox
                 </li>
                 <li>
                     <a href="contact.html">Contact</a>
-                </li>
-                <li>
-                    <a href="wishlist.html"><i class="far fa-heart"></i></a>
                 </li>
 
             </ul>
@@ -217,9 +222,6 @@ Product Lightbox
                             </li>
                             <li>
                                 <a href="contact.html">Contact</a>
-                            </li>
-                            <li>
-                                <a href="wishlist.html"><i class="far fa-heart"></i></a>
                             </li>
 
                         </ul>
@@ -289,7 +291,8 @@ Product Area
                             <span class="product-tag">Hot</span>
                             <div class="actions">
                                 <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
+                                <a href="#" class="icon-btn add-to-cart-btn" data-product-id="" data-product-name="" data-product-price="" data-product-image=""><i class="far fa-cart-plus"></i></a>
+                                <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
                             </div>
                         </div>
                         <div class="product-content">
@@ -313,7 +316,7 @@ Product Area
                             <div class="actions">
                                 <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
                                 <a href="#" class="icon-btn add-to-cart-btn" data-product-id="dress" data-product-name="Dress" data-product-price="39.85" data-product-image="assets/img/product/product_1_2.png"><i class="far fa-cart-plus"></i></a>
-                                <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
+                                <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
                             </div>
                         </div>
                         <div class="product-content">
@@ -336,7 +339,8 @@ Product Area
                             <span class="product-tag">Hot</span>
                             <div class="actions">
                                 <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
+                                <a href="#" class="icon-btn add-to-cart-btn" data-product-id="" data-product-name="" data-product-price="" data-product-image=""><i class="far fa-cart-plus"></i></a>
+                                <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
                             </div>
                         </div>
                         <div class="product-content">
@@ -360,7 +364,8 @@ Product Area
                             <span class="product-tag">Sale</span>
                             <div class="actions">
                                 <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
+                                <a href="#" class="icon-btn add-to-cart-btn" data-product-id="" data-product-name="" data-product-price="" data-product-image=""><i class="far fa-cart-plus"></i></a>
+                                <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
                             </div>
                         </div>
                         <div class="product-content">
@@ -384,7 +389,8 @@ Product Area
                             <span class="product-tag">New</span>
                             <div class="actions">
                                 <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
+                                <a href="#" class="icon-btn add-to-cart-btn" data-product-id="" data-product-name="" data-product-price="" data-product-image=""><i class="far fa-cart-plus"></i></a>
+                                <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
                             </div>
                         </div>
                         <div class="product-content">
@@ -408,7 +414,8 @@ Product Area
                             <span class="product-tag">Hot</span>
                             <div class="actions">
                                 <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
+                                <a href="#" class="icon-btn add-to-cart-btn" data-product-id="" data-product-name="" data-product-price="" data-product-image=""><i class="far fa-cart-plus"></i></a>
+                                <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
                             </div>
                         </div>
                         <div class="product-content">
@@ -432,7 +439,8 @@ Product Area
                             <span class="product-tag">New</span>
                             <div class="actions">
                                 <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
+                                <a href="#" class="icon-btn add-to-cart-btn" data-product-id="" data-product-name="" data-product-price="" data-product-image=""><i class="far fa-cart-plus"></i></a>
+                                <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
                             </div>
                         </div>
                         <div class="product-content">
@@ -456,7 +464,8 @@ Product Area
                             <span class="product-tag">Hot</span>
                             <div class="actions">
                                 <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
+                                <a href="#" class="icon-btn add-to-cart-btn" data-product-id="" data-product-name="" data-product-price="" data-product-image=""><i class="far fa-cart-plus"></i></a>
+                                <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
                             </div>
                         </div>
                         <div class="product-content">
@@ -480,7 +489,8 @@ Product Area
                             <span class="product-tag">New</span>
                             <div class="actions">
                                 <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
+                                <a href="#" class="icon-btn add-to-cart-btn" data-product-id="" data-product-name="" data-product-price="" data-product-image=""><i class="far fa-cart-plus"></i></a>
+                                <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
                             </div>
                         </div>
                         <div class="product-content">
@@ -504,7 +514,8 @@ Product Area
                             <span class="product-tag">Hot</span>
                             <div class="actions">
                                 <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
+                                <a href="#" class="icon-btn add-to-cart-btn" data-product-id="" data-product-name="" data-product-price="" data-product-image=""><i class="far fa-cart-plus"></i></a>
+                                <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
                             </div>
                         </div>
                         <div class="product-content">
@@ -528,7 +539,8 @@ Product Area
                             <span class="product-tag">New</span>
                             <div class="actions">
                                 <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
+                                <a href="#" class="icon-btn add-to-cart-btn" data-product-id="" data-product-name="" data-product-price="" data-product-image=""><i class="far fa-cart-plus"></i></a>
+                                <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
                             </div>
                         </div>
                         <div class="product-content">
@@ -552,7 +564,8 @@ Product Area
                             <span class="product-tag">Hot</span>
                             <div class="actions">
                                 <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
+                                <a href="#" class="icon-btn add-to-cart-btn" data-product-id="" data-product-name="" data-product-price="" data-product-image=""><i class="far fa-cart-plus"></i></a>
+                                <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
                             </div>
                         </div>
                         <div class="product-content">
@@ -734,14 +747,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
-    // Setup mini cart toggler
-    document.querySelectorAll('.sideMenuToggler').forEach(toggler => {
-        toggler.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector('.sidemenu-wrapper.sidemenu-cart').classList.add('show');
-        });
-    });
 });
 
 // We can remove this fallback implementation since we're now using the global updateMiniCart function
@@ -751,13 +756,7 @@ function setupCartButtons() {
     // Target all cart icons and links
     const cartButtons = document.querySelectorAll('.actions a[href="cart.html"], .actions a i.far.fa-cart-plus, .icon-btn[href="cart.html"]');
     
-    // Also target the specific add-to-cart-btn class elements
-    const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-    
-    // Process all cart buttons
-    const allButtons = [...cartButtons, ...addToCartButtons];
-    
-    allButtons.forEach(button => {
+    cartButtons.forEach(button => {
         // Make sure we have the anchor element
         const link = button.tagName === 'A' ? button : button.closest('a');
         if (!link) return;
@@ -779,54 +778,44 @@ function setupCartButtons() {
         const productName = titleElement.textContent.trim();
         let productId;
         
-        // Check if data attributes are available first
-        if (link.dataset.productId && link.dataset.productId !== '') {
-            productId = link.dataset.productId;
-        } else {
-            // Get product ID from href if available
-            const hrefValue = titleElement.getAttribute('href');
-            if (hrefValue && hrefValue.includes('?id=')) {
-                productId = hrefValue.split('?id=')[1];
-            } else if (hrefValue && hrefValue.includes('shop-details.html')) {
-                // Try to extract ID from the URL structure
-                const urlParts = hrefValue.split('/');
-                const filename = urlParts[urlParts.length - 1];
-                if (filename.includes('#')) {
-                    productId = filename.split('#')[1];
-                } else {
-                    // Fallback to using the product name
-                    productId = productName.toLowerCase().replace(/\s+/g, '-');
-                }
+        // Get product ID from href if available
+        const hrefValue = titleElement.getAttribute('href');
+        if (hrefValue && hrefValue.includes('?id=')) {
+            productId = hrefValue.split('?id=')[1];
+        } else if (hrefValue && hrefValue.includes('shop-details.html')) {
+            // Try to extract ID from the URL structure
+            const urlParts = hrefValue.split('/');
+            const filename = urlParts[urlParts.length - 1];
+            if (filename.includes('#')) {
+                productId = filename.split('#')[1];
             } else {
                 // Fallback to using the product name
                 productId = productName.toLowerCase().replace(/\s+/g, '-');
             }
+        } else {
+            // Fallback to using the product name
+            productId = productName.toLowerCase().replace(/\s+/g, '-');
         }
         
-        // Extract price - first check data attribute
+        // Extract price
+        const priceText = priceElement.textContent.trim();
         let productPrice = 0;
-        if (link.dataset.productPrice && link.dataset.productPrice !== '') {
-            productPrice = parseFloat(link.dataset.productPrice);
+        
+        // Try multiple regex patterns to extract price
+        const priceMatch = priceText.match(/\$\s*(\d+(\.\d+)?)/); 
+        if (priceMatch && priceMatch[1]) {
+            productPrice = parseFloat(priceMatch[1]);
         } else {
-            // Extract from price element
-            const priceText = priceElement.textContent.trim();
-            
-            // Try multiple regex patterns to extract price
-            const priceMatch = priceText.match(/\$\s*(\d+(\.\d+)?)/);
-            if (priceMatch && priceMatch[1]) {
-                productPrice = parseFloat(priceMatch[1]);
+            // Check for sale price format (e.g., "$199.99 $149.99")
+            const salePriceMatch = priceText.match(/\$\s*\d+(\.\d+)?\s+\$\s*(\d+(\.\d+)?)/); 
+            if (salePriceMatch && salePriceMatch[2]) {
+                // Use the second price (sale price)
+                productPrice = parseFloat(salePriceMatch[2]);
             } else {
-                // Check for sale price format (e.g., "$199.99 $149.99")
-                const salePriceMatch = priceText.match(/\$\s*\d+(\.\d+)?\s+\$\s*(\d+(\.\d+)?)/);
-                if (salePriceMatch && salePriceMatch[2]) {
-                    // Use the second price (sale price)
-                    productPrice = parseFloat(salePriceMatch[2]);
-                } else {
-                    // Try alternative pattern for prices
-                    const altMatch = priceText.match(/(\d+(\.\d+)?)/);
-                    if (altMatch && altMatch[1]) {
-                        productPrice = parseFloat(altMatch[1]);
-                    }
+                // Try alternative pattern for prices
+                const altMatch = priceText.match(/(\d+(\.\d+)?)/); 
+                if (altMatch && altMatch[1]) {
+                    productPrice = parseFloat(altMatch[1]);
                 }
             }
         }
@@ -848,13 +837,8 @@ function setupCartButtons() {
             }
         }
         
-        // Get image - first check data attribute
-        let productImage;
-        if (link.dataset.productImage && link.dataset.productImage !== '') {
-            productImage = link.dataset.productImage;
-        } else {
-            productImage = imageElement.getAttribute('src');
-        }
+        // Get image
+        const productImage = imageElement.getAttribute('src');
         
         // Remove any existing click handlers
         const newLink = link.cloneNode(true);
@@ -909,273 +893,105 @@ function setupCartButtons() {
     });
 }
 
-// Setup Quick View add to cart button
+// Setup Quick View cart functionality
 function setupQuickViewCart() {
-    // Get the Quick View add to cart button
-    const quickViewAddToCartBtn = document.querySelector('#QuickView .th-btn');
-    if (!quickViewAddToCartBtn) return;
-    
-    // Add click event
-    quickViewAddToCartBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        // Get product data from Quick View
-        const quickView = document.querySelector('#QuickView');
-        if (!quickView) return;
-        
-        const name = quickView.querySelector('.product-title').textContent.trim();
-        const priceText = quickView.querySelector('.price').textContent.trim();
-        
-        // Extract price
-        let price = 0;
-        const priceMatch = priceText.match(/\$\s*(\d+(\.\d+)?)/);
-        if (priceMatch && priceMatch[1]) {
-            price = parseFloat(priceMatch[1]);
-        } else {
-            // Check for sale price format (e.g., "$199.99 $149.99")
-            const salePriceMatch = priceText.match(/\$\s*\d+(\.\d+)?\s+\$\s*(\d+(\.\d+)?)/);
-            if (salePriceMatch && salePriceMatch[2]) {
-                // Use the second price (sale price)
-                price = parseFloat(salePriceMatch[2]);
+    document.addEventListener('click', function(e) {
+        const quickViewAddToCartBtn = e.target.closest('#QuickView .th-btn');
+        if (quickViewAddToCartBtn && quickViewAddToCartBtn.textContent.includes('Add to Cart')) {
+            e.preventDefault();
+            
+            const quickView = document.querySelector('#QuickView');
+            if (!quickView) return;
+            
+            const name = quickView.querySelector('.product-title').textContent;
+            const priceText = quickView.querySelector('.price').textContent;
+            
+            // Extract price
+            let price = 0;
+            
+            // Try multiple regex patterns to extract price
+            const priceMatch = priceText.match(/\$\s*(\d+(\.\d+)?)/); 
+            if (priceMatch && priceMatch[1]) {
+                price = parseFloat(priceMatch[1]);
             } else {
-                // Try alternative pattern for prices
-                const altMatch = priceText.match(/(\d+(\.\d+)?)/);
-                if (altMatch && altMatch[1]) {
-                    price = parseFloat(altMatch[1]);
-                }
-            }
-        }
-        
-        // Fallback to a default price if extraction failed
-        if (price <= 0) {
-            console.warn(`Failed to extract price for ${name}, using fallback price`);
-            // Try to get price from product ID
-            const id = name.toLowerCase().replace(/\s+/g, '-');
-            if (id.includes('medicine')) {
-                price = 177.85;
-            } else if (id.includes('books')) {
-                price = 149.99;
-            } else if (id.includes('dress')) {
-                price = 199.99;
-            } else if (id.includes('chair')) {
-                price = 129.99;
-            } else {
-                price = 99.99; // Default fallback price
-            }
-        }
-        
-        const image = quickView.querySelector('.product-big-img img').getAttribute('src');
-        const id = name.toLowerCase().replace(/\s+/g, '-');
-        const quantityInput = quickView.querySelector('.qty-input');
-        const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
-        
-        // Add to cart
-        if (window.addToCart) {
-            window.addToCart({
-                id,
-                name,
-                price,
-                image,
-                quantity
-            });
-            
-            // Force mini cart update to ensure items display properly
-            if (window.updateMiniCart) {
-                setTimeout(() => {
-                    window.updateMiniCart();
-                }, 100);
-            }
-            
-            // Update cart badge
-            updateCartBadge();
-            
-            // Show notification
-            if (window.showNotification) {
-                window.showNotification(`${name} added to cart!`);
-            }
-            
-            // Close any duplicate carts that might be open
-            const openCarts = document.querySelectorAll('.sidemenu-wrapper.sidemenu-cart.show');
-            if (openCarts.length > 1) {
-                // Keep only the first one open
-                for (let i = 1; i < openCarts.length; i++) {
-                    openCarts[i].classList.remove('show');
-                }
-            }
-        }
-    });
-}
-</script>
-
-<script>
-// Update cart badge count
-function updateCartBadge() {
-    // Get all cart badges
-    const cartBadges = document.querySelectorAll('.sideMenuToggler .badge');
-    
-    // Calculate total quantity in cart
-    let totalQuantity = 0;
-    if (window.cartItems && Array.isArray(window.cartItems)) {
-        totalQuantity = window.cartItems.reduce((total, item) => {
-            return total + (parseInt(item.quantity) || 0);
-        }, 0);
-    }
-    
-    // Update all badges
-    cartBadges.forEach(badge => {
-        badge.textContent = totalQuantity;
-    });
-}
-
-// Initialize cart when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Update cart badge
-    if (typeof updateCartBadge === 'function') {
-        updateCartBadge();
-    }
-    
-    // Update mini cart display
-    if (window.updateMiniCart) {
-        window.updateMiniCart();
-    }
-});
-</script>
-
-<!-- Wishlist Functionality for Products Page -->
-<script>
-    // Initialize wishlist items array
-    let wishlistItems = [];
-    
-    // Load wishlist items from localStorage
-    try {
-        const storedWishlist = localStorage.getItem('wishlistItems');
-        if (storedWishlist) {
-            wishlistItems = JSON.parse(storedWishlist) || [];
-        }
-    } catch (e) {
-        console.error('Error loading wishlist from localStorage:', e);
-        wishlistItems = [];
-    }
-    
-    // Function to save wishlist to localStorage
-    function saveWishlist() {
-        localStorage.setItem('wishlistItems', JSON.stringify(wishlistItems));
-    }
-    
-    // Function to show message
-    function showMessage(text) {
-        // Create message element if it doesn't exist
-        let messageElement = document.querySelector('.wishlist-message');
-        if (!messageElement) {
-            messageElement = document.createElement('div');
-            messageElement.className = 'wishlist-message';
-            document.body.appendChild(messageElement);
-            
-            // Style the message
-            messageElement.style.position = 'fixed';
-            messageElement.style.top = '20px';
-            messageElement.style.left = '50%';
-            messageElement.style.transform = 'translateX(-50%)';
-            messageElement.style.backgroundColor = '#28a745';
-            messageElement.style.color = 'white';
-            messageElement.style.padding = '10px 20px';
-            messageElement.style.borderRadius = '5px';
-            messageElement.style.zIndex = '9999';
-            messageElement.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
-            messageElement.style.transition = 'opacity 0.3s ease';
-        }
-        
-        // Set message text and show
-        messageElement.textContent = text;
-        messageElement.style.display = 'block';
-        messageElement.style.opacity = '1';
-        
-        // Hide after 3 seconds
-        setTimeout(() => {
-            messageElement.style.opacity = '0';
-            setTimeout(() => {
-                messageElement.style.display = 'none';
-            }, 300);
-        }, 3000);
-    }
-    
-    // Function to add item to wishlist from products page
-    function addToWishlist(productCard) {
-        // Get product data
-        const titleElement = productCard.querySelector('.product-title a');
-        const priceElement = productCard.querySelector('.price');
-        const imageElement = productCard.querySelector('.product-img img');
-        
-        if (!titleElement || !priceElement || !imageElement) return;
-        
-        // Extract product info
-        const productName = titleElement.textContent.trim();
-        const productImg = imageElement.getAttribute('src');
-        
-        // Extract price
-        const priceText = priceElement.textContent.trim();
-        let productPrice = 0;
-        const priceMatch = priceText.match(/\$(\d+(\.\d+)?)/);
-        if (priceMatch && priceMatch[1]) {
-            productPrice = parseFloat(priceMatch[1]);
-        }
-        
-        // Check if item already exists in wishlist
-        const exists = wishlistItems.some(item => item.name === productName);
-        
-        if (!exists) {
-            // Add to wishlist
-            wishlistItems.push({
-                name: productName,
-                price: productPrice,
-                image: productImg
-            });
-            
-            // Save wishlist
-            saveWishlist();
-            
-            // Show success message
-            showMessage(`"${productName}" has been added to your wishlist.`);
-        } else {
-            // Show already exists message
-            showMessage(`"${productName}" is already in your wishlist.`);
-        }
-    }
-
-    // Setup wishlist buttons
-    document.addEventListener('DOMContentLoaded', function() {
-        // Add event listeners to all wishlist buttons
-        document.querySelectorAll('.add-to-wishlist-btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Get product card
-                const productCard = this.closest('.th-product');
-                if (productCard) {
-                    addToWishlist(productCard);
-                    
-                    // Change heart icon to filled
-                    const heartIcon = this.querySelector('i.far.fa-heart');
-                    if (heartIcon) {
-                        heartIcon.classList.remove('far');
-                        heartIcon.classList.add('fas');
-                        heartIcon.style.color = '#ff6b6b';
-                        
-                        // Reset after 2 seconds
-                        setTimeout(() => {
-                            heartIcon.classList.remove('fas');
-                            heartIcon.classList.add('far');
-                            heartIcon.style.color = '';
-                        }, 2000);
+                // Check for sale price format (e.g., "$199.99 $149.99")
+                const salePriceMatch = priceText.match(/\$\s*\d+(\.\d+)?\s+\$\s*(\d+(\.\d+)?)/); 
+                if (salePriceMatch && salePriceMatch[2]) {
+                    // Use the second price (sale price)
+                    price = parseFloat(salePriceMatch[2]);
+                } else {
+                    // Try alternative pattern for prices
+                    const altMatch = priceText.match(/(\d+(\.\d+)?)/); 
+                    if (altMatch && altMatch[1]) {
+                        price = parseFloat(altMatch[1]);
                     }
                 }
-            });
-        });
-        
-        // We don't need to add event listeners to the add-to-cart buttons here
-        // as they are already handled by the existing cart.js file
+            }
+            
+            // Fallback to a default price if extraction failed
+            if (price <= 0) {
+                console.warn(`Failed to extract price for ${name}, using fallback price`);
+                // Try to get price from product ID
+                if (id.includes('medicine')) {
+                    price = 177.85;
+                } else if (id.includes('books')) {
+                    price = 149.99;
+                } else if (id.includes('dress')) {
+                    price = 199.99;
+                } else if (id.includes('chair')) {
+                    price = 129.99;
+                } else {
+                    price = 99.99; // Default fallback price
+                }
+            }
+            
+            const image = quickView.querySelector('.product-big-img img').getAttribute('src');
+            const id = name.toLowerCase().replace(/\s+/g, '-');
+            const quantityInput = quickView.querySelector('.qty-input');
+            const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
+            
+            // Add to cart
+            if (window.addToCart) {
+                window.addToCart({
+                    id,
+                    name,
+                    price,
+                    image,
+                    quantity
+                });
+                
+                // Force mini cart update to ensure items display properly
+                if (window.updateMiniCart) {
+                    setTimeout(() => {
+                        window.updateMiniCart();
+                    }, 100);
+                }
+                
+                // Update cart badge
+                updateCartBadge();
+                
+                // Show notification
+                if (window.showNotification) {
+                    window.showNotification(`${name} added to cart!`);
+                }
+                
+                // Close any duplicate carts that might be open
+                const openCarts = document.querySelectorAll('.sidemenu-wrapper.sidemenu-cart.show');
+                if (openCarts.length > 1) {
+                    // Keep only the first one open
+                    for (let i = 1; i < openCarts.length; i++) {
+                        openCarts[i].classList.remove('show');
+                    }
+                }
+            }
+        }
     });
+}
+
+// Cart badge update function removed
 </script>
 
-</body>
+</body> 
+    
+
 </html>
