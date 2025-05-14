@@ -1,31 +1,31 @@
-<!-- products.html -->
+<!-- index.html -->
 <!doctype html>
 <html class="no-js" lang="zxx" dir="ltr">
 
-
-<!-- Mirrored from html.themeholy.com/donat/demo/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 28 Jan 2025 18:45:35 GMT -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>VAARAHI - Products</title>
-
-
+    <title>VAARAHI- Home</title>
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <!-- Favicons - Place favicon.ico in the root directory -->
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/FAVICONS/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/FAVICONS/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/FAVICONS/favicon-16x16.png">
     <link rel="manifest" href="/assets/FAVICONS/site.webmanifest">
-
+    <link rel="stylesheet" href="assets/css/search.css">
     <!--==============================
 	  Google Fonts
 	============================== -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&amp;family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&amp;family=Nunito:ital,wght@0,200..1000;1,200..1000&amp;display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&amp;family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&amp;family=Nunito:ital,wght@0,200..1000;1,200..1000&amp;display=swap"
+        rel="stylesheet">
 
     <!--==============================
 	    All CSS File
@@ -40,53 +40,170 @@
     <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
-<!-- Add this in the head section of all HTML files -->
-<style>
-    .logo-gradient {
-      display: inline-flex;
-      align-items: center;
-      text-decoration: none;
-      position: relative;
-  }
-  
-  .logo-gradient::before {
-      content: '';
-      position: absolute;
-      top: -5px;
-      left: -10px;
-      width: 50px;
-      height: 50px;
-      background: linear-gradient(135deg, #FFAC00, #FFD700);
-      opacity: 0.1;
-      border-radius: 8px;
-      transform: rotate(-10deg);
-      z-index: -1;
-      transition: all 0.3s ease;
-  }
-  
-  .logo-gradient .text {
-      font-family: 'Audiowide', cursive;
-      font-size: 26px;
-      color: #1a1a1a;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      position: relative;
-  }
-  
-  .logo-gradient .highlight {
-      background: linear-gradient(45deg, #FFAC00, #FFD700);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: bold;
-  }
-  
-  .logo-gradient:hover::before {
-      transform: rotate(0deg) scale(1.1);
-  }
-</style>
-</head>
 
+</head>
+<style>
+      .logo-gradient {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        position: relative;
+    }
+    
+    .logo-gradient::before {
+        content: '';
+        position: absolute;
+        top: -5px;
+        left: -10px;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #FFAC00, #FFD700);
+        opacity: 0.1;
+        border-radius: 8px;
+        transform: rotate(-10deg);
+        z-index: -1;
+        transition: all 0.3s ease;
+    }
+    
+    .logo-gradient .text {
+        font-family: 'Audiowide', cursive;
+        font-size: 26px;
+        color: #1a1a1a;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        position: relative;
+    }
+    
+    .logo-gradient .highlight {
+        background: linear-gradient(45deg, #FFAC00, #FFD700);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+    }
+    
+    .logo-gradient:hover::before {
+        transform: rotate(0deg) scale(1.1);
+    }
+     /* Base styles */
+     .sub-title {
+            color: #333;
+            font-weight: 600;
+            position: relative;
+        }
+        .text-theme2 {
+            color: #ff6b6b;
+        }
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+        .hero-text {
+            font-size: 1.2rem;
+        }
+        
+        /* Hover effect */
+        .hover-zoom {
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+        .hover-zoom:hover {
+            transform: scale(1.03);
+            filter: brightness(1.1);
+        }
+        
+        /* Carousel responsive styles */
+        .hero-2-img {
+            margin-bottom: 2rem;
+        }
+        .carousel-inner {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .carousel-item img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        .carousel-control-prev-icon, 
+        .carousel-control-next-icon {
+            background-color: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            padding: 1rem;
+        }
+        .carousel-indicators {
+            bottom: -10px;
+        }
+        .carousel-indicators button {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #777;
+            margin: 0 4px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 991.98px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .row.flex-row-reverse {
+                flex-direction: column-reverse !important;
+            }
+            .hero-style2 {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+            .hero-text {
+                margin-left: 0 !important;
+            }
+            .sub-title {
+                top: 0 !important;
+            }
+            .hero-2-img {
+            margin-left: -1.5px;
+        }
+        }
+        
+        @media (max-width: 767.98px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .carousel-item img {
+                height: 300px;
+                object-fit: cover;
+            }
+            .carousel-control-prev-icon, 
+            .carousel-control-next-icon {
+                padding: 0.75rem;
+            }
+            .hero-2-img {
+            margin-left: -1.5px;
+        }
+        }
+        
+        @media (max-width: 575.98px) {
+            .container {
+                padding: 0 15px;
+            }
+            .hero-title {
+                font-size: 1.75rem;
+            }
+            .carousel-item img {
+                height: 250px;
+            }
+            .carousel-indicators {
+                bottom: -5px;
+            }
+            .carousel-indicators button {
+                width: 8px;
+                height: 8px;
+            }
+            .hero-2-img {
+            margin-left: -1.5px;
+        }
+        }
+    
+</style>
 <body>
 
     <!--[if lte IE 9]>
@@ -96,91 +213,40 @@
 
     <!--********************************
    		Code Start From Here 
-	******************************** -->
-
-    <!--==============================
-     Preloader
-  ==============================-->
-    <!--==============================
-Product Lightbox
-==============================-->
-<!-- Replace the existing QuickView div with this one -->
-<div id="QuickView" class="white-popup mfp-hide">
-    <div class="container bg-white rounded-10">
-        <div class="row gx-60">
-            <div class="col-lg-6">
-                <div class="product-big-img">
-                    <div class="img"><img src="assets/img/product/product_details_1_1.png" alt="Product Image"></div>
-                </div>
-            </div>
-            <div class="col-lg-6 align-self-center">
-                <div class="product-about">
-                    <p class="price">$0.00</p>
-                    <h2 class="product-title">Product Name</h2>
-                    <div class="product-rating">
-                        <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5 based on <span class="rating">1</span> customer rating</span></div>
-                        <a href="#" class="woocommerce-review-link">(<span class="count">4</span> customer reviews)</a>
-                    </div>
-                    <p class="text">This premium product combines quality craftsmanship with modern design. Perfect for those seeking both functionality and style, it's a great addition to your collection.</p>
-                    <div class="mt-2 link-inherit">
-                        <p>
-                            <strong class="text-title me-3">Availability:</strong>
-                            <span class="stock in-stock"><i class="far fa-check-square me-2 ms-1"></i>In Stock</span>
-                        </p>
-                    </div>
-                    <div class="actions">
-                        <div class="quantity">
-                            <input type="number" class="qty-input" step="1" min="1" max="100" name="quantity" value="1" title="Qty">
-                            <button class="quantity-plus qty-btn"><i class="far fa-chevron-up"></i></button>
-                            <button class="quantity-minus qty-btn"><i class="far fa-chevron-down"></i></button>
-                        </div>
-                        <button class="th-btn">Add to Cart</button>
-                        <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
-                    </div>
-                    <div class="product_meta">
-                        <span class="sku_wrapper">SKU: <span class="sku">product-id</span></span>
-                        <span class="posted_in">Category: <a href="#">General</a></span>
-                        <span>Tags: <a href="#">Product</a><a href="#">Retail</a></span>
-                    </div>
+	********************************-->
+    <div class="sidemenu-wrapper sidemenu-cart">
+        <div class="sidemenu-content">
+            <button class="closeButton sideMenuCls"><i class="far fa-times"></i></button>
+            <div class="widget woocommerce widget_shopping_cart">
+                <h3 class="widget_title">Shopping cart</h3>
+                <div class="widget_shopping_cart_content">
+                    <ul class="woocommerce-mini-cart cart_list product_list_widget">
+                        <!-- Cart items will be dynamically inserted here by cart.js -->
+                    </ul>
+                    <p class="woocommerce-mini-cart__total total">
+                        <strong>Subtotal:</strong>
+                        <span class="woocommerce-Price-amount amount">
+                            <span class="woocommerce-Price-currencySymbol">$</span>0.00</span>
+                    </p>
+                    <p class="woocommerce-mini-cart__buttons buttons">
+                        <a href="cart.html" class="th-btn wc-forward">View cart</a>
+                        <a href="checkout.html" class="th-btn checkout wc-forward">Checkout</a>
+                    </p>
                 </div>
             </div>
         </div>
-        <button title="Close (Esc)" type="button" class="mfp-close">×</button>
     </div>
-</div><!--==============================
-    Sidemenu
-============================== -->
-<div class="sidemenu-wrapper sidemenu-cart">
-    <div class="sidemenu-content">
-        <button class="closeButton sideMenuCls"><i class="far fa-times"></i></button>
-        <div class="widget woocommerce widget_shopping_cart">
-            <h3 class="widget_title">Shopping cart</h3>
-            <div class="widget_shopping_cart_content">
-                <ul class="woocommerce-mini-cart cart_list product_list_widget">
-                    <!-- Cart items will be dynamically inserted here by cart.js -->
-                </ul>
-                <p class="woocommerce-mini-cart__total total">
-                    <strong>Subtotal:</strong>
-                    <span class="woocommerce-Price-amount amount">
-                        <span class="woocommerce-Price-currencySymbol">$</span>0.00</span>
-                </p>
-                <p class="woocommerce-mini-cart__buttons buttons">
-                    <a href="cart.html" class="th-btn wc-forward">View cart</a>
-                    <a href="checkout.html" class="th-btn checkout wc-forward">Checkout</a>
-                </p>
-            </div>
-        </div>
     </div>
-</div>
     <div class="popup-search-box d-none d-lg-block">
         <button class="searchClose"><i class="far fa-times"></i></button>
         <form action="#">
             <input type="text" placeholder="What are you looking for?">
             <button type="submit"><i class="fal fa-search"></i></button>
         </form>
-    </div><!--==============================
+    </div>
+    <!--==============================
     Mobile Menu
-  ============================== -->
+  ==============================-->
   <div class="th-menu-wrapper">
     <div class="th-menu-area text-center">
         <button class="th-menu-toggle"><i class="fal fa-times"></i></button>
@@ -202,70 +268,83 @@ Product Lightbox
                 </li>
 
                 <li>
-                    <a href="pictures.html">Pictures</a>
+                    <a href="#">Pictures</a>
                 </li>
                 <li>
                     <a href="contact.html">Contact</a>
+                </li>
+                <li>
+                    <a href="login.html">Login</a>
+                </li>
+                <li>
+                    <a href="register.html">Register</a>
                 </li>
 
             </ul>
         </div>
     </div>
 </div>
-     <!--==============================
+    <!--==============================
 	Header Area
 ==============================-->
-<header class="th-header header-layout1">
-    <div class="sticky-wrapper">
-        <!-- Main Menu Area -->
-        <div class="container">
-            <div class="menu-area">
-                <div class="header-logo">
-                    <a href="index.html" class="logo-gradient">
-                        <span class="text">
-                            <span class="highlight">V</span>AARAHI
-                        </span>
-                    </a>
-                </div>
-                <div class="menu-area-wrap" style="margin-left: -50px;">
-                    <nav class="main-menu d-none d-lg-block">
-                        <ul>
-                            <li>
-                                <a href="index.html">Home</a>
-                            </li>
-                            <li><a href="about.html">About</a></li>
-                            <li>
-                                <a href="products.html">Products</a>
-                            </li>
+    <header class="th-header header-layout1">
+        <div class="sticky-wrapper">
+            <!-- Main Menu Area -->
+            <div class="container">
+                <div class="menu-area">
+                    <div class="header-logo">
+                        <a href="index.html" class="logo-gradient">
+                            <span class="text">
+                                <span class="highlight">V</span>AARAHI
+                            </span>
+                        </a>
+                    </div>
+                    <div class="menu-area-wrap" style="margin-left: -50px;">
+                        <nav class="main-menu d-none d-lg-block">
+                            <ul>
+                                <li>
+                                    <a href="index.html">Home</a>
+                                </li>
+                                <li><a href="about.html">About</a></li>
+                                <li>
+                                    <a href="products.html">Products</a>
+                                </li>
 
-                            <li>
-                                <a href="pictures.html">Pictures</a>
-                            </li>
-                            <li>
-                                <a href="contact.html">Contact</a>
-                            </li>
+                                <li>
+                                    <a href="#">Pictures</a>
+                                </li>
+                                <li>
+                                    <a href="contact.html">Contact</a>
+                                </li>
+                                <li>
+                                    <a href="login.html">Login</a>
+                                </li>
+                                <li>
+                                    <a href="register.html">Register</a>
+                                </li>
 
-                        </ul>
-                    </nav>
-                    <p class="header-notice"><img class="me-1" src="assets/img/icon/heart-icon.svg" alt="img">Are
-                        you ready to buy products? Let's become buyer</p>
-                </div>
-                <div class="header-button">
-                    <button type="button" class="icon-btn th-menu-toggle d-lg-none"><i
-                            class="far fa-bars"></i></button>
-                </div>
-                <div class="header-button">
-                    <button type="button" class="icon-btn style2 searchBoxToggler d-lg-block d-none"><i
-                            class="far fa-search"></i></button>
-                    <button type="button" class="icon-btn sideMenuToggler">
-                        <span class="badge">0</span>
-                        <i class="fa-regular fa-cart-shopping"></i>
-                    </button>
+
+                            </ul>
+                        </nav>
+                        <p class="header-notice"><img class="me-1" src="assets/img/icon/heart-icon.svg" alt="img">Are
+                            you ready to buy products? Let’s become buyer</p>
+                    </div>
+                    <div class="header-button">
+                        <button type="button" class="icon-btn th-menu-toggle d-lg-none"><i
+                                class="far fa-bars"></i></button>
+                    </div>
+                    <div class="header-button">
+                        <button type="button" class="icon-btn style2 searchBoxToggler d-lg-block d-none"><i
+                                class="far fa-search"></i></button>
+                        <button type="button" class="icon-btn sideMenuToggler">
+                            <span class="badge">0</span>
+                            <i class="fa-regular fa-cart-shopping"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</header>
+    </header>
 
 
     <!--==============================

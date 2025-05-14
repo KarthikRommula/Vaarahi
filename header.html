@@ -1,0 +1,30 @@
+<nav class="main-menu d-none d-lg-block">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="#">Pictures</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li id="authLinks"></li>
+    </ul>
+</nav>
+
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+    const authLinks=document.getElementById('authLinks'),
+          isLoggedIn=localStorage.getItem('isLoggedIn');
+    if(isLoggedIn){
+        authLinks.innerHTML=`<li><a href="profile.html">Profile</a></li>
+                            <li><a href="#" id="logoutLink">Logout</a></li>`;
+        document.getElementById('logoutLink').addEventListener('click',e=>{
+            e.preventDefault();
+            localStorage.removeItem('currentUser');
+            localStorage.removeItem('isLoggedIn');
+            window.location.href='login.html';
+        });
+    }else{
+        authLinks.innerHTML=`<li><a href="login.html">Login</a></li>
+                            <li><a href="register.html">Register</a></li>`;
+    }
+});
+</script>
