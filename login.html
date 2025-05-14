@@ -367,23 +367,33 @@
                     <div class="card-body p-5">
                         <h2 class="text-center mb-4">Welcome Back</h2>
                         <form id="loginForm">
-                            <div class="form-group mb-3">
-                                <label for="loginEmail">Email Address</label>
-                                <input type="email" class="form-control" id="loginEmail" required>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="loginPassword">Password</label>
-                                <input type="password" class="form-control" id="loginPassword" required>
-                            </div>
-                            <div class="form-group mb-3 d-flex justify-content-between align-items-center">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="remembermylogin">
-                                    <label class="form-check-label" for="remembermylogin">Remember Me</label>
+                            <div id="loginFields">
+                                <div class="form-group mb-3">
+                                    <label for="loginEmail">Email Address</label>
+                                    <input type="email" class="form-control" id="loginEmail" required>
                                 </div>
-                                <a href="#" id="forgotPassword" class="text-primary">Forgot Password?</a>
+                                <div class="form-group mb-3">
+                                    <label for="loginPassword">Password</label>
+                                    <input type="password" class="form-control" id="loginPassword" required>
+                                </div>
+                                <div class="form-group mb-3 d-flex justify-content-between align-items-center">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="remembermylogin">
+                                        <label class="form-check-label" for="remembermylogin">Remember Me</label>
+                                    </div>
+                                    <a href="#" id="forgotPassword" class="text-primary">Forgot Password?</a>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Login</button>
+                                <p class="text-center mt-3">Don't have an account? <a href="register.html">Sign Up</a></p>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100">Login</button>
-                            <p class="text-center mt-3">Don't have an account? <a href="register.html">Sign Up</a></p>
+                            <div id="otpVerification" style="display:none;">
+                                <div class="form-group mb-3">
+                                    <label for="otpInput">Enter OTP</label>
+                                    <input type="text" class="form-control" id="otpInput" maxlength="6" required>
+                                </div>
+                                <button type="button" id="verifyOtpBtn" class="btn btn-primary w-100">Verify OTP</button>
+                                <p class="text-center mt-3"><button type="button" id="resendOtpBtn" class="btn btn-link">Resend OTP</button></p>
+                            </div>
                         </form>
 
                         <div class="social-login mt-4">
@@ -525,193 +535,43 @@
 
 </html>
     
-    <!-- Custom JS -->
-    <script>
-        $(document).ready(function() {
-            // Check if user is already logged in
-            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-            if (isLoggedIn) {
-                window.location.href = 'index.html';
-                return;
-            }
+<script src="assets/js/form-validation.js"></script>
+<script>
+    // Pre-fill email if coming from registration
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get('email');
+        if(email) {
+            document.getElementById('loginEmail').value = email;
+        }
+    });
 
-            // Handle login form submission
-            $('#loginForm').on('submit', function(e) {
-                e.preventDefault();
-                
-                const email = $('#loginEmail').val();
-                const password = $('#loginPassword').val();
-                const rememberMe = $('#remembermylogin').is(':checked');
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        
+        // Get users from localStorage
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        
+        // Check credentials
+        const user = users.find(user => user.email === email && user.password === password);
+        
+        if(user) {
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            updateHeaderForLoggedInUser();
+            window.location.href = 'index.html';
+        } else {
+            alert('Invalid credentials!');
+        }
+    });
 
-                // Validation
-                if (!email || !password) {
-                    showWarning('Please fill in all fields');
-                    return;
-                }
-
-                if (!isValidEmail(email)) {
-                    showWarning('Please enter a valid email address');
-                    return;
-                }
-
-                // Get users from localStorage
-                const users = JSON.parse(localStorage.getItem('users') || '[]');
-                const user = users.find(u => u.email === email && u.password === btoa(password));
-
-                if (user) {
-                    // Store login state
-                    localStorage.setItem('isLoggedIn', 'true');
-                    localStorage.setItem('userEmail', email);
-                    localStorage.setItem('userName', user.fullName);
-                    
-                    if (rememberMe) {
-                        localStorage.setItem('rememberMe', 'true');
-                    }
-
-                    showSuccess('Login successful! Redirecting to profile page...');
-                    setTimeout(() => {
-                        window.location.href = 'profile.html';
-                    }, 1500);
-                } else {
-                    showWarning('Invalid email or password');
-                }
-            });
-
-            // Handle forgot password
-            $('#forgotPassword').on('click', function(e) {
-                e.preventDefault();
-                const email = $('#loginEmail').val();
-                if (!email) {
-                    showWarning('Please enter your email address first');
-                    return;
-                }
-                if (!isValidEmail(email)) {
-                    showWarning('Please enter a valid email address');
-                    return;
-                }
-
-                // Check if email exists
-                const users = JSON.parse(localStorage.getItem('users') || '[]');
-                const user = users.find(u => u.email === email);
-
-                if (user) {
-                    showSuccess('Password reset instructions have been sent to your email');
-                } else {
-                    showWarning('Email address not found. Please check your email or sign up.');
-                }
-            });
-
-            // Handle Google login
-            $('#googleLogin').on('click', function(e) {
-                e.preventDefault();
-                // Initialize Google Sign-In
-                google.accounts.id.initialize({
-                    client_id: 'YOUR_GOOGLE_CLIENT_ID', // Replace with your Google Client ID
-                    callback: handleGoogleSignIn
-                });
-                google.accounts.id.renderButton(
-                    document.getElementById('googleLogin'),
-                    { theme: 'outline', size: 'large', width: '100%' }
-                );
-            });
-
-            // Handle Facebook login
-            $('#facebookLogin').on('click', function(e) {
-                e.preventDefault();
-                FB.login(function(response) {
-                    if (response.authResponse) {
-                        FB.api('/me', function(response) {
-                            // Check if user exists
-                            const users = JSON.parse(localStorage.getItem('users') || '[]');
-                            let user = users.find(u => u.email === response.email);
-
-                            if (!user) {
-                                // Create new user if doesn't exist
-                                user = {
-                                    fullName: response.name,
-                                    email: response.email,
-                                    password: btoa(Math.random().toString(36).slice(-8)), // Generate random password
-                                    isSocialLogin: true
-                                };
-                                users.push(user);
-                                localStorage.setItem('users', JSON.stringify(users));
-                            }
-
-                            // Login user
-                            localStorage.setItem('isLoggedIn', 'true');
-                            localStorage.setItem('userEmail', user.email);
-                            localStorage.setItem('userName', user.fullName);
-                            
-                            showSuccess('Login successful! Redirecting to home page...');
-                            setTimeout(() => {
-                                window.location.href = 'index.html';
-                            }, 1500);
-                        });
-                    }
-                }, { scope: 'email,public_profile' });
-            });
-
-            // Check remember me on page load
-            if (localStorage.getItem('rememberMe') === 'true') {
-                $('#remembermylogin').prop('checked', true);
-                $('#loginEmail').val(localStorage.getItem('userEmail'));
-            }
-
-            // Email validation helper function
-            function isValidEmail(email) {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return emailRegex.test(email);
-            }
-
-            // Warning message function
-            function showWarning(message) {
-                const warningDiv = $('<div class="alert alert-warning alert-dismissible fade show" role="alert">' +
-                    message +
-                    '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
-                    '</div>');
-                $('#loginForm').prepend(warningDiv);
-                setTimeout(() => warningDiv.remove(), 5000);
-            }
-
-            // Success message function
-            function showSuccess(message) {
-                const successDiv = $('<div class="alert alert-success alert-dismissible fade show" role="alert">' +
-                    message +
-                    '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
-                    '</div>');
-                $('#loginForm').prepend(successDiv);
-            }
-
-            // Google Sign-In callback
-            function handleGoogleSignIn(response) {
-                const responsePayload = jwt_decode(response.credential);
-                const users = JSON.parse(localStorage.getItem('users') || '[]');
-                let user = users.find(u => u.email === responsePayload.email);
-
-                if (!user) {
-                    // Create new user if doesn't exist
-                    user = {
-                        fullName: responsePayload.name,
-                        email: responsePayload.email,
-                        password: btoa(Math.random().toString(36).slice(-8)), // Generate random password
-                        isSocialLogin: true
-                    };
-                    users.push(user);
-                    localStorage.setItem('users', JSON.stringify(users));
-                }
-
-                // Login user
-                localStorage.setItem('isLoggedIn', 'true');
-                localStorage.setItem('userEmail', user.email);
-                localStorage.setItem('userName', user.fullName);
-                
-                showSuccess('Login successful! Redirecting to home page...');
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 1500);
-            }
-        });
-    </script>
+    function updateHeaderForLoggedInUser() {
+        // This will be called after successful login
+        localStorage.setItem('isLoggedIn', 'true');
+    }
+</script>
     
     <!-- Add Google Sign-In SDK -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -743,3 +603,51 @@
   
 </body>
 </html>
+
+// Add this inside your login form
+<div id="otpSection" style="display:none;">
+    <div class="form-group mb-3">
+        <label>Enter OTP</label>
+        <input type="text" id="otpInput" class="form-control" maxlength="6">
+    </div>
+    <button type="button" id="verifyOtpBtn" class="btn btn-primary">Verify OTP</button>
+</div>
+
+<script>
+// Add this to your existing login script
+function generateOTP() {
+    return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
+document.getElementById('forgotPassword').addEventListener('click', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value.trim();
+    if(!email) {
+        alert('Please enter your email first');
+        return;
+    }
+    
+    const otp = generateOTP();
+    localStorage.setItem('otp_' + email, otp);
+    // In a real app, you would send this OTP via email/SMS
+    alert(`OTP sent to ${email}: ${otp}`); // Remove this in production!
+    
+    document.getElementById('loginFields').style.display = 'none';
+    document.getElementById('otpSection').style.display = 'block';
+});
+
+document.getElementById('verifyOtpBtn').addEventListener('click', function() {
+    const email = document.getElementById('loginEmail').value.trim();
+    const otp = document.getElementById('otpInput').value;
+    const storedOtp = localStorage.getItem('otp_' + email);
+    
+    if(otp === storedOtp) {
+        alert('OTP verified!');
+        // Allow password reset or direct login
+        document.getElementById('loginFields').style.display = 'block';
+        document.getElementById('otpSection').style.display = 'none';
+    } else {
+        alert('Invalid OTP!');
+    }
+});
+</script>
