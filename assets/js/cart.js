@@ -1,8 +1,22 @@
 // cart.js - Manages cart functionality across the website
 
 // Cart items storage in localStorage
-let cartItems = JSON.parse(localStorage.getItem('vaarahiCart')) || [];
+let cartItems = [];
 let cartTotal = 0;
+
+// Safely parse cart items from localStorage
+try {
+    const storedCart = localStorage.getItem('vaarahiCart');
+    if (storedCart) {
+        cartItems = JSON.parse(storedCart) || [];
+        // Filter out any invalid items
+        cartItems = cartItems.filter(item => item && typeof item === 'object');
+    }
+} catch (e) {
+    console.error('Error loading cart from localStorage:', e);
+    cartItems = [];
+    localStorage.setItem('vaarahiCart', JSON.stringify([]));
+}
 
 // Initialize cart when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -36,8 +50,20 @@ function normalizeProductId(id) {
     return id.toLowerCase();
 }
 
+// Save cart items to localStorage
+function saveCartToStorage() {
+    try {
+        localStorage.setItem('vaarahiCart', JSON.stringify(cartItems));
+    } catch (e) {
+        console.error('Error saving cart to localStorage:', e);
+    }
+}
+
 // Update all cart displays on the page
 function updateCartDisplay() {
+    // Save cart to localStorage first
+    saveCartToStorage();
+    
     // Update cart count badge to show total quantity
     const cartBadges = document.querySelectorAll('.sideMenuToggler .badge');
     const totalQuantity = cartItems.reduce((total, item) => total + parseInt(item.quantity), 0);
@@ -61,8 +87,13 @@ function updateCartDisplay() {
 
 // Calculate cart total - separated from display updates for better performance
 function calculateCartTotal() {
+    // Filter out any undefined or null items
+    cartItems = cartItems.filter(item => item !== null && item !== undefined);
+    
     cartTotal = cartItems.reduce((total, item) => {
-        return total + (parseFloat(item.price) * parseInt(item.quantity));
+        const price = parseFloat(item.price) || 0;
+        const quantity = parseInt(item.quantity) || 0;
+        return total + (price * quantity);
     }, 0);
     
     // Save updated cart to localStorage
@@ -79,26 +110,39 @@ function updateMiniCart() {
     // Clear current items
     miniCartList.innerHTML = '';
     
-    // Add cart items to mini cart
-    cartItems.forEach((item, index) => {
-        const listItem = document.createElement('li');
-        listItem.className = 'woocommerce-mini-cart-item mini_cart_item';
-        
-        // Ensure price and quantity are proper numbers for calculation
-        const itemPrice = parseFloat(item.price);
-        const itemQuantity = parseInt(item.quantity);
-        const itemTotal = itemPrice * itemQuantity;
-        
-        listItem.innerHTML = `
-            <a href="#" class="remove remove_from_cart_button" data-index="${index}"><i class="far fa-times"></i></a>
-            <a href="#"><img src="${item.image}" alt="Cart Image">${item.name}</a>
-            <span class="quantity">${itemQuantity} ×
-                <span class="woocommerce-Price-amount amount">
-                    <span class="woocommerce-Price-currencySymbol">$</span>${itemPrice.toFixed(2)}</span>
-            </span>
-        `;
-        miniCartList.appendChild(listItem);
-    });
+    // Check if cart is empty
+    if (cartItems.length === 0) {
+        const emptyItem = document.createElement('li');
+        emptyItem.className = 'woocommerce-mini-cart-item mini_cart_item empty-cart';
+        emptyItem.innerHTML = '<p>Your cart is empty</p>';
+        miniCartList.appendChild(emptyItem);
+    } else {
+        // Add cart items to mini cart
+        cartItems.forEach((item, index) => {
+            if (!item) return; // Skip undefined items
+            
+            const listItem = document.createElement('li');
+            listItem.className = 'woocommerce-mini-cart-item mini_cart_item';
+            
+            // Ensure price and quantity are proper numbers for calculation
+            const itemPrice = parseFloat(item.price) || 0;
+            const itemQuantity = parseInt(item.quantity) || 1;
+            const itemTotal = itemPrice * itemQuantity;
+            
+            // Ensure image path is valid
+            const imageSrc = item.image || 'assets/img/placeholder.jpg';
+            
+            listItem.innerHTML = `
+                <a href="#" class="remove remove_from_cart_button" data-index="${index}"><i class="far fa-times"></i></a>
+                <a href="#"><img src="${imageSrc}" alt="${item.name || 'Product'}"> ${item.name || 'Product'}</a>
+                <span class="quantity">${itemQuantity} ×
+                    <span class="woocommerce-Price-amount amount">
+                        <span class="woocommerce-Price-currencySymbol">$</span>${itemPrice.toFixed(2)}</span>
+                </span>
+            `;
+            miniCartList.appendChild(listItem);
+        });
+    }
     
     // Setup event listeners for remove buttons
     document.querySelectorAll('.woocommerce-mini-cart-item .remove_from_cart_button').forEach(button => {
@@ -127,31 +171,38 @@ function updateCartPage() {
     const lastRow = cartTable.querySelector('tr:last-child');
     cartTable.innerHTML = '';
     
-    if (cartItems.length === 0) {
+    if (!cartItems || cartItems.length === 0) {
         const emptyRow = document.createElement('tr');
         emptyRow.innerHTML = `
             <td colspan="6" class="text-center">
                 <p>Your cart is currently empty.</p>
+                <a href="products.html" class="th-btn mt-4">Continue Shopping</a>
             </td>
         `;
         cartTable.appendChild(emptyRow);
     } else {
         // Add cart items to cart table
         cartItems.forEach((item, index) => {
+            if (!item) return; // Skip undefined items
+            
             // Ensure price and quantity are proper numbers for calculation
-            const itemPrice = parseFloat(item.price);
-            const itemQuantity = parseInt(item.quantity);
+            const itemPrice = parseFloat(item.price) || 0;
+            const itemQuantity = parseInt(item.quantity) || 1;
             const itemTotal = itemPrice * itemQuantity;
+            
+            // Ensure image path is valid
+            const imageSrc = item.image || 'assets/img/placeholder.jpg';
+            const productName = item.name || 'Product';
             
             const row = document.createElement('tr');
             row.className = 'cart_item';
             row.innerHTML = `
                 <td data-title="Product">
                     <a class="cart-productimage" href="shop-details.html"><img width="91" height="91"
-                            src="${item.image}" alt="Image"></a>
+                            src="${imageSrc}" alt="${productName}"></a>
                 </td>
                 <td data-title="Name">
-                    <a class="cart-productname" href="shop-details.html">${item.name}</a>
+                    <a class="cart-productname" href="shop-details.html">${productName}</a>
                 </td>
                 <td data-title="Price">
                     <span class="amount"><bdi><span>$</span>${itemPrice.toFixed(2)}</bdi></span>
@@ -175,7 +226,7 @@ function updateCartPage() {
     }
     
     // Add back the action row
-    if (lastRow) {
+    if (lastRow && cartItems && cartItems.length > 0) {
         cartTable.appendChild(lastRow);
     }
     
@@ -238,77 +289,81 @@ function updateCheckoutPage() {
 
 // Add an item to the cart
 function addToCart(productData) {
-    // Check if cart is locked during payment
-    if (window.PhonePeIntegration && window.PhonePeIntegration.isCartLocked && window.PhonePeIntegration.isCartLocked()) {
-        showNotification('Cannot modify cart during payment processing', 'error');
-        return false;
+    if (!productData || !productData.id) {
+        console.error('Invalid product data');
+        showNotification('Error adding product to cart', 'error');
+        return;
     }
     
-    // Normalize product ID
-    productData.id = normalizeProductId(productData.id);
+    // Normalize product ID for consistency
+    const normalizedId = normalizeProductId(productData.id);
     
     // Check if item already exists in cart
-    const existingItemIndex = cartItems.findIndex(item => normalizeProductId(item.id) === productData.id);
+    const existingItemIndex = cartItems.findIndex(item => item && normalizeProductId(item.id) === normalizedId);
     
     if (existingItemIndex !== -1) {
         // Update quantity if item exists
-        cartItems[existingItemIndex].quantity = parseInt(cartItems[existingItemIndex].quantity) + parseInt(productData.quantity);
+        cartItems[existingItemIndex].quantity = parseInt(cartItems[existingItemIndex].quantity || 1) + parseInt(productData.quantity || 1);
+        showNotification(`${productData.name} quantity updated in cart!`);
     } else {
-        // Add new item
-        cartItems.push(productData);
+        // Add new item to cart
+        cartItems.push({
+            id: productData.id,
+            name: productData.name || 'Product',
+            price: productData.price || '0.00',
+            image: productData.image || 'assets/img/placeholder.jpg',
+            quantity: parseInt(productData.quantity || 1)
+        });
+        showNotification(`${productData.name || 'Product'} added to cart!`);
     }
     
-    // Update cart
+    // Update cart display
     calculateCartTotal(); // Calculate first
     updateCartDisplay(); // Then update display
-    
-    // Show notification
-    showNotification(`${productData.name} added to cart!`);
-    
-    // Cart sidebar is no longer opened automatically when items are added
-    // This behavior was removed as per user request
-    
-    return true;
 }
+
+// Make cart functions globally accessible
+window.addToCart = addToCart;
+window.showNotification = showNotification;
+window.updateMiniCart = updateMiniCart;
+window.removeFromCart = removeFromCart;
+window.cartItems = cartItems;
 
 // Remove an item from the cart
 function removeFromCart(index) {
-    if (index >= 0 && index < cartItems.length) {
-        // Remove the item
-        cartItems.splice(index, 1);
-        
-        // Calculate cart total first
-        calculateCartTotal();
-        
-        // Then update display
-        updateCartDisplay();
-    }
+    if (index < 0 || index >= cartItems.length) return;
+    
+    const itemName = cartItems[index]?.name || 'Product';
+    cartItems.splice(index, 1);
+    
+    // Update cart display
+    calculateCartTotal(); // Calculate first
+    updateCartDisplay(); // Then update display
+    
+    // Save cart to localStorage
+    saveCartToStorage();
+    
+    showNotification(`${itemName} removed from cart!`);
 }
 
 // Update item quantity
 function updateItemQuantity(index, quantity) {
-    // Check if cart is locked during payment
-    if (window.PhonePeIntegration && window.PhonePeIntegration.isCartLocked && window.PhonePeIntegration.isCartLocked()) {
-        showNotification('Cannot modify cart during payment processing', 'error');
-        return false;
-    }
+    if (index < 0 || index >= cartItems.length || !cartItems[index]) return;
     
-    // Ensure quantity is a number and at least 1
-    quantity = parseInt(quantity);
-    if (isNaN(quantity) || quantity < 1) quantity = 1;
+    // Convert to integer and ensure minimum of 1
+    quantity = Math.max(1, parseInt(quantity) || 1);
     
     // Update quantity
     cartItems[index].quantity = quantity;
     
-    // Update cart
+    // Update cart display
     calculateCartTotal(); // Calculate first
     updateCartDisplay(); // Then update display
     
-    // Show notification
-    const item = cartItems[index];
-    if (item) {
-        showNotification(`${item.name} quantity updated!`);
-    }
+    // Save cart to localStorage
+    saveCartToStorage();
+    
+    showNotification(`Cart updated!`);
     
     return true;
 }
@@ -325,12 +380,19 @@ function showNotification(message, type = 'success') {
         notification.style.color = 'white';
         notification.style.padding = '15px 20px';
         notification.style.borderRadius = '5px';
-        notification.style.zIndex = '1000';
+        notification.style.zIndex = '9999'; // Higher z-index to ensure visibility
         notification.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
         notification.style.transition = 'all 0.3s ease';
         notification.style.opacity = '0';
         notification.style.transform = 'translateY(20px)';
+        notification.style.fontSize = '14px';
+        notification.style.fontWeight = 'bold';
         document.body.appendChild(notification);
+    }
+    
+    // Clear any existing timeout to prevent premature hiding
+    if (window.notificationTimeout) {
+        clearTimeout(window.notificationTimeout);
     }
     
     // Update notification message and show it
@@ -355,7 +417,7 @@ function showNotification(message, type = 'success') {
     }, 10);
     
     // Hide notification after 3 seconds
-    setTimeout(() => {
+    window.notificationTimeout = setTimeout(() => {
         notification.style.opacity = '0';
         notification.style.transform = 'translateY(20px)';
         setTimeout(() => {
