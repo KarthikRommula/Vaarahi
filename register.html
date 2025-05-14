@@ -203,6 +203,66 @@
         }
         }
     
+    /* OTP Verification Styles */
+    #otpVerification {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    #otpInput {
+        letter-spacing: 8px;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    #maskedPhone {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+    }
+    
+    #countdownTimer {
+        font-weight: bold;
+        color: #dc3545;
+    }
+    
+    #changePhoneBtn {
+        font-size: 14px;
+    }
+    
+    /* Form validation styles */
+    .form-control.is-invalid,
+    .form-select.is-invalid,
+    .form-check-input.is-invalid {
+        border-color: #dc3545;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right calc(0.375em + 0.1875rem) center;
+        background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+    }
+    
+    .form-control.is-valid,
+    .form-select.is-valid,
+    .form-check-input.is-valid {
+        border-color: #198754;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right calc(0.375em + 0.1875rem) center;
+        background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+    }
+    
+    .invalid-feedback {
+        display: block;
+        width: 100%;
+        margin-top: 0.25rem;
+        font-size: 0.875em;
+        color: #dc3545;
+    }
+    
+    .form-check .invalid-feedback {
+        margin-left: 1.5rem;
+    }
 </style>
 <body>
 
@@ -299,7 +359,7 @@
                             </span>
                         </a>
                     </div>
-                    <div class="menu-area-wrap" style="margin-right: -50px;">
+                    <div class="menu-area-wrap" style="margin-left: -50px;">
                         <nav class="main-menu d-none d-lg-block">
                             <ul>
                                 <li>
@@ -367,41 +427,91 @@
                     <div class="card-body p-5">
                         <h2 class="text-center mb-4">Create Your Account</h2>
                         <form id="signupForm">
-                            <div class="form-group mb-3">
-                                <label for="fullName">Full Name</label>
-                                <input type="text" class="form-control" id="fullName" required>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="email">Email Address</label>
-                                <input type="email" class="form-control" id="email" required>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="phone">Phone Number</label>
-                                <input type="tel" class="form-control" id="phone" required>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" required>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="confirmPassword">Confirm Password</label>
-                                <input type="password" class="form-control" id="confirmPassword" required>
-                            </div>
-                            <div class="form-group mb-3">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="terms" required>
-                                    <label class="form-check-label" for="terms">I agree to the Terms and Conditions</label>
+                            <div id="registrationFields">
+                                <div class="form-group mb-3">
+                                    <label for="username">Username</label>
+                                    <input type="text" class="form-control" id="username" placeholder="Enter letters and numbers" required>
+                                    <small class="form-text text-muted">Username must be alphanumeric (A-Z, a-z, 0-9), 4-20 characters</small>
                                 </div>
+                                <div class="form-group mb-3">
+                                    <label for="fullName">Full Name</label>
+                                    <input type="text" class="form-control" id="fullName" placeholder="Enter your full name (alphabets only)" required>
+                                    <small class="form-text text-muted">Full name must contain only alphabets and spaces</small>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="phone">Phone Number</label>
+                                    <div class="input-group has-validation">
+                                        <span class="input-group-text">+91</span>
+                                        <input type="tel" class="form-control" id="phone" placeholder="9876543210" maxlength="10" required>
+                                        <div class="invalid-feedback">Please enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9.</div>
+                                    </div>
+                                    <small class="form-text text-muted">Enter a valid 10-digit Indian mobile number</small>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="dob">Date of Birth</label>
+                                    <input type="date" class="form-control" id="dob" required>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="gender">Gender</label>
+                                    <select class="form-select" id="gender" required>
+                                        <option value="">--Select--</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <div class="invalid-feedback">Please select your gender.</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="confirmPassword">Confirm Password</label>
+                                    <input type="password" class="form-control" id="confirmPassword" required>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="terms" required>
+                                        <label class="form-check-label" for="terms">I agree to the Terms and Conditions</label>
+                                        <div class="invalid-feedback">You must agree to the Terms and Conditions</div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+                                <p class="text-center mt-3">Already have an account? <a href="login.html">Login</a></p>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100">Sign Up</button>
-                            <p class="text-center mt-3">Already have an account? <a href="login.html">Login</a></p>
+                            <div id="otpVerification" style="display:none;">
+                                <div class="text-center mb-4">
+                                    <h4>Phone Verification</h4>
+                                    <p class="text-muted">We've sent a 6-digit OTP to your phone number</p>
+                                    <p class="font-weight-bold" id="maskedPhone"></p>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="otpInput">Enter 6-digit OTP</label>
+                                    <div class="otp-input-container d-flex justify-content-between">
+                                        <input type="text" class="form-control text-center" id="otpInput" maxlength="6" required>
+                                    </div>
+                                    <div id="otpTimer" class="text-center mt-2">
+                                        <small class="text-muted">OTP expires in <span id="countdownTimer">02:00</span></small>
+                                    </div>
+                                </div>
+                                <button type="button" id="verifyOtpBtn" class="btn btn-primary w-100 mb-3">Verify OTP</button>
+                                <div class="text-center">
+                                    <p class="mb-0">Didn't receive the code?</p>
+                                    <button type="button" id="resendOtpBtn" class="btn btn-link" disabled>Resend OTP</button>
+                                </div>
+                                <button type="button" id="changePhoneBtn" class="btn btn-outline-secondary w-100 mt-3">Change Phone Number</button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    
     <!--==============================
 	Footer Area
 ==============================-->
@@ -522,92 +632,406 @@
 
 </html>
 
-    <!-- Custom JS -->
-    <script>
-        $(document).ready(function() {
-            // Check if user is already logged in
-            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-            if (isLoggedIn) {
-                window.location.href = 'index.html';
+<script src="assets/js/form-validation.js"></script>
+<script>
+    $(document).ready(function() {
+        const formContainer = $('#signupForm');
+        const registrationFields = $('#registrationFields');
+        const otpVerification = $('#otpVerification');
+        let otpTimerInterval;
+        let remainingTime = 120; // 2 minutes in seconds
+
+        // Format phone number with +91 prefix
+        function formatPhoneNumber(phoneInput) {
+            let phone = phoneInput.trim();
+            // If the phone number doesn't start with +91, add it
+            if (!phone.startsWith('+91')) {
+                phone = '+91' + phone;
+            }
+            return phone;
+        }
+
+        // Mask phone number for display (e.g., +91 98XXXX1234)
+        function maskPhoneNumber(phone) {
+            if (phone.length >= 12) { // +91 + 10 digits
+                return phone.substring(0, 3) + ' ' + 
+                       phone.substring(3, 5) + 
+                       'XXXX' + 
+                       phone.substring(9, 13);
+            }
+            return phone;
+        }
+
+        // Start OTP countdown timer
+        function startOtpTimer() {
+            clearInterval(otpTimerInterval);
+            remainingTime = 120; // Reset to 2 minutes
+            updateTimerDisplay();
+            
+            // Disable resend button initially
+            $('#resendOtpBtn').prop('disabled', true);
+            
+            otpTimerInterval = setInterval(function() {
+                remainingTime--;
+                updateTimerDisplay();
+                
+                if (remainingTime <= 0) {
+                    clearInterval(otpTimerInterval);
+                    $('#resendOtpBtn').prop('disabled', false);
+                }
+            }, 1000);
+        }
+
+        // Update timer display
+        function updateTimerDisplay() {
+            const minutes = Math.floor(remainingTime / 60);
+            const seconds = remainingTime % 60;
+            $('#countdownTimer').text(
+                (minutes < 10 ? '0' : '') + minutes + ':' + 
+                (seconds < 10 ? '0' : '') + seconds
+            );
+        }
+
+        // Function to validate individual fields on blur
+        function validateFieldOnBlur(fieldId, fieldType, confirmWithId = null) {
+            $(`#${fieldId}`).on('blur', function() {
+                validateField(fieldId, fieldType, confirmWithId);
+            });
+        }
+        
+        // Apply blur validation to all fields
+        validateFieldOnBlur('username', 'username');
+        validateFieldOnBlur('fullName', 'fullName');
+        validateFieldOnBlur('email', 'email');
+        validateFieldOnBlur('phone', 'phone');
+        validateFieldOnBlur('dob', 'dob');
+        validateFieldOnBlur('gender', 'dropdown');
+        validateFieldOnBlur('password', 'password');
+        validateFieldOnBlur('confirmPassword', 'confirmPassword', 'password');
+        
+        // Validate terms checkbox on change
+        $('#terms').on('change', function() {
+            if ($(this).prop('checked')) {
+                $(this).removeClass('is-invalid').addClass('is-valid');
+                $(this).siblings('.invalid-feedback').remove();
+            } else {
+                $(this).removeClass('is-valid').addClass('is-invalid');
+                const feedbackDiv = $('<div>').addClass('invalid-feedback').text('You must agree to the Terms and Conditions');
+                if (!$(this).siblings('.invalid-feedback').length) {
+                    $(this).parent().append(feedbackDiv);
+                }
+            }
+        });
+        
+        // Additional validation for username (alphanumeric only)
+        $('#username').on('input', function() {
+            const input = $(this).val();
+            // Replace any non-alphanumeric characters
+            const sanitized = input.replace(/[^a-zA-Z0-9]/g, '');
+            if (input !== sanitized) {
+                $(this).val(sanitized);
+            }
+        });
+        
+        // Additional validation for full name (alphabets and spaces only)
+        $('#fullName').on('input', function() {
+            const input = $(this).val();
+            // Replace any non-alphabetic characters (except spaces)
+            const sanitized = input.replace(/[^a-zA-Z ]/g, '');
+            if (input !== sanitized) {
+                $(this).val(sanitized);
+            }
+        });
+
+        // Function to validate all fields at once
+        function validateAllFields() {
+            let isValid = true;
+            
+            // Validate each field
+            isValid = validateField('username', 'username') && isValid;
+            isValid = validateField('fullName', 'fullName') && isValid;
+            isValid = validateField('email', 'email') && isValid;
+            isValid = validateField('phone', 'phone') && isValid;
+            isValid = validateField('dob', 'dob') && isValid;
+            isValid = validateField('gender', 'dropdown') && isValid;
+            isValid = validateField('password', 'password') && isValid;
+            isValid = validateField('confirmPassword', 'confirmPassword', 'password') && isValid;
+            
+            // Validate terms checkbox
+            if (!$('#terms').prop('checked')) {
+                $('#terms').addClass('is-invalid');
+                const feedbackDiv = $('<div>').addClass('invalid-feedback').text('You must agree to the Terms and Conditions');
+                if (!$('#terms').siblings('.invalid-feedback').length) {
+                    $('#terms').parent().append(feedbackDiv);
+                }
+                isValid = false;
+            } else {
+                $('#terms').removeClass('is-invalid').addClass('is-valid');
+                $('#terms').siblings('.invalid-feedback').remove();
+            }
+            
+            return isValid;
+        }
+        
+        // Function to validate a single field (used for both blur and submit)
+        function validateField(fieldId, fieldType, confirmWithId = null) {
+            const field = $(`#${fieldId}`);
+            const value = field.val().trim();
+            let isValid = true;
+            let errorMessage = '';
+            
+            // Clear previous validation state
+            field.removeClass('is-invalid is-valid');
+            field.siblings('.invalid-feedback').remove();
+            
+            // Empty field validation
+            if (value === '' && fieldType !== 'dropdown') {
+                isValid = false;
+                errorMessage = `${fieldId.charAt(0).toUpperCase() + fieldId.slice(1)} is required.`;
+            } 
+            // Field-specific validation
+            else {
+                switch(fieldType) {
+                    case 'username':
+                        if (!/^[a-zA-Z0-9]{4,20}$/.test(value)) {
+                            isValid = false;
+                            errorMessage = 'Username must be alphanumeric (A-Z, a-z, 0-9), 4-20 characters.';
+                        }
+                        break;
+                    case 'fullName':
+                        if (!/^[A-Za-z ]{2,}$/.test(value)) {
+                            isValid = false;
+                            errorMessage = 'Full Name must contain only alphabets and spaces, minimum 2 characters.';
+                        }
+                        break;
+                    case 'email':
+                        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                            isValid = false;
+                            errorMessage = 'Please enter a valid email address.';
+                        }
+                        break;
+                    case 'phone':
+                        // Phone is validated separately with the input group
+                        const phoneNumber = value;
+                        if (!/^[6-9][0-9]{9}$/.test(phoneNumber)) {
+                            isValid = false;
+                            errorMessage = 'Please enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9.';
+                        }
+                        break;
+                    case 'dob':
+                        const dobDate = new Date(value);
+                        const today = new Date();
+                        const minAgeDate = new Date();
+                        minAgeDate.setFullYear(today.getFullYear() - 13);
+                        
+                        if (isNaN(dobDate.getTime()) || dobDate > today || dobDate > minAgeDate) {
+                            isValid = false;
+                            errorMessage = 'You must be at least 13 years old.';
+                        }
+                        break;
+                    case 'dropdown':
+                        if (value === '') {
+                            isValid = false;
+                            errorMessage = 'Please select an option.';
+                        }
+                        break;
+                    case 'password':
+                        if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(value)) {
+                            isValid = false;
+                            errorMessage = 'Password must be at least 8 characters with uppercase, lowercase, number, and special character.';
+                        }
+                        break;
+                    case 'confirmPassword':
+                        const passwordValue = $(`#${confirmWithId}`).val();
+                        if (value !== passwordValue) {
+                            isValid = false;
+                            errorMessage = 'Passwords do not match.';
+                        }
+                        break;
+                }
+            }
+            
+            // Apply validation state
+            if (!isValid) {
+                field.addClass('is-invalid');
+                // Add error message
+                const feedbackDiv = $('<div>').addClass('invalid-feedback').text(errorMessage);
+                field.after(feedbackDiv);
+            } else {
+                field.addClass('is-valid');
+            }
+            
+            return isValid;
+        }
+        
+        // Handle form submission
+        $('#signupForm').on('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate all fields
+            if (!validateAllFields()) {
+                // Scroll to the first invalid field
+                const firstInvalid = $('.is-invalid:first');
+                if (firstInvalid.length) {
+                    $('html, body').animate({
+                        scrollTop: firstInvalid.offset().top - 100
+                    }, 500);
+                }
+                return;
+            }
+            
+            // Get the phone input value
+            let phoneInput = $('#phone').val().trim();
+            
+            // Format the phone number with +91 prefix for validation
+            const formattedPhone = '+91' + phoneInput;
+
+            const username = $('#username').val();
+            const fullName = $('#fullName').val();
+            const email = $('#email').val();
+            const dob = $('#dob').val();
+            const gender = $('#gender').val();
+            const password = $('#password').val();
+
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            if (users.some(u => u.email === email)) {
+                FormValidation.showAlert(formContainer[0], 'Email already registered. Please login.', 'warning');
                 return;
             }
 
-            // Handle signup form submission
-            $('#signupForm').on('submit', function(e) {
-                e.preventDefault();
-                
-                const fullName = $('#fullName').val();
-                const email = $('#email').val();
-                const phone = $('#phone').val();
-                const password = $('#password').val();
-                const confirmPassword = $('#confirmPassword').val();
-
-                // Validation
-                if (!fullName || !email || !phone || !password || !confirmPassword) {
-                    alert('Please fill in all fields');
-                    return;
-                }
-
-                if (!isValidEmail(email)) {
-                    alert('Please enter a valid email address');
-                    return;
-                }
-
-                if (!isValidPhone(phone)) {
-                    alert('Please enter a valid phone number');
-                    return;
-                }
-
-                if (password.length < 8) {
-                    alert('Password must be at least 8 characters long');
-                    return;
-                }
-
-                if (password !== confirmPassword) {
-                    alert('Passwords do not match');
-                    return;
-                }
-
-                // Check if email already exists
-                const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
-                if (existingUsers.some(user => user.email === email)) {
-                    alert('Email already registered');
-                    return;
-                }
-
-                // Create new user
-                const newUser = {
-                    fullName,
-                    email,
-                    phone,
-                    password: btoa(password) // Basic encoding (in real app, use proper hashing)
-                };
-
-                // Add user to storage
-                existingUsers.push(newUser);
-                localStorage.setItem('users', JSON.stringify(existingUsers));
-
-                // Remove auto login after registration
-                // localStorage.setItem('isLoggedIn', 'true');
-                // localStorage.setItem('userEmail', email);
-                // localStorage.setItem('userName', fullName);
-
-                alert('Registration successful! Redirecting to login page...');
-                window.location.href = 'login.html';
-            });
-
-            // Email validation helper function
-            function isValidEmail(email) {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return emailRegex.test(email);
+            if (users.some(u => u.username === username)) {
+                FormValidation.showAlert(formContainer[0], 'Username already taken. Please choose another.', 'warning');
+                return;
             }
 
-            // Phone validation helper function
-            function isValidPhone(phone) {
-                const phoneRegex = /^\+?[\d\s-]{10,}$/;
-                return phoneRegex.test(phone);
+            // Display masked phone number
+            $('#maskedPhone').text(maskPhoneNumber(formattedPhone));
+
+            // Send OTP
+            $.ajax({
+                url: 'http://localhost:3001/send-otp',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ phone: formattedPhone }),
+                success: function(response) {
+                    FormValidation.showAlert(formContainer[0], 'OTP sent to your phone. Please enter the OTP to verify.', 'info');
+                    registrationFields.hide();
+                    otpVerification.show();
+                    startOtpTimer();
+                    
+                    // Focus on OTP input
+                    $('#otpInput').focus();
+                },
+                error: function(xhr) {
+                    let errorMsg = 'Failed to send OTP. Please try again.';
+                    if (xhr.responseJSON && xhr.responseJSON.error) {
+                        errorMsg = xhr.responseJSON.error;
+                    }
+                    FormValidation.showAlert(formContainer[0], errorMsg, 'danger');
+                }
+            });
+        });
+
+        // Verify OTP
+        $('#verifyOtpBtn').on('click', function() {
+            const otp = $('#otpInput').val().trim();
+            const phoneInput = $('#phone').val().trim();
+            const formattedPhone = '+91' + phoneInput;
+
+            if (!otp || otp.length !== 6 || !/^\d{6}$/.test(otp)) {
+                FormValidation.showAlert(formContainer[0], 'Please enter a valid 6-digit OTP.', 'warning');
+                return;
+            }
+
+            $.ajax({
+                url: 'http://localhost:3001/verify-otp',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ phone: formattedPhone, otp }),
+                success: function(response) {
+                    // Clear timer
+                    clearInterval(otpTimerInterval);
+                    
+                    // Save user data after OTP verification
+                    const username = $('#username').val();
+                    const fullName = $('#fullName').val();
+                    const email = $('#email').val();
+                    const dob = $('#dob').val();
+                    const gender = $('#gender').val();
+                    const password = $('#password').val();
+
+                    const users = JSON.parse(localStorage.getItem('users') || '[]');
+                    users.push({
+                        username,
+                        fullName,
+                        email,
+                        phone: formattedPhone,
+                        dob,
+                        gender,
+                        password: btoa(password),
+                        isSocialLogin: false,
+                        registrationDate: new Date().toISOString()
+                    });
+                    localStorage.setItem('users', JSON.stringify(users));
+
+                    FormValidation.showAlert(formContainer[0], 'Registration successful! You can now login.', 'success');
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 1500);
+                },
+                error: function(xhr) {
+                    let errorMsg = 'Invalid OTP. Please try again.';
+                    if (xhr.responseJSON && xhr.responseJSON.error) {
+                        errorMsg = xhr.responseJSON.error;
+                    }
+                    FormValidation.showAlert(formContainer[0], errorMsg, 'danger');
+                }
+            });
+        });
+
+        // Resend OTP
+        $('#resendOtpBtn').on('click', function() {
+            const phoneInput = $('#phone').val().trim();
+            const formattedPhone = '+91' + phoneInput;
+            
+            $(this).prop('disabled', true);
+            
+            $.ajax({
+                url: 'http://localhost:3001/send-otp',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ phone: formattedPhone }),
+                success: function(response) {
+                    FormValidation.showAlert(formContainer[0], 'OTP resent to your phone.', 'info');
+                    startOtpTimer();
+                },
+                error: function(xhr) {
+                    let errorMsg = 'Failed to resend OTP. Please try again.';
+                    if (xhr.responseJSON && xhr.responseJSON.error) {
+                        errorMsg = xhr.responseJSON.error;
+                    }
+                    FormValidation.showAlert(formContainer[0], errorMsg, 'danger');
+                    $('#resendOtpBtn').prop('disabled', false);
+                }
+            });
+        });
+
+        // Change phone number button
+        $('#changePhoneBtn').on('click', function() {
+            clearInterval(otpTimerInterval);
+            otpVerification.hide();
+            registrationFields.show();
+            $('#phone').focus();
+        });
+
+        // Handle OTP input to automatically submit when 6 digits are entered
+        $('#otpInput').on('input', function() {
+            const otp = $(this).val().trim();
+            if (otp.length === 6 && /^\d{6}$/.test(otp)) {
+                $('#verifyOtpBtn').click();
             }
         });
-    </script>
+    });
+</script>
 </body>
 </html> 
