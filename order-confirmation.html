@@ -40,6 +40,65 @@
     <link rel="stylesheet" href="assets/css/style.css">
 <!-- Add this in the head section of all HTML files -->
 <style>
+    /* Search Styles Removed */
+     .woocommerce-mini-cart__buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .woocommerce-mini-cart__buttons .th-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 0;
+            padding: 12px 20px;
+            text-align: center;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        /* View Cart button */
+        .woocommerce-mini-cart__buttons .wc-forward:not(.checkout):not(.wishlist-btn) {
+            background-color: #f8f9fa;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        
+        /* Checkout button */
+        .woocommerce-mini-cart__buttons .checkout {
+            background-color: #1e6f5c;
+            color: #fff;
+            border: 1px solid #1e6f5c;
+        }
+        
+        /* Wishlist button */
+        .woocommerce-mini-cart__buttons .wishlist-btn {
+            background-color: #fff;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        
+        .woocommerce-mini-cart__buttons .th-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .woocommerce-mini-cart__buttons .wishlist-btn:hover {
+            color: #ff6b6b;
+        }
+        
+        .woocommerce-mini-cart__buttons .th-btn i {
+            margin-right: 5px;
+        }
+        
+        .woocommerce-mini-cart__buttons .wishlist-btn i {
+            color: #ff6b6b;
+        }
+    
     .logo-gradient {
       display: inline-flex;
       align-items: center;
@@ -190,29 +249,23 @@
             <h3 class="widget_title">Shopping cart</h3>
             <div class="widget_shopping_cart_content">
                 <ul class="woocommerce-mini-cart cart_list product_list_widget">
-                    <!-- Cart items will be dynamically added here -->
+                    <!-- Cart items will be dynamically inserted here by cart.js -->
                 </ul>
                 <p class="woocommerce-mini-cart__total total">
                     <strong>Subtotal:</strong>
                     <span class="woocommerce-Price-amount amount">
-                        <span class="woocommerce-Price-currencySymbol">$</span>0.00
-                    </span>
+                        <span class="woocommerce-Price-currencySymbol">$</span>0.00</span>
                 </p>
                 <p class="woocommerce-mini-cart__buttons buttons">
-                    <a href="cart.html" class="th-btn wc-forward">View cart</a>
+                    <a href="wishlist.html" class="th-btn wishlist-btn"><i class="far fa-heart"></i> View Wishlist</a>
+                    <a href="cart.html" class="th-btn wc-forward">View Cart</a>
                     <a href="checkout.html" class="th-btn checkout wc-forward">Checkout</a>
                 </p>
             </div>
         </div>
     </div>
 </div>
-<div class="popup-search-box d-none d-lg-block">
-    <button class="searchClose"><i class="far fa-times"></i></button>
-    <form action="#">
-        <input type="text" placeholder="What are you looking for?">
-        <button type="submit"><i class="far fa-search"></i></button>
-    </form>
-</div>
+    <!-- Search box removed -->
 <div class="th-menu-wrapper">
     <div class="th-menu-area text-center">
         <button class="th-menu-toggle"><i class="fal fa-times"></i></button>
@@ -282,8 +335,6 @@
                             class="far fa-bars"></i></button>
                 </div>
                 <div class="header-button">
-                    <button type="button" class="icon-btn style2 searchBoxToggler d-lg-block d-none"><i
-                            class="far fa-search"></i></button>
                     <button type="button" class="icon-btn sideMenuToggler">
                         <span class="badge">0</span>
                         <i class="fa-regular fa-cart-shopping"></i>
@@ -297,7 +348,7 @@
 <!--==============================
 Breadcumb
 ============================== -->
-<div class="breadcumb-wrapper" data-bg-src="assets/img/breadcumb/breadcumb-bg.jpg">
+<div class="breadcumb-wrapper" >
     <div class="container">
         <div class="breadcumb-content">
             <h1 class="breadcumb-title">Order Confirmation</h1>
@@ -483,8 +534,11 @@ Footer Area
 
     <!-- Main Js File -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/notification-system.js"></script>
     <script src="assets/js/cart.js"></script>
     <script src="assets/js/phonepe-integration.js"></script>
+    <!-- Search JS -->
+    <!-- Search functionality removed -->
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -506,7 +560,8 @@ Footer Area
             const orderDetails = completedOrders.find(order => order.orderId === orderId);
             
             if (!orderDetails) {
-                // Order not found
+                // Order not found - use centralized notification system
+                showNotification('Order details not found. Please contact customer support.', 'warning', 5000);
                 document.getElementById('order-items-container').innerHTML = `
                     <div class="alert alert-warning">
                         Order details not found. Please contact customer support.
@@ -514,6 +569,9 @@ Footer Area
                 `;
                 return;
             }
+            
+            // Show success notification
+            showNotification('Order confirmed successfully!', 'success', 5000);
             
             // Display customer information
             document.getElementById('customer-name').textContent = orderDetails.customerInfo.name;

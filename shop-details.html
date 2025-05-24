@@ -42,8 +42,69 @@
         <link rel="stylesheet" href="assets/css/style.css">
         <!-- Rating UI CSS -->
         <link rel="stylesheet" href="assets/css/rating-ui.css">
+        <!-- Enhanced Notification Styles -->
+        <link rel="stylesheet" href="assets/css/notification-styles.css">
     <!-- Add this in the head section of all HTML files -->
     <style>
+        /* Mini cart buttons styling */
+        .woocommerce-mini-cart__buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .woocommerce-mini-cart__buttons .th-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 0;
+            padding: 12px 20px;
+            text-align: center;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        /* View Cart button */
+        .woocommerce-mini-cart__buttons .wc-forward:not(.checkout):not(.wishlist-btn) {
+            background-color: #f8f9fa;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        
+        /* Checkout button */
+        .woocommerce-mini-cart__buttons .checkout {
+            background-color: #1e6f5c;
+            color: #fff;
+            border: 1px solid #1e6f5c;
+        }
+        
+        /* Wishlist button */
+        .woocommerce-mini-cart__buttons .wishlist-btn {
+            background-color: #fff;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        
+        .woocommerce-mini-cart__buttons .th-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .woocommerce-mini-cart__buttons .wishlist-btn:hover {
+            color: #ff6b6b;
+        }
+        
+        .woocommerce-mini-cart__buttons .th-btn i {
+            margin-right: 5px;
+        }
+        
+        .woocommerce-mini-cart__buttons .wishlist-btn i {
+            color: #ff6b6b;
+        }
+        
         .logo-gradient {
           display: inline-flex;
           align-items: center;
@@ -137,7 +198,6 @@
                                 <button class="quantity-minus qty-btn"><i class="far fa-chevron-down"></i></button>
                             </div>
                             <button class="th-btn">Add to Cart</button>
-                            <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
                         </div>
                         <div class="product_meta">
                             <span class="sku_wrapper">SKU: <span class="sku">product-id</span></span>
@@ -167,7 +227,8 @@
                             <span class="woocommerce-Price-currencySymbol">$</span>0.00</span>
                     </p>
                     <p class="woocommerce-mini-cart__buttons buttons">
-                        <a href="cart.html" class="th-btn wc-forward">View cart</a>
+                        <a href="wishlist.html" class="th-btn wishlist-btn"><i class="far fa-heart"></i> View Wishlist</a>
+                        <a href="cart.html" class="th-btn wc-forward">View Cart</a>
                         <a href="checkout.html" class="th-btn checkout wc-forward">Checkout</a>
                     </p>
                 </div>
@@ -249,8 +310,7 @@
 
                             </ul>
                         </nav>
-                        <p class="header-notice"><img class="me-1" src="assets/img/icon/heart-icon.svg" alt="img">Are
-                            you ready to buy products? Let’s become buyer</p>
+                        <p class="header-notice"><img class="me-1" src="assets/img/icon/heart-icon.svg" alt="img">Are you ready to buy products? Let's become buyer</p>
                     </div>
                     <div class="header-button">
                         <button type="button" class="icon-btn th-menu-toggle d-lg-none"><i
@@ -274,7 +334,7 @@
         <!--==============================
         Breadcumb
     ============================== -->
-        <div class="breadcumb-wrapper " data-bg-src="assets/img/bg/breadcumb-bg.jpg" data-overlay="theme">
+        <div class="breadcumb-wrapper " data-overlay="theme">
             <div class="container">
                 <div class="breadcumb-content">
                     <h1 class="breadcumb-title">Shop Details</h1>
@@ -311,13 +371,22 @@
                                 </p>
                             </div>
                             <div class="actions">
-                                <div class="quantity">
-                                    <input type="number" class="qty-input" step="1" min="1" max="100" name="quantity" value="1" title="Qty">
-                                    <button class="quantity-plus qty-btn"><i class="far fa-chevron-up"></i></button>
-                                    <button class="quantity-minus qty-btn"><i class="far fa-chevron-down"></i></button>
+                                <div class="product-quantity-wrapper" style="margin-right: 15px;">
+                                    <div class="quantity" style="display: flex; align-items: center; background-color: #f7f7f7; border-radius: 8px; width: 120px; height: 44px; margin-bottom: 15px; border: none; outline: none; box-shadow: none;">
+                                        <button type="button" class="quantity-button quantity-down" style="width: 40px; height: 44px; background: transparent; border: none; outline: none; cursor: pointer; transition: all 0.2s ease;">
+                                            <i class="far fa-minus" style="color: #555; font-size: 12px;"></i>
+                                        </button>
+                                        <span id="quantity-display" style="width: 40px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 600; color: #333; text-align: center; border: none; background: transparent;">1</span>
+                                        <input type="hidden" id="product-quantity" class="qty-input" name="quantity" value="1" min="1" max="100">
+                                        <button type="button" class="quantity-button quantity-up" style="width: 40px; height: 44px; background: transparent; border: none; outline: none; cursor: pointer; transition: all 0.2s ease;">
+                                            <i class="far fa-plus" style="color: #555; font-size: 12px;"></i>
+                                        </button>
+                                    </div>
                                 </div>
-                                <button class="th-btn">Add to Cart</button>
-                                <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
+                                <div class="action-buttons" style="display: flex; gap: 12px; flex-wrap: wrap;">
+                                    <button type="button" id="add-to-cart-btn" class="th-btn" style="height: 54px; padding: 0 30px; font-weight: 600; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"><i class="far fa-shopping-cart me-2"></i>Add to Cart</button>
+                                    <button type="button" class="th-btn wishlist-btn" style="height: 54px; padding: 0 25px; background-color: #fff; color: #ff6b6b; border: 1px solid #ff6b6b; font-weight: 600; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.05);"><i class="far fa-heart me-2"></i>Add to Wishlist</button>
+                                </div>
                             </div>
                             <div class="product_meta">
                                 <span class="sku_wrapper">SKU: <span class="sku">Medicine-fits-chevy-camaro</span></span>
@@ -338,7 +407,6 @@
                 <div class="tab-content" id="productTabContent">
                     <div class="tab-pane fade" id="description" role="tabpanel" aria-labelledby="description-tab">
                         <p>Prepare to embark on a sensory journey with the Bosco Apple, a fruit that transcends the ordinary and promises an unparalleled taste experience. These apples are nothing short of nature’s masterpiece, celebrated for their distinctive blend of flavors and their captivating visual allure. Bosco Apples are a revelation for your taste buds. Their impeccable balance of sweetness and tartness creates a complex, layered taste profile that keeps you coming back for more. Each bite is a symphony of sweet and tangy notes, making these apples a gastronomic delight whether enjoyed fresh or as a key ingredient in your favorite culinary creations.</p>
-                        <p>The Bosco Apple is not just a fruit; it’s a work of art. Its striking, deep red skin is adorned with intricate speckles, making it a showstopper in the world of fruit aesthetics. Display these apples with pride in your kitchen, and you’ll undoubtedly draw admiration from all who see them. We take our commitment to the environment seriously. Bosco Apples are cultivated on eco-friendly orchards that prioritize sustainable farming practices. You can savor these apples knowing they are grown with respect for the planet, aligning with your values of environmental responsibility. Whether you’re a culinary aficionado or a casual home chef, Bosco Apples offer limitless possibilities in the kitchen. Slice them into a vibrant salad, transform them into mouthwatering pies, or blend them into wholesome applesauce. The culinary canvas is yours to paint with these versatile apples.</p>
                     </div>
                     <div class="tab-pane fade show active" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
                         <div class="woocommerce-Reviews">
@@ -346,10 +414,8 @@
                                 <ul class="comment-list">
                                     <li class="review th-comment-item">
                                         <div class="th-post-comment">
-                                            <div class="comment-avater">
-                                                <img src="assets/img/blog/comment-author-1.jpg" alt="Comment Author">
-                                            </div>
-                                            <div class="comment-content">
+
+                                            <div class="comment-content" style="margin-left: 0;">
                                                 <h4 class="name">Jacklin July</h4>
                                                 <span class="commented-on"><i class="far fa-calendar"></i>22 April, 2023</span>
                                                 <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
@@ -361,10 +427,7 @@
                                     </li>
                                     <li class="review th-comment-item">
                                         <div class="th-post-comment">
-                                            <div class="comment-avater">
-                                                <img src="assets/img/blog/comment-author-2.jpg" alt="Comment Author">
-                                            </div>
-                                            <div class="comment-content">
+                                            <div class="comment-content" style="margin-left: 0;">
                                                 <h4 class="name">Jusctin Dacon</h4>
                                                 <span class="commented-on"><i class="far fa-calendar"></i>26 April, 2023</span>
                                                 <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
@@ -376,10 +439,8 @@
                                     </li>
                                     <li class="review th-comment-item">
                                         <div class="th-post-comment">
-                                            <div class="comment-avater">
-                                                <img src="assets/img/blog/comment-author-3.jpg" alt="Comment Author">
-                                            </div>
-                                            <div class="comment-content">
+
+                                            <div class="comment-content" style="margin-left: 0;">
                                                 <h4 class="name">Adam Jhon</h4>
                                                 <span class="commented-on"><i class="far fa-calendar"></i>26 April, 2023</span>
                                                 <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
@@ -391,10 +452,8 @@
                                     </li>
                                     <li class="review th-comment-item">
                                         <div class="th-post-comment">
-                                            <div class="comment-avater">
-                                                <img src="assets/img/blog/comment-author-4.jpg" alt="Comment Author">
-                                            </div>
-                                            <div class="comment-content">
+
+                                            <div class="comment-content" style="margin-left: 0;">
                                                 <h4 class="name">Adison Smith</h4>
                                                 <span class="commented-on"><i class="far fa-calendar"></i>26 April, 2023</span>
                                                 <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
@@ -479,18 +538,9 @@
                                     <div class="product-img">
                                         <img src="assets/img/product/product_1_1.png" alt="Product Image">
                                         <span class="product-tag">Hot</span>
-                                        <div class="actions">
-                                            <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                            <a href="cart.html" class="icon-btn"><i class="far fa-cart-plus"></i></a>
-                                            <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
-                                        </div>
+
                                     </div>
                                     <div class="product-content">
-                                        <!-- <a href="shop-details.html" class="product-category"><br />
-    <b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-    <br />
-    <b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-    </a> -->
                                         <h3 class="product-title"><a href="shop-details.html">Medicine</a></h3>
                                         <span class="price">$177.85</span>
                                         <div class="woocommerce-product-rating">
@@ -509,18 +559,9 @@
                                     <div class="product-img">
                                         <img src="assets/img/product/product_1_2.png" alt="Product Image">
                                         <span class="product-tag">New</span>
-                                        <div class="actions">
-                                            <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                            <a href="cart.html" class="icon-btn"><i class="far fa-cart-plus"></i></a>
-                                            <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
-                                        </div>
+
                                     </div>
                                     <div class="product-content">
-                                        <!-- <a href="shop-details.html" class="product-category"><br />
-    <b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-    <br />
-    <b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-    </a> -->
                                         <h3 class="product-title"><a href="shop-details.html?id=dress">Dress</a></h3>
                                         <span class="price">$39.85</span>
                                         <div class="woocommerce-product-rating">    
@@ -539,18 +580,9 @@
                                     <div class="product-img">
                                         <img src="assets/img/product/product_1_3.png" alt="Product Image">
                                         <span class="product-tag">Hot</span>
-                                        <div class="actions">
-                                            <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                            <a href="cart.html" class="icon-btn"><i class="far fa-cart-plus"></i></a>
-                                            <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
-                                        </div>
+
                                     </div>
                                     <div class="product-content">
-                                        <!-- <a href="shop-details.html" class="product-category"><br />
-    <b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-    <br />
-    <b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-    </a> -->
                                         <h3 class="product-title"><a href="shop-details.html">Books</a></h3>
                                         <span class="price">$96.85</span>
                                         <div class="woocommerce-product-rating">
@@ -569,18 +601,9 @@
                                     <div class="product-img">
                                         <img src="assets/img/product/product_1_4.png" alt="Product Image">
                                         <span class="product-tag">Sale</span>
-                                        <div class="actions">
-                                            <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                            <a href="cart.html" class="icon-btn"><i class="far fa-cart-plus"></i></a>
-                                            <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
-                                        </div>
+
                                     </div>
                                     <div class="product-content">
-                                        <!-- <a href="shop-details.html" class="product-category"><br />
-    <b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-    <br />
-    <b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-    </a> -->
                                         <h3 class="product-title"><a href="shop-details.html">Chair</a></h3>
                                         <span class="price">$08.85<del>$06.99</del></span>
                                         <div class="woocommerce-product-rating">
@@ -599,18 +622,9 @@
                                     <div class="product-img">
                                         <img src="assets/img/product/product_1_5.png" alt="Product Image">
                                         <span class="product-tag">New</span>
-                                        <div class="actions">
-                                            <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                            <a href="cart.html" class="icon-btn"><i class="far fa-cart-plus"></i></a>
-                                            <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
-                                        </div>
+
                                     </div>
                                     <div class="product-content">
-                                        <!-- <a href="shop-details.html" class="product-category"><br />
-    <b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-    <br />
-    <b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-    </a> -->
                                         <h3 class="product-title"><a href="shop-details.html">Chair</a></h3>
                                         <span class="price">$32.85</span>
                                         <div class="woocommerce-product-rating">
@@ -629,18 +643,9 @@
                                     <div class="product-img">
                                         <img src="assets/img/product/product_1_6.png" alt="Product Image">
                                         <span class="product-tag">Hot</span>
-                                        <div class="actions">
-                                            <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                            <a href="cart.html" class="icon-btn"><i class="far fa-cart-plus"></i></a>
-                                            <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
-                                        </div>
+
                                     </div>
                                     <div class="product-content">
-                                        <!-- <a href="shop-details.html" class="product-category"><br />
-    <b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-    <br />
-    <b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-    </a> -->
                                         <h3 class="product-title"><a href="shop-details.html">Baby Dress</a></h3>
                                         <span class="price">$30.85</span>
                                         <div class="woocommerce-product-rating">
@@ -659,18 +664,9 @@
                                     <div class="product-img">
                                         <img src="assets/img/product/product_1_7.png" alt="Product Image">
                                         <span class="product-tag">New</span>
-                                        <div class="actions">
-                                            <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                            <a href="cart.html" class="icon-btn"><i class="far fa-cart-plus"></i></a>
-                                            <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
-                                        </div>
+
                                     </div>
                                     <div class="product-content">
-                                        <!-- <a href="shop-details.html" class="product-category"><br />
-    <b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-    <br />
-    <b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-    </a> -->
                                         <h3 class="product-title"><a href="shop-details.html">Comfort Chair</a></h3>
                                         <span class="price">$232.85</span>
                                         <div class="woocommerce-product-rating">
@@ -689,18 +685,9 @@
                                     <div class="product-img">
                                         <img src="assets/img/product/product_1_8.png" alt="Product Image">
                                         <span class="product-tag">Hot</span>
-                                        <div class="actions">
-                                            <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                            <a href="cart.html" class="icon-btn"><i class="far fa-cart-plus"></i></a>
-                                            <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
-                                        </div>
+
                                     </div>
                                     <div class="product-content">
-                                        <!-- <a href="shop-details.html" class="product-category"><br />
-    <b>Warning</b>:  Undefined variable $cat in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-    <br />
-    <b>Warning</b>:  Trying to access array offset on value of type null in <b>A:\Angfuz_soft\HTML\Donet\vaarahi-html\build\inc\sections\product-grid.php</b> on line <b>88</b><br />
-    </a> -->
                                         <h3 class="product-title"><a href="shop-details.html">Short Table</a></h3>
                                         <span class="price">$30.85</span>
                                         <div class="woocommerce-product-rating">
@@ -836,7 +823,223 @@
         <script src="assets/js/cart.js"></script>
         <script src="assets/js/product-sort.js"></script>
         <script src="assets/js/product-details.js"></script>
+        
+        <!-- Product Actions Script -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Quantity control functionality
+                function updateQuantityDisplay() {
+                    // Get the hidden input and visible display
+                    const quantityInput = document.getElementById('product-quantity');
+                    const quantityDisplay = document.getElementById('quantity-display');
+                    
+                    if (quantityInput && quantityDisplay) {
+                        // Update the visible display with the current value
+                        quantityDisplay.textContent = quantityInput.value;
+                        
+                        // Store the value in localStorage to persist it
+                        try {
+                            localStorage.setItem('lastQuantityValue', quantityInput.value);
+                        } catch (e) {
+                            console.error('Could not save quantity to localStorage:', e);
+                        }
+                    }
+                }
+                
+                // Initialize quantity from localStorage if available
+                try {
+                    const savedQuantity = localStorage.getItem('lastQuantityValue');
+                    if (savedQuantity) {
+                        const quantityInput = document.getElementById('product-quantity');
+                        const quantityDisplay = document.getElementById('quantity-display');
+                        
+                        if (quantityInput && quantityDisplay) {
+                            // Validate the saved value
+                            let value = parseInt(savedQuantity, 10);
+                            if (isNaN(value) || value < 1) value = 1;
+                            if (value > 100) value = 100;
+                            
+                            // Set both the input and display
+                            quantityInput.value = value;
+                            quantityDisplay.textContent = value;
+                        }
+                    }
+                } catch (e) {
+                    console.error('Error loading quantity from localStorage:', e);
+                }
+                
+                // Quantity Up Button
+                document.querySelectorAll('.quantity-up').forEach(function(button) {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        // Get the hidden input
+                        const input = document.getElementById('product-quantity');
+                        if (!input) return;
+                        
+                        // Get current value and max
+                        let value = parseInt(input.value, 10) || 0;
+                        const max = parseInt(input.getAttribute('max') || 100);
+                        
+                        // Increment but don't exceed max
+                        value = Math.min(max, value + 1);
+                        input.value = value;
+                        
+                        // Update the display
+                        updateQuantityDisplay();
+                        
+                        // Add a subtle animation
+                        button.style.backgroundColor = '#d0d0d0';
+                        setTimeout(() => {
+                            button.style.backgroundColor = '#e8e8e8';
+                        }, 150);
+                    });
+                });
+                
+                // Quantity Down Button
+                document.querySelectorAll('.quantity-down').forEach(function(button) {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        // Get the hidden input
+                        const input = document.getElementById('product-quantity');
+                        if (!input) return;
+                        
+                        // Get current value
+                        let value = parseInt(input.value, 10) || 2;
+                        
+                        // Decrement but don't go below 1
+                        value = Math.max(1, value - 1);
+                        input.value = value;
+                        
+                        // Update the display
+                        updateQuantityDisplay();
+                        
+                        // Add a subtle animation
+                        button.style.backgroundColor = '#d0d0d0';
+                        setTimeout(() => {
+                            button.style.backgroundColor = '#e8e8e8';
+                        }, 150);
+                    });
+                });
+                
+                // Make sure quantity is visible on page load
+                updateQuantityDisplay();
+                
+                // Add to Cart Button
+                const addToCartBtn = document.getElementById('add-to-cart-btn');
+                if (addToCartBtn) {
+                    addToCartBtn.addEventListener('click', function() {
+                        // Get product data
+                        const productTitle = document.querySelector('.product-title');
+                        const productPrice = document.querySelector('.price');
+                        const productImage = document.querySelector('.product-big-img img');
+                        const quantityInput = document.getElementById('product-quantity');
+                        
+                        if (!productTitle || !productPrice || !quantityInput) {
+                            console.error('Missing required product elements');
+                            return;
+                        }
+                        
+                        const name = productTitle.textContent.trim();
+                        
+                        // Extract price (remove currency symbol and parse as float)
+                        let price = 0;
+                        const priceText = productPrice.textContent.trim();
+                        const priceMatch = priceText.match(/[\d,.]+/);
+                        if (priceMatch) {
+                            price = parseFloat(priceMatch[0].replace(/,/g, ''));
+                        }
+                        
+                        const image = productImage ? productImage.getAttribute('src') : '';
+                        const quantity = parseInt(quantityInput.value, 10) || 1;
+                        
+                        // Get product ID (SKU)
+                        const skuElement = document.querySelector('.sku');
+                        const id = skuElement ? skuElement.textContent.trim() : name.toLowerCase().replace(/\s+/g, '-');
+                        
+                        // Add to cart
+                        if (window.addToCart && typeof window.addToCart === 'function') {
+                            window.addToCart({
+                                id,
+                                name,
+                                price,
+                                image,
+                                quantity
+                            });
+                        } else {
+                            // Fallback if addToCart function is not available
+                            console.log('Adding to cart:', { id, name, price, image, quantity });
+                            
+                            // Get cart from localStorage
+                            let cart = [];
+                            try {
+                                const storedCart = localStorage.getItem('vaarahiCart');
+                                if (storedCart) {
+                                    cart = JSON.parse(storedCart);
+                                }
+                            } catch (e) {
+                                console.error('Error loading cart:', e);
+                                cart = [];
+                            }
+                            
+                            // Check if product already exists
+                            const existingItemIndex = cart.findIndex(item => item.id === id);
+                            
+                            if (existingItemIndex !== -1) {
+                                // Update quantity if already in cart
+                                cart[existingItemIndex].quantity += quantity;
+                            } else {
+                                // Add new item to cart
+                                cart.push({
+                                    id,
+                                    name,
+                                    price,
+                                    image,
+                                    quantity
+                                });
+                            }
+                            
+                            // Save cart to localStorage
+                            localStorage.setItem('vaarahiCart', JSON.stringify(cart));
+                            
+                            // Show success message
+                            if (window.showNotification) {
+                                window.showNotification(`"${name}" has been added to your cart.`, 'success');
+                            } else {
+                                alert(`"${name}" has been added to your cart.`);
+                            }
+                            
+                            // Update cart count in header
+                            const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+                            document.querySelectorAll('.cart-count').forEach(el => {
+                                el.textContent = cartCount;
+                            });
+                        }
+                        
+                        // Add button animation
+                        const originalText = addToCartBtn.innerHTML;
+                        addToCartBtn.innerHTML = '<i class="far fa-check me-2"></i>Added to Cart';
+                        addToCartBtn.style.backgroundColor = '#28a745';
+                        
+                        setTimeout(() => {
+                            addToCartBtn.innerHTML = originalText;
+                            addToCartBtn.style.backgroundColor = '';
+                        }, 2000);
+                    });
+                }
+            });
+        </script>
+        <!-- Centralized Product Data -->
+        <script src="assets/js/product-data.js"></script>
+        <!-- Centralized Notification System -->
+        <script src="assets/js/notification-system.js"></script>
+        <script src="assets/js/auth.js"></script>
         <script src="assets/js/product-reviews.js"></script>
+        <!-- Wishlist Script -->
+        <script src="assets/js/wishlist.js"></script>
+        <!-- Cart Synchronization Script -->
+        <script src="assets/js/cart-sync.js"></script>
     </body>
     <script>
          // Setup event listeners for the cart

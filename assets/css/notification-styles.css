@@ -1,0 +1,450 @@
+/* Modern Notification Styles for VAARAHI E-commerce */
+
+/* Base notification styles - applies to all notification types */
+.th-notification {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #fff;
+    color: #333;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    z-index: 9999;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 500;
+    transform: translateY(0);
+    opacity: 1;
+    animation: notificationPopIn 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), notificationFadeOut 0.5s ease-in-out 4s forwards;
+    max-width: 380px;
+    width: calc(100% - 60px);
+    display: flex;
+    align-items: center;
+    line-height: 1.5;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* VAARAHI-themed notification - matches website's gold gradient theme */
+.vaarahi-notification {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+    color: #333;
+    padding: 18px 20px;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 600;
+    transform: translateY(0);
+    opacity: 1;
+    max-width: 400px;
+    width: calc(100% - 60px);
+    display: flex;
+    align-items: center;
+    line-height: 1.5;
+    backdrop-filter: blur(10px);
+    border-left: 5px solid #FFAC00;
+    animation: vaarahiNotificationPopIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), vaarahiNotificationPulse 2s infinite alternate;
+    transition: all 0.3s ease;
+}
+
+/* Toast notification (cart updates, etc.) */
+#cart-notification, .cart-notification, .toast {
+    position: fixed !important;
+    bottom: 30px !important;
+    right: 30px !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    color: #333 !important;
+    padding: 16px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+    z-index: 9999 !important;
+    font-family: 'Nunito Sans', sans-serif !important;
+    font-weight: 500 !important;
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+    max-width: 380px !important;
+    width: calc(100% - 60px) !important;
+    display: flex !important;
+    align-items: center !important;
+    transition: all 0.3s ease !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+}
+
+/* Success notification */
+.th-notification.success,
+#cart-notification.success,
+.toast.bg-success,
+.toast.success {
+    border-left: none;
+    border-top: 4px solid #28a745;
+    background-color: rgba(40, 167, 69, 0.08) !important;
+}
+
+.th-notification.success:before,
+#cart-notification.success:before,
+.toast.bg-success:before,
+.toast.success:before {
+    content: '';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #28a745;
+    color: white;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    margin-right: 16px;
+    font-size: 16px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Error notification */
+.th-notification.error,
+#cart-notification.error,
+.toast.bg-danger,
+.toast.error {
+    border-left: none;
+    border-top: 4px solid #dc3545;
+    background-color: rgba(220, 53, 69, 0.08) !important;
+}
+
+.th-notification.error:before,
+#cart-notification.error:before,
+.toast.bg-danger:before,
+.toast.error:before {
+    content: '';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    margin-right: 16px;
+    font-size: 16px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/%3E%3Cpath d='M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Warning notification */
+.th-notification.warning,
+#cart-notification.warning,
+.toast.bg-warning,
+.toast.warning {
+    border-left: none;
+    border-top: 4px solid #ffc107;
+    background-color: rgba(255, 193, 7, 0.08) !important;
+}
+
+.th-notification.warning:before,
+#cart-notification.warning:before,
+.toast.bg-warning:before,
+.toast.warning:before {
+    content: '';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffc107;
+    color: #212529;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    margin-right: 16px;
+    font-size: 16px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23212529' viewBox='0 0 16 16'%3E%3Cpath d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/%3E%3Cpath d='M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Info notification */
+.th-notification.info,
+#cart-notification.info {
+    border-left: none;
+    border-top: 4px solid var(--theme-color, #FFAC00);
+    background-color: rgba(255, 172, 0, 0.08) !important;
+}
+
+.th-notification.info:before,
+#cart-notification.info:before {
+    content: '';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--theme-color, #FFAC00);
+    color: white;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    margin-right: 16px;
+    font-size: 16px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(255, 172, 0, 0.3);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/%3E%3Cpath d='m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Woocommerce message styles */
+.woocommerce-notices-wrapper .woocommerce-message {
+    background-color: #fff;
+    color: #333;
+    padding: 16px 24px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 500;
+    border-left: 4px solid var(--theme-color, #FFAC00);
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.woocommerce-notices-wrapper .woocommerce-message:before {
+    content: '✓';
+    display: inline-block;
+    background-color: var(--theme-color, #FFAC00);
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    margin-right: 12px;
+    font-size: 14px;
+    flex-shrink: 0;
+    font-family: sans-serif;
+    font-weight: normal;
+}
+
+.woocommerce-notices-wrapper .woocommerce-message a {
+    margin-left: auto;
+    color: var(--theme-color, #FFAC00);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.woocommerce-notices-wrapper .woocommerce-message a:hover {
+    color: #333;
+}
+
+/* Alert styles for forms */
+.alert {
+    padding: 16px 24px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 500;
+    border-left: 4px solid transparent;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.alert:before {
+    display: inline-block;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    margin-right: 12px;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-left-color: #28a745;
+}
+
+.alert-success:before {
+    content: '✓';
+    background-color: #28a745;
+    color: white;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left-color: #dc3545;
+}
+
+.alert-danger:before {
+    content: '!';
+    background-color: #dc3545;
+    color: white;
+    font-weight: bold;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border-left-color: #ffc107;
+}
+
+.alert-warning:before {
+    content: '!';
+    background-color: #ffc107;
+    color: #212529;
+    font-weight: bold;
+}
+
+/* Animation keyframes */
+@keyframes notificationPopIn {
+    0% { transform: translateY(20px) scale(0.9); opacity: 0; }
+    70% { transform: translateY(-5px) scale(1.02); opacity: 1; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes notificationFadeOut {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(20px) scale(0.9); opacity: 0; }
+}
+
+/* Hover effect for notifications */
+.th-notification:hover,
+#cart-notification:hover,
+.toast:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* Animation keyframes for VAARAHI notifications */
+@keyframes vaarahiNotificationPopIn {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes vaarahiNotificationPulse {
+    0% {
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+    100% {
+        box-shadow: 0 15px 35px rgba(255, 172, 0, 0.2);
+    }
+}
+
+@keyframes vaarahiNotificationFadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+/* VAARAHI notification variants */
+.vaarahi-notification.success {
+    border-left: 5px solid #28a745;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 255, 240, 0.85));
+}
+
+.vaarahi-notification.error {
+    border-left: 5px solid #dc3545;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 240, 240, 0.85));
+}
+
+.vaarahi-notification.warning {
+    border-left: 5px solid #ffc107;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 250, 240, 0.85));
+}
+
+.vaarahi-notification.info {
+    border-left: 5px solid #17a2b8;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 250, 255, 0.85));
+}
+
+.vaarahi-notification.primary {
+    border-left: 5px solid #FFAC00;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 250, 240, 0.85));
+}
+
+/* Multiple notifications stacking */
+.th-notification + .th-notification {
+    bottom: calc(30px + 78px);
+}
+
+.th-notification + .th-notification + .th-notification {
+    bottom: calc(30px + 156px);
+}
+
+/* Target the specific green notification shown in the screenshot */
+[style*="background-color: rgb(40, 167, 69)"],
+[style*="background-color:#28a745"],
+[style*="background: #28a745"],
+[class*="bg-success"],
+.cart-notification,
+div:contains("quantity updated in cart") {
+    position: fixed !important;
+    bottom: 30px !important;
+    right: 30px !important;
+    background-color: #fff !important;
+    color: #333 !important;
+    padding: 16px 24px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1) !important;
+    z-index: 9999 !important;
+    font-family: 'Nunito Sans', sans-serif !important;
+    font-weight: 500 !important;
+    border-left: 4px solid #28a745 !important;
+    max-width: 350px !important;
+    width: calc(100% - 60px) !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* Success notification styling */
+div[style*="background-color: rgb(40, 167, 69)"]::before {
+    content: '';
+    display: inline-flex;
+    margin-right: 12px;
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2328a745' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 11.08V12a10 10 0 1 1-5.93-9.14'%3E%3C/path%3E%3Cpolyline points='22 4 12 14.01 9 11.01'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 575px) {
+    .th-notification,
+    #cart-notification,
+    .woocommerce-notices-wrapper .woocommerce-message {
+        max-width: calc(100% - 40px);
+        right: 20px;
+        left: 20px;
+        width: auto;
+        padding: 14px 20px;
+    }
+    
+    .alert {
+        padding: 14px 20px;
+    }
+}

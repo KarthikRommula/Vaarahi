@@ -1,140 +1,25 @@
 // product-details.js - Load product details dynamically
 
-// Product data (in a real application, this would come from a database or API)
-const productData = {
-    'medicine': {
-        id: 'medicine',
-        name: 'Medicine',
-        price: 177.85,
-        oldPrice: null,
-        image: 'assets/img/product/product_1_1.png',
-        description: 'Prepare to embark on a sensory journey with the Bosco Apple, a fruit that transcends the ordinary and promises an unparalleled taste experience. These apples are nothing short of nature\'s masterpiece, celebrated for their distinctive blend of flavors and their captivating visual allure.',
-        sku: 'Medicine-fits-chevy-camaro',
-        category: 'Vitamin & Medicine',
-        tags: ['Medicine', 'Drug']
-    },
-    'dress': {
-        id: 'dress',
-        name: 'Dress',
-        price: 39.85,
-        oldPrice: null,
-        image: 'assets/img/product/product_1_2.png',
-        description: 'This elegant dress combines modern design with traditional craftsmanship. Perfect for any occasion, featuring premium materials and attention to detail that makes it stand out from ordinary garments.',
-        sku: 'dress-elegant-style',
-        category: 'Clothing',
-        tags: ['Dress', 'Fashion']
-    },
-    'books': {
-        id: 'books',
-        name: 'Books',
-        price: 96.85,
-        oldPrice: null,
-        image: 'assets/img/product/product_1_3.png',
-        description: 'A collection of timeless classics and modern bestsellers. These carefully curated books offer knowledge, entertainment, and inspiration for readers of all ages.',
-        sku: 'books-collection',
-        category: 'Literature',
-        tags: ['Books', 'Reading']
-    },
-    'chair': {
-        id: 'chair',
-        name: 'Chair',
-        price: 8.85,
-        oldPrice: 6.99,
-        image: 'assets/img/product/product_1_4.png',
-        description: 'Comfortable seating solution for your home or office. Built with durability in mind while maintaining an aesthetically pleasing design.',
-        sku: 'chair-basic',
-        category: 'Furniture',
-        tags: ['Chair', 'Furniture']
-    },
-    'chair-2': {
-        id: 'chair-2',
-        name: 'Chair',
-        price: 32.85,
-        oldPrice: null,
-        image: 'assets/img/product/product_1_5.png',
-        description: 'Stylish chair for modern homes. Contemporary design meets comfort in this beautifully crafted seating solution.',
-        sku: 'chair-modern',
-        category: 'Furniture',
-        tags: ['Chair', 'Modern']
-    },
-    'baby-dress': {
-        id: 'baby-dress',
-        name: 'Baby Dress',
-        price: 30.85,
-        oldPrice: null,
-        image: 'assets/img/product/product_1_6.png',
-        description: 'Adorable and comfortable dress for your little one. Made with soft, skin-friendly materials perfect for babies.',
-        sku: 'baby-dress-cute',
-        category: 'Baby Clothing',
-        tags: ['Baby', 'Dress']
-    },
-    'comfort-chair': {
-        id: 'comfort-chair',
-        name: 'Comfort Chair',
-        price: 232.85,
-        oldPrice: null,
-        image: 'assets/img/product/product_1_7.png',
-        description: 'Premium comfort chair with ergonomic design. Experience ultimate relaxation with this expertly crafted chair featuring advanced lumbar support.',
-        sku: 'comfort-chair-premium',
-        category: 'Furniture',
-        tags: ['Chair', 'Comfort']
-    },
-    'short-table': {
-        id: 'short-table',
-        name: 'Short Table',
-        price: 30.85,
-        oldPrice: null,
-        image: 'assets/img/product/product_1_8.png',
-        description: 'Compact table perfect for small spaces. Versatile and functional, ideal for apartments or as a side table.',
-        sku: 'short-table-compact',
-        category: 'Furniture',
-        tags: ['Table', 'Furniture']
-    },
-    'cloths': {
-        id: 'cloths',
-        name: 'Cloths',
-        price: 32.85,
-        oldPrice: null,
-        image: 'assets/img/product/product_1_9.png',
-        description: 'High-quality cloths for everyday use. Durable and absorbent materials that maintain their quality wash after wash.',
-        sku: 'cloths-pack',
-        category: 'Clothing',
-        tags: ['Cloths', 'Fashion']
-    },
-    'hat': {
-        id: 'hat',
-        name: 'Hat',
-        price: 30.85,
-        oldPrice: null,
-        image: 'assets/img/product/product_1_10.png',
-        description: 'Stylish hat for all seasons. Provides protection from the sun while adding a fashionable touch to any outfit.',
-        sku: 'hat-stylish',
-        category: 'Accessories',
-        tags: ['Hat', 'Fashion']
-    },
-    'shoes': {
-        id: 'shoes',
-        name: 'Shoes',
-        price: 232.85,
-        oldPrice: null,
-        image: 'assets/img/product/product_1_11.png',
-        description: 'Premium quality shoes for ultimate comfort. Handcrafted with the finest materials for durability and style.',
-        sku: 'shoes-premium',
-        category: 'Footwear',
-        tags: ['Shoes', 'Fashion']
-    },
-    'jacket': {
-        id: 'jacket',
-        name: 'Jacket',
-        price: 30.85,
-        oldPrice: null,
-        image: 'assets/img/product/product_1_12.png',
-        description: 'Stylish jacket for cold weather. Keeps you warm without compromising on style, featuring modern design elements.',
-        sku: 'jacket-winter',
-        category: 'Clothing',
-        tags: ['Jacket', 'Fashion']
+// Use the centralized product data from product-data.js
+// The productData variable is kept for backward compatibility
+let productData = {};
+
+// Initialize product data when the DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // If the global ProductData is available, use it to populate productData
+    if (window.ProductData) {
+        // Get all products from the central repository
+        const allProducts = window.ProductData.getAllProducts();
+        
+        // Convert array to object with product IDs as keys
+        allProducts.forEach(product => {
+            productData[product.id] = product;
+        });
     }
-};
+    
+    // Load product details based on URL parameter
+    loadProductDetails();
+});
 
 // Function to get URL parameters
 function getUrlParameter(name) {
@@ -250,7 +135,6 @@ function updateRelatedProducts(currentProductId) {
                         <div class="actions">
                             <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
                             <a href="cart.html" class="icon-btn"><i class="far fa-cart-plus"></i></a>
-                            <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
                         </div>
                     </div>
                     <div class="product-content">

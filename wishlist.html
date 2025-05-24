@@ -46,27 +46,67 @@
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="assets/css/search.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Enhanced Notification Styles -->
+    <link rel="stylesheet" href="assets/css/notification-styles.css">
     <style>
-        /* Wishlist button in cart sidebar */
-        .th-btn.wishlist-btn {
-            display: block;
-            margin-top: 10px;
-            background: #f8f9fa;
-            color: #333;
-            border: 1px solid #ddd;
+      /* Mini cart buttons styling */
+      .woocommerce-mini-cart__buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .woocommerce-mini-cart__buttons .th-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 0;
+            padding: 12px 20px;
+            text-align: center;
+            border-radius: 30px;
+            font-weight: 600;
             transition: all 0.3s ease;
         }
         
-        .th-btn.wishlist-btn:hover {
-            background: #f1f1f1;
+        /* View Cart button */
+        .woocommerce-mini-cart__buttons .wc-forward:not(.checkout):not(.wishlist-btn) {
+            background-color: #f8f9fa;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        
+        /* Checkout button */
+        .woocommerce-mini-cart__buttons .checkout {
+            background-color: #1e6f5c;
+            color: #fff;
+            border: 1px solid #1e6f5c;
+        }
+        
+        /* Wishlist button */
+        .woocommerce-mini-cart__buttons .wishlist-btn {
+            background-color: #fff;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        
+        .woocommerce-mini-cart__buttons .th-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .woocommerce-mini-cart__buttons .wishlist-btn:hover {
             color: #ff6b6b;
         }
         
-        .th-btn.wishlist-btn i {
+        .woocommerce-mini-cart__buttons .th-btn i {
             margin-right: 5px;
-            color: #ff6b6b;
         }
         
+        .woocommerce-mini-cart__buttons .wishlist-btn i {
+            color: #ff6b6b;
+        }
         .logo-gradient {
           display: inline-flex;
           align-items: center;
@@ -138,9 +178,9 @@
                             <span class="woocommerce-Price-currencySymbol">$</span>0.00</span>
                     </p>
                     <p class="woocommerce-mini-cart__buttons buttons">
-                        <a href="cart.html" class="th-btn wc-forward">View cart</a>
+                        <a href="wishlist.html" class="th-btn wishlist-btn"><i class="far fa-heart"></i> View Wishlist</a>
+                        <a href="cart.html" class="th-btn wc-forward">View Cart</a>
                         <a href="checkout.html" class="th-btn checkout wc-forward">Checkout</a>
-                        <a href="wishlist.html" class="th-btn wishlist-btn"><i class="far fa-heart"></i> Wishlist</a>
                     </p>
                 </div>
             </div>
@@ -222,8 +262,7 @@
 
                             </ul>
                         </nav>
-                        <p class="header-notice"><img class="me-1" src="assets/img/icon/heart-icon.svg" alt="img">Are
-                            you ready to buy products? Let’s become buyer</p>
+                        <p class="header-notice"><img class="me-1" src="assets/img/icon/heart-icon.svg" alt="img">Are you ready to buy products? Let's become buyer</p>
                     </div>
                     <div class="header-button">
                         <button type="button" class="icon-btn th-menu-toggle d-lg-none"><i
@@ -244,7 +283,7 @@
 <!--==============================
     Breadcumb
 ============================== -->
-<div class="breadcumb-wrapper" data-bg-src="assets/img/bg/breadcumb-bg.png">
+<div class="breadcumb-wrapper">
     <div class="container">
         <div class="breadcumb-content">
             <h1 class="breadcumb-title">Wishlist</h1>
@@ -261,30 +300,168 @@
 ============================== -->
 <div class="th-wishlist-wrapper space-top space-extra-bottom">
     <div class="container">
-        <div class="woocommerce-notices-wrapper">
-            <div class="woocommerce-message" role="alert">Product removed.</div>
-        </div>
-        <form class="woocommerce-wishlist-form" action="#" method="post">
-            <div class="th-cart-table">
-                <table class="shop_table wishlist_table">
-                    <thead>
-                        <tr>
-                            <th class="product-remove">&nbsp;</th>
-                            <th class="product-thumbnail">&nbsp;</th>
-                            <th class="product-name">Product</th>
-                            <th class="product-price">Price</th>
-                            <th class="product-stock-status">Stock Status</th>
-                            <th class="product-add-to-cart">&nbsp;</th>
-                        </tr>
-                    </thead>
-                    <tbody id="wishlist-items-container">
-                        <!-- Wishlist items will be dynamically added here -->
-                    </tbody>
-                </table>
+        <div class="row">
+            <div class="col-12">
+                <div class="wishlist-header mb-4">
+                    <h3 class="mb-3">My Wishlist</h3>
+                    <p class="text-muted">Items you've saved for later. Add them to your cart when you're ready to purchase.</p>
+                </div>
             </div>
-        </form>
+        </div>
+        
+        <!-- Modern Card-Based Wishlist Layout -->
+        <div class="row" id="wishlist-items-container">
+            <!-- Wishlist items will be dynamically added here -->
+            
+            <!-- Empty wishlist message (will be hidden by JS when items exist) -->
+            <div class="col-12 empty-wishlist-message text-center py-5">
+                <div class="empty-wishlist-icon mb-4">
+                    <i class="far fa-heart" style="font-size: 48px; color: #ddd;"></i>
+                </div>
+                <h4>Your wishlist is empty</h4>
+                <p class="text-muted mb-4">Browse our products and add your favorites to the wishlist</p>
+                <a href="products.html" class="th-btn">Browse Products</a>
+            </div>
+        </div>
     </div>
 </div>
+
+<!-- Add this style section at the end of the file, before the closing body tag -->
+<style>
+    /* Wishlist Card Styles */
+    .wishlist-card {
+        position: relative;
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .wishlist-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .wishlist-card .product-img {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+        background: #f8f9fa;
+    }
+    
+    .wishlist-card .product-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .wishlist-card:hover .product-img img {
+        transform: scale(1.05);
+    }
+    
+    .wishlist-card .remove-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        z-index: 2;
+    }
+    
+    .wishlist-card:hover .remove-btn {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .wishlist-card .remove-btn i {
+        color: #ff6b6b;
+        font-size: 14px;
+    }
+    
+    .wishlist-card .card-body {
+        padding: 20px;
+    }
+    
+    .wishlist-card .product-name {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        display: block;
+        color: #333;
+        text-decoration: none;
+    }
+    
+    .wishlist-card .product-name:hover {
+        color: #1e6f5c;
+    }
+    
+    .wishlist-card .product-price {
+        font-size: 18px;
+        font-weight: 700;
+        color: #1e6f5c;
+        margin-bottom: 15px;
+        display: block;
+    }
+    
+    .wishlist-card .stock-status {
+        display: inline-block;
+        padding: 5px 12px;
+        border-radius: 30px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+    
+    .wishlist-card .in-stock {
+        background-color: #e8f5e9;
+        color: #2e7d32;
+    }
+    
+    .wishlist-card .out-of-stock {
+        background-color: #ffebee;
+        color: #c62828;
+    }
+    
+    .wishlist-card .card-footer {
+        padding: 0 20px 20px;
+        display: flex;
+        gap: 10px;
+    }
+    
+    .wishlist-card .add-to-cart-btn {
+        flex: 1;
+        border-radius: 30px;
+        padding: 12px 20px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+    
+    .wishlist-card .add-to-cart-btn i {
+        margin-right: 8px;
+    }
+    
+    /* Empty wishlist styles */
+    .empty-wishlist-message {
+        background-color: #f8f9fa;
+        border-radius: 12px;
+        padding: 50px 20px;
+    }
+</style>
     <!--==============================
 	Footer Area
 ==============================-->
@@ -396,42 +573,40 @@
     <!-- Main Js File -->
     <script src="assets/js/main.js"></script>
     
+    <!-- Include notification system first -->
+    <script src="assets/js/notification-system.js"></script>
+    
+    <!-- Include authentication system -->
+    <script src="assets/js/auth.js"></script>
+    
     <!-- Include cart and product functionality -->
     <script src="assets/js/cart.js"></script>
     <script src="assets/js/product-sort.js"></script>
     <script src="assets/js/product-details.js"></script>
     
+    <!-- Include Wishlist JS -->
+    <script src="assets/js/wishlist.js"></script>
+    
+    <!-- Initialize notification system -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Make sure notification system is properly initialized
+        if (typeof window.showNotification !== 'function') {
+            console.error('Notification system not properly loaded');
+        } else {
+            console.log('Notification system ready');
+        }
+    });
+    </script>
+    
     <!-- Wishlist Page Specific Functionality -->
     <script>
-        // Initialize wishlist items array
-        let wishlistItems = [];
-        
-        // Load wishlist items from localStorage
-        try {
-            console.log('Loading wishlist from localStorage');
-            const storedWishlist = localStorage.getItem('wishlistItems');
-            console.log('Stored wishlist:', storedWishlist);
-            
-            if (storedWishlist) {
-                wishlistItems = JSON.parse(storedWishlist);
-                console.log('Parsed wishlist items:', wishlistItems);
-            }
-        } catch (e) {
-            console.error('Error loading wishlist from localStorage:', e);
-            wishlistItems = [];
-        }
-        
-        // Function to save wishlist to localStorage
-        function saveWishlist() {
-            localStorage.setItem('wishlistItems', JSON.stringify(wishlistItems));
-        }
-
         // Function to display wishlist items
         function displayWishlistItems() {
             const container = document.getElementById('wishlist-items-container');
             if (!container) return;
             
-            console.log('Displaying wishlist items:', wishlistItems);
+            console.log('Displaying wishlist items from vaarahiWishlist:', wishlistItems);
             
             // Clear container
             container.innerHTML = '';
@@ -450,143 +625,52 @@
                 const itemHtml = `
                     <tr class="woocommerce-wishlist-item" data-index="${index}">
                         <td class="product-remove">
-                            <a href="javascript:void(0)" class="remove" onclick="removeWishlistItem(${index})" aria-label="Remove this item"><i class="fal fa-trash-alt"></i></a>
+                            <a href="javascript:void(0)" class="remove remove-from-wishlist" data-index="${index}" aria-label="Remove this item"><i class="fal fa-trash-alt"></i></a>
                         </td>
                         <td class="product-thumbnail">
                             <a href="products.html"><img src="${item.image}" alt="${item.name}"></a>
                         </td>
-                        <td class="product-name" data-title="Product">
-                            <a href="products.html">${item.name}</a>
+                        <td class="product-name">
+                            <a href="shop-details.html">${item.name}</a>
                         </td>
-                        <td class="product-price" data-title="Price">
-                            <span class="amount">$${item.price.toFixed(2)}</span>
+                        <td class="product-price">
+                            <span class="amount">$${parseFloat(item.price).toFixed(2)}</span>
                         </td>
-                        <td class="product-stock-status" data-title="Stock Status">
+                        <td class="product-stock-status">
                             <span class="stock in-stock">In Stock</span>
                         </td>
                         <td class="product-add-to-cart">
-                            <a href="javascript:void(0)" onclick="addToCartFromWishlist(${index})" class="th-btn">Add to Cart</a>
+                            <button class="th-btn add-to-cart-from-wishlist" data-index="${index}">Add to Cart</button>
                         </td>
                     </tr>
                 `;
-                
                 container.innerHTML += itemHtml;
+            });
+            
+            // Add event listeners to the new buttons
+            document.querySelectorAll('.remove-from-wishlist').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const index = parseInt(this.getAttribute('data-index'));
+                    removeFromWishlist(index);
+                });
+            });
+            
+            document.querySelectorAll('.add-to-cart-from-wishlist').forEach(button => {
+                button.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    addToCartFromWishlist(index);
+                });
             });
         }
 
-        // Function to show message
-        function showMessage(text) {
-            // Create message element if it doesn't exist
-            let messageElement = document.querySelector('.wishlist-message');
-            if (!messageElement) {
-                messageElement = document.createElement('div');
-                messageElement.className = 'wishlist-message';
-                document.body.appendChild(messageElement);
-                
-                // Style the message
-                messageElement.style.position = 'fixed';
-                messageElement.style.top = '20px';
-                messageElement.style.left = '50%';
-                messageElement.style.transform = 'translateX(-50%)';
-                messageElement.style.backgroundColor = '#28a745';
-                messageElement.style.color = 'white';
-                messageElement.style.padding = '10px 20px';
-                messageElement.style.borderRadius = '5px';
-                messageElement.style.zIndex = '9999';
-                messageElement.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
-                messageElement.style.transition = 'opacity 0.3s ease';
-            }
-            
-            // Set message text and show
-            messageElement.textContent = text;
-            messageElement.style.display = 'block';
-            messageElement.style.opacity = '1';
-            
-            // Hide after 3 seconds
-            setTimeout(() => {
-                messageElement.style.opacity = '0';
-                setTimeout(() => {
-                    messageElement.style.display = 'none';
-                }, 300);
-            }, 3000);
-        }
-
-        // Function to remove item from wishlist
-        function removeWishlistItem(index) {
-            if (wishlistItems && wishlistItems[index]) {
-                // Get product name for message
-                const productName = wishlistItems[index].name;
-                
-                // Remove item from wishlist
-                wishlistItems.splice(index, 1);
-                saveWishlist();
-                
-                // Redisplay wishlist items
-                displayWishlistItems();
-                
-                // Show removal message
-                showMessage('"' + productName + '" removed from wishlist.');
-            }
-        }
-        
-        // Function to add item to cart from wishlist
-        function addToCartFromWishlist(index) {
-            console.log('Adding to cart from wishlist, index:', index);
-            
-            if (!wishlistItems || !wishlistItems[index]) {
-                console.error('Invalid wishlist item');
-                return;
-            }
-            
-            // Get product information from wishlist
-            const item = wishlistItems[index];
-            const name = item.name;
-            const image = item.image;
-            const price = item.price;
-            
-            console.log('Product data:', { name, price, image });
-            
-            // Generate product ID from name
-            const id = name.toLowerCase().replace(/\s+/g, '-');
-            
-            // Create product data object
-            const productData = {
-                id: id,
-                name: name,
-                price: price,
-                image: image,
-                quantity: 1
-            };
-            
-            console.log('Calling global addToCart with:', productData);
-            
-            // Call the global addToCart function directly
-            if (typeof addToCart === 'function') {
-                // Use the cart.js addToCart function
-                addToCart(productData);
-            } else {
-                console.error('addToCart function not found');
-            }
-            
-            // Change button appearance to indicate item was added
-            const button = document.querySelector(`tr[data-index="${index}"] .product-add-to-cart .th-btn`);
-            if (button) {
-                const originalText = button.textContent;
-                button.textContent = 'Added!';
-                button.style.backgroundColor = '#28a745';
-                
-                // Reset button after 2 seconds
-                setTimeout(() => {
-                    button.textContent = originalText;
-                    button.style.backgroundColor = '';
-                }, 2000);
-            }
-        }
-        
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             // Display wishlist items
             displayWishlistItems();
+            
+            // Update wishlist count in header
+            updateWishlistDisplay();
         });
     </script>
 </body>

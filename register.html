@@ -299,7 +299,7 @@
                             </span>
                         </a>
                     </div>
-                    <div class="menu-area-wrap" style="margin-right: -50px;">
+                    <div class="menu-area-wrap" style="margin-left: -50px;">
                         <nav class="main-menu d-none d-lg-block">
                             <ul>
                                 <li>
@@ -316,14 +316,6 @@
                                 <li>
                                     <a href="contact.html">Contact</a>
                                 </li>
-                                <li>
-                                    <a href="login.html">Login</a>
-                                </li>
-                                <li>
-                                    <a href="register.html">Register</a>
-                                </li>
-
-
                             </ul>
                         </nav>
                         <p class="header-notice"><img class="me-1" src="assets/img/icon/heart-icon.svg" alt="img">Are
@@ -334,12 +326,38 @@
                                 class="far fa-bars"></i></button>
                     </div>
                     <div class="header-button">
-                        <button type="button" class="icon-btn style2 searchBoxToggler d-lg-block d-none"><i
+                        <button type="button" class="icon-btn style2 searchBoxToggler d-lg-block d-none" style="margin-left: 20px;"><i
                                 class="far fa-search"></i></button>
-                        <button type="button" class="icon-btn sideMenuToggler">
-                            <span class="badge">0</span>
-                            <i class="fa-regular fa-cart-shopping"></i>
-                        </button>
+                        <!-- Cart button removed -->
+                        <div class="d-none d-lg-flex ms-3">
+                            <a href="login.html" class="th-btn me-2" id="loginBtn">
+                                <i class="far fa-sign-in me-1"></i> Login
+                            </a>
+                            <a href="register.html" class="th-btn style3" id="registerBtn">
+                                <i class="far fa-user-plus me-1"></i> Register
+                            </a>
+                            <div class="dropdown d-none" id="userDropdown">
+                                <button class="th-btn dropdown-toggle user-menu-btn" type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <div class="user-avatar-mini me-2">
+                                        <i class="far fa-user"></i>
+                                    </div>
+                                    <span id="userNameDisplay"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end user-dropdown-menu" aria-labelledby="userMenuButton">
+                                    <li class="dropdown-header">My Account</li>
+                                    <li><a class="dropdown-item" href="profile.html">
+                                        <i class="far fa-user-circle me-2"></i><span>My Profile</span>
+                                    </a></li>
+                                    <li><a class="dropdown-item" href="wishlist.html">
+                                        <i class="far fa-heart me-2"></i><span>Wishlist</span>
+                                    </a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-danger" href="#" id="logoutBtn">
+                                        <i class="far fa-sign-out me-2"></i> Logout
+                                    </a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -347,7 +365,7 @@
     </header>
 
     <!-- Breadcrumb -->
-    <div class="breadcumb-wrapper" data-bg-src="assets/img/bg/breadcumb-bg.jpg" data-overlay="theme">
+    <div class="breadcumb-wrapper"  data-overlay="theme">
         <div class="container">
             <div class="breadcumb-content">
                 <h1 class="breadcumb-title">Sign Up</h1>
@@ -367,33 +385,54 @@
                     <div class="card-body p-5">
                         <h2 class="text-center mb-4">Create Your Account</h2>
                         <form id="signupForm">
+                            <div id="registerAlert" class="alert d-none mb-3"></div>
                             <div class="form-group mb-3">
                                 <label for="fullName">Full Name</label>
-                                <input type="text" class="form-control" id="fullName" required>
+                                <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
+                                <div class="invalid-feedback">Please enter your full name</div>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="email">Email Address</label>
-                                <input type="email" class="form-control" id="email" required>
+                                <input type="email" class="form-control" id="email" placeholder="Enter your email address" required>
+                                <div class="invalid-feedback">Please enter a valid email address</div>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="phone">Phone Number</label>
-                                <input type="tel" class="form-control" id="phone" required>
+                                <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
+                                <div class="invalid-feedback">Please enter a valid phone number</div>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" required>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="password" placeholder="Create a password" required>
+                                    <button class="btn btn-outline-secondary toggle-password" type="button" tabindex="-1">
+                                        <i class="far fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="invalid-feedback">Password must be at least 8 characters long</div>
+                                <div class="form-text">Password must be at least 8 characters long and include letters and numbers</div>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="confirmPassword">Confirm Password</label>
-                                <input type="password" class="form-control" id="confirmPassword" required>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
+                                    <button class="btn btn-outline-secondary toggle-password" type="button" tabindex="-1">
+                                        <i class="far fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="invalid-feedback">Passwords do not match</div>
                             </div>
                             <div class="form-group mb-3">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="terms" required>
-                                    <label class="form-check-label" for="terms">I agree to the Terms and Conditions</label>
+                                    <label class="form-check-label" for="terms">I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms and Conditions</a></label>
+                                    <div class="invalid-feedback">You must agree to the terms and conditions</div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+                            <button type="submit" class="th-btn w-100" id="registerButton">
+                                <span class="button-text">Create Account</span>
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                            </button>
                             <p class="text-center mt-3">Already have an account? <a href="login.html">Login</a></p>
                         </form>
                     </div>
@@ -482,6 +521,55 @@
 			Code End  Here 
 	******************************** -->
 
+<!-- Terms and Conditions Modal -->
+<div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4>1. Introduction</h4>
+                <p>Welcome to VAARAHI. These terms and conditions govern your use of our website and services. By accessing or using our website, you agree to be bound by these terms.</p>
+                
+                <h4>2. Account Registration</h4>
+                <p>When you create an account with us, you must provide accurate and complete information. You are responsible for maintaining the confidentiality of your account and password.</p>
+                
+                <h4>3. Privacy Policy</h4>
+                <p>Your use of our website is also governed by our Privacy Policy. Please review our Privacy Policy to understand our practices.</p>
+                
+                <h4>4. Products and Services</h4>
+                <p>All products and services displayed on our website are subject to availability. We reserve the right to modify or discontinue any product or service without notice.</p>
+                
+                <h4>5. Pricing and Payment</h4>
+                <p>All prices listed on our website are in the specified currency and are subject to change without notice. Payment must be made through the methods provided on our website.</p>
+                
+                <h4>6. Shipping and Delivery</h4>
+                <p>Shipping costs and delivery times are provided during the checkout process. We are not responsible for delays caused by customs or other factors outside our control.</p>
+                
+                <h4>7. Returns and Refunds</h4>
+                <p>Our return and refund policy is provided separately. Please review it before making a purchase.</p>
+                
+                <h4>8. Intellectual Property</h4>
+                <p>All content on our website, including text, graphics, logos, and software, is our property and is protected by intellectual property laws.</p>
+                
+                <h4>9. Limitation of Liability</h4>
+                <p>We are not liable for any damages arising from your use of our website or services. This includes direct, indirect, incidental, and consequential damages.</p>
+                
+                <h4>10. Governing Law</h4>
+                <p>These terms and conditions are governed by the laws of the jurisdiction in which our company is registered.</p>
+                
+                <h4>11. Changes to Terms</h4>
+                <p>We reserve the right to modify these terms and conditions at any time. Your continued use of our website after such changes constitutes your acceptance of the new terms.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="th-btn" data-bs-dismiss="modal">I Understand</button>
+            </div>
+        </div>
+    </div>
+</div>
+
     <!-- Scroll To Top -->
     <div class="scroll-top">
         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
@@ -514,7 +602,9 @@
 
     <!-- Main Js File -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/notification-system.js"></script>
     <script src="assets/js/cart.js"></script>
+    <script src="assets/js/auth.js"></script>
 
     <script src="assets/js/search.js"></script>
 </body>
@@ -525,77 +615,181 @@
     <!-- Custom JS -->
     <script>
         $(document).ready(function() {
-            // Check if user is already logged in
+            // Check if user is logged in
             const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-            if (isLoggedIn) {
+            const userEmail = localStorage.getItem('userEmail');
+            const userName = localStorage.getItem('userName');
+            
+            // Update UI based on login state
+            if (isLoggedIn && userName) {
+                // Redirect to home page if already logged in
                 window.location.href = 'index.html';
                 return;
+            } else {
+                // Show login/register buttons and hide user dropdown
+                $('#loginBtn, #registerBtn').removeClass('d-none');
+                $('#userDropdown').addClass('d-none');
             }
+            
+            // Password visibility toggle
+            $('.toggle-password').on('click', function() {
+                const passwordField = $(this).closest('.input-group').find('input');
+                const icon = $(this).find('i');
+                
+                if (passwordField.attr('type') === 'password') {
+                    passwordField.attr('type', 'text');
+                    icon.removeClass('fa-eye').addClass('fa-eye-slash');
+                } else {
+                    passwordField.attr('type', 'password');
+                    icon.removeClass('fa-eye-slash').addClass('fa-eye');
+                }
+            });
 
-            // Handle signup form submission
+            // Handle signup form submission with enhanced validation
             $('#signupForm').on('submit', function(e) {
                 e.preventDefault();
                 
-                const fullName = $('#fullName').val();
-                const email = $('#email').val();
-                const phone = $('#phone').val();
+                // Reset previous validation states
+                $(this).find('.is-invalid').removeClass('is-invalid');
+                $('#registerAlert').addClass('d-none');
+                
+                // Get form values
+                const fullName = $('#fullName').val().trim();
+                const email = $('#email').val().trim();
+                const phone = $('#phone').val().trim();
                 const password = $('#password').val();
                 const confirmPassword = $('#confirmPassword').val();
-
-                // Validation
-                if (!fullName || !email || !phone || !password || !confirmPassword) {
-                    alert('Please fill in all fields');
-                    return;
+                const termsAccepted = $('#terms').is(':checked');
+                
+                let isValid = true;
+                
+                // Validate full name
+                if (!fullName) {
+                    $('#fullName').addClass('is-invalid');
+                    isValid = false;
                 }
-
-                if (!isValidEmail(email)) {
-                    alert('Please enter a valid email address');
-                    return;
+                
+                // Validate email
+                if (!email || !isValidEmail(email)) {
+                    $('#email').addClass('is-invalid');
+                    isValid = false;
                 }
-
-                if (!isValidPhone(phone)) {
-                    alert('Please enter a valid phone number');
-                    return;
+                
+                // Validate phone
+                if (!phone || !isValidPhone(phone)) {
+                    $('#phone').addClass('is-invalid');
+                    isValid = false;
                 }
-
-                if (password.length < 8) {
-                    alert('Password must be at least 8 characters long');
-                    return;
+                
+                // Validate password
+                if (!password || password.length < 8) {
+                    $('#password').addClass('is-invalid');
+                    isValid = false;
                 }
-
+                
+                // Validate confirm password
                 if (password !== confirmPassword) {
-                    alert('Passwords do not match');
+                    $('#confirmPassword').addClass('is-invalid');
+                    isValid = false;
+                }
+                
+                // Validate terms acceptance
+                if (!termsAccepted) {
+                    $('#terms').addClass('is-invalid');
+                    isValid = false;
+                }
+                
+                if (!isValid) {
+                    showRegisterAlert('danger', 'Please correct the errors in the form');
                     return;
                 }
-
+                
                 // Check if email already exists
                 const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
                 if (existingUsers.some(user => user.email === email)) {
-                    alert('Email already registered');
+                    $('#email').addClass('is-invalid');
+                    showRegisterAlert('danger', 'This email is already registered. Please use a different email or login.');
                     return;
                 }
-
-                // Create new user
-                const newUser = {
-                    fullName,
-                    email,
-                    phone,
-                    password: btoa(password) // Basic encoding (in real app, use proper hashing)
-                };
-
-                // Add user to storage
-                existingUsers.push(newUser);
-                localStorage.setItem('users', JSON.stringify(existingUsers));
-
-                // Remove auto login after registration
-                // localStorage.setItem('isLoggedIn', 'true');
-                // localStorage.setItem('userEmail', email);
-                // localStorage.setItem('userName', fullName);
-
-                alert('Registration successful! Redirecting to login page...');
-                window.location.href = 'login.html';
+                
+                // Show loading state
+                $('#registerButton .button-text').addClass('d-none');
+                $('#registerButton .spinner-border').removeClass('d-none');
+                $('#registerButton').prop('disabled', true);
+                
+                // Simulate a slight delay for better UX (remove in production with real API)
+                setTimeout(function() {
+                    // Create new user
+                    const newUser = {
+                        fullName,
+                        email,
+                        phone,
+                        password: btoa(password), // Basic encoding (in real app, use proper hashing)
+                        createdAt: new Date().toISOString(),
+                        wishlist: [],
+                        orders: []
+                    };
+                    
+                    // Add user to storage
+                    existingUsers.push(newUser);
+                    localStorage.setItem('users', JSON.stringify(existingUsers));
+                    
+                    showRegisterAlert('success', 'Registration successful! Redirecting to login page...');
+                    
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 1500);
+                }, 1000);
+            });
+            
+            // Password strength checker
+            $('#password').on('input', function() {
+                const password = $(this).val();
+                const hasMinLength = password.length >= 8;
+                const hasLetter = /[a-zA-Z]/.test(password);
+                const hasNumber = /\d/.test(password);
+                
+                let strength = 0;
+                if (hasMinLength) strength += 1;
+                if (hasLetter) strength += 1;
+                if (hasNumber) strength += 1;
+                
+                // Update password strength indicator (you can add a visual indicator here)
+                if (password.length > 0) {
+                    if (strength === 3) {
+                        $(this).removeClass('is-invalid').addClass('is-valid');
+                    } else {
+                        $(this).removeClass('is-valid');
+                    }
+                } else {
+                    $(this).removeClass('is-valid is-invalid');
+                }
+            });
+            
+            // Confirm password matcher
+            $('#confirmPassword').on('input', function() {
+                const password = $('#password').val();
+                const confirmPassword = $(this).val();
+                
+                if (confirmPassword.length > 0) {
+                    if (password === confirmPassword) {
+                        $(this).removeClass('is-invalid').addClass('is-valid');
+                    } else {
+                        $(this).removeClass('is-valid').addClass('is-invalid');
+                    }
+                } else {
+                    $(this).removeClass('is-valid is-invalid');
+                }
             });
 
+            // Helper functions
+            function showRegisterAlert(type, message) {
+                const alertBox = $('#registerAlert');
+                alertBox.removeClass('d-none alert-danger alert-success alert-warning')
+                       .addClass('alert-' + type)
+                       .html(message);
+            }
+            
             // Email validation helper function
             function isValidEmail(email) {
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -610,4 +804,4 @@
         });
     </script>
 </body>
-</html> 
+</html>

@@ -12499,16 +12499,7 @@ table.woocommerce-product-attributes {
   position: relative;
 }
 
-.summary-content .quantity:after,
-.product-about .quantity:after {
-  content: '';
-  height: 100%;
-  width: 1px;
-  background-color: var(--th-border-color);
-  position: absolute;
-  top: 0;
-  left: 55px;
-}
+/* Middle line removed for cleaner design */
 
 .summary-content .quantity .qty-input,
 .product-about .quantity .qty-input {

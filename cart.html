@@ -38,8 +38,69 @@
     <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Enhanced Notification Styles -->
+    <link rel="stylesheet" href="assets/css/notification-styles.css">
 <!-- Add this in the head section of all HTML files -->
 <style>
+     /* Mini cart buttons styling */
+     .woocommerce-mini-cart__buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .woocommerce-mini-cart__buttons .th-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 0;
+            padding: 12px 20px;
+            text-align: center;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        /* View Cart button */
+        .woocommerce-mini-cart__buttons .wc-forward:not(.checkout):not(.wishlist-btn) {
+            background-color: #f8f9fa;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        
+        /* Checkout button */
+        .woocommerce-mini-cart__buttons .checkout {
+            background-color: #1e6f5c;
+            color: #fff;
+            border: 1px solid #1e6f5c;
+        }
+        
+        /* Wishlist button */
+        .woocommerce-mini-cart__buttons .wishlist-btn {
+            background-color: #fff;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        
+        .woocommerce-mini-cart__buttons .th-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .woocommerce-mini-cart__buttons .wishlist-btn:hover {
+            color: #ff6b6b;
+        }
+        
+        .woocommerce-mini-cart__buttons .th-btn i {
+            margin-right: 5px;
+        }
+        
+        .woocommerce-mini-cart__buttons .wishlist-btn i {
+            color: #ff6b6b;
+        }
+    
     .logo-gradient {
       display: inline-flex;
       align-items: center;
@@ -117,7 +178,8 @@
                         <span class="woocommerce-Price-currencySymbol">$</span>0.00</span>
                 </p>
                 <p class="woocommerce-mini-cart__buttons buttons">
-                    <a href="cart.html" class="th-btn wc-forward">View cart</a>
+                    <a href="wishlist.html" class="th-btn wishlist-btn"><i class="far fa-heart"></i> View Wishlist</a>
+                    <a href="cart.html" class="th-btn wc-forward">View Cart</a>
                     <a href="checkout.html" class="th-btn checkout wc-forward">Checkout</a>
                 </p>
             </div>
@@ -220,7 +282,7 @@
     <!--==============================
     Breadcumb
 ============================== -->
-    <div class="breadcumb-wrapper " data-bg-src="assets/img/bg/breadcumb-bg.jpg" data-overlay="theme">
+    <div class="breadcumb-wrapper "  data-overlay="theme">
         <div class="container">
             <div class="breadcumb-content">
                 <h1 class="breadcumb-title">Cart Page</h1>
@@ -235,9 +297,6 @@ Cart Area
 ==============================-->
     <div class="th-cart-wrapper  space-top space-extra-bottom">
         <div class="container">
-            <div class="woocommerce-notices-wrapper">
-                <div class="woocommerce-message">Shipping costs updated.</div>
-            </div>
             <form action="#" class="woocommerce-cart-form">
                 <table class="cart_table">
                     <thead>
@@ -294,36 +353,6 @@ Cart Area
                                     <p class="woocommerce-shipping-destination">
                                         Shipping options will be updated during checkout.
                                     </p>
-                                    <form action="#" method="post">
-                                        <a href="#" class="shipping-calculator-button">Change address</a>
-                                        <div class="shipping-calculator-form">
-                                            <p class="form-row">
-                                                <select class="form-select">
-                                                    <option value="AR">Argentina</option>
-                                                    <option value="AM">Armenia</option>
-                                                    <option value="BD" selected="selected">Bangladesh</option>
-                                                </select>
-                                            </p>
-                                            <p>
-                                                <select class="form-select">
-                                                    <option value="">Select an option…</option>
-                                                    <option value="BD-05">Bagerhat</option>
-                                                    <option value="BD-01">Bandarban</option>
-                                                    <option value="BD-02">Barguna</option>
-                                                    <option value="BD-06">Barishal</option>
-                                                </select>
-                                            </p>
-                                            <p class="form-row">
-                                                <input type="text" class="form-control" placeholder="Town / City">
-                                            </p>
-                                            <p class="form-row">
-                                                <input type="text" class="form-control" placeholder="Postcode / ZIP">
-                                            </p>
-                                            <p>
-                                                <button class="th-btn">Update</button>
-                                            </p>
-                                        </div>
-                                    </form>
                                 </td>
                             </tr>
                         </tbody>
@@ -455,7 +484,17 @@ Cart Area
 
     <!-- Main Js File -->
     <script src="assets/js/main.js"></script>
+    
+    <!-- Notification System Script -->
+    <script src="assets/js/notification-system.js"></script>
+    
+    <!-- Authentication System -->
+    <script src="assets/js/auth.js"></script>
+    
+    <!-- Cart Scripts -->
     <script src="assets/js/cart.js"></script>
+    <!-- Cart Synchronization Script -->
+    <script src="assets/js/cart-sync.js"></script>
 </body>
 
 </html>

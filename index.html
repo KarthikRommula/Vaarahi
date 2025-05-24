@@ -40,10 +40,165 @@
     <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Enhanced Notification Styles -->
+    <link rel="stylesheet" href="assets/css/notification-styles.css">
 
 </head>
 <style>
-      .logo-gradient {
+    /* Modern Slider Styles */
+    .carousel-fade .carousel-item {
+        opacity: 0;
+        transition: opacity 0.6s ease-in-out;
+    }
+    
+    .carousel-fade .carousel-item.active {
+        opacity: 1;
+    }
+    
+    .carousel-progress-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: rgba(255, 255, 255, 0.3);
+        z-index: 10;
+    }
+    
+    .carousel-progress-bar .progress-indicator {
+        height: 100%;
+        width: 0;
+        background: linear-gradient(90deg, #FFAC00, #FFD700);
+        transition: width 0.1s linear;
+    }
+    
+    .modern-indicators {
+        bottom: 20px;
+    }
+    
+    .modern-indicators button {
+        width: 12px !important;
+        height: 12px !important;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5) !important;
+        border: none !important;
+        margin: 0 5px !important;
+        transition: all 0.3s ease;
+    }
+    
+    .modern-indicators button.active {
+        width: 30px !important;
+        border-radius: 10px !important;
+        background-color: #FFAC00 !important;
+    }
+    
+    .enhanced-control {
+        width: 45px;
+        height: 45px;
+        background: linear-gradient(135deg, #FFAC00, #FFD700);
+        border-radius: 8px;
+        opacity: 0;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    .carousel-control-prev.enhanced-control {
+        left: 15px;
+    }
+    
+    .carousel-control-next.enhanced-control {
+        right: 15px;
+    }
+    
+    #heroImageSlider:hover .enhanced-control {
+        opacity: 0.9;
+    }
+    
+    .enhanced-control:hover {
+        background: linear-gradient(135deg, #FFD700, #FFAC00);
+        opacity: 1 !important;
+        transform: translateY(-50%) scale(1.1);
+    }
+    
+    .enhanced-control-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #333;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    
+    .image-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .modern-slide-image {
+        transition: all 1.2s cubic-bezier(0.33, 1, 0.68, 1);
+        filter: brightness(1) contrast(1);
+    }
+    
+    .carousel-item.active .modern-slide-image {
+        transform: scale(1.08);
+        filter: brightness(1.05) contrast(1.05) saturate(1.1);
+    }
+    
+    /* Add a subtle overlay effect */
+    .image-container::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(255, 172, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+        opacity: 0;
+        transition: opacity 0.8s ease;
+        pointer-events: none;
+    }
+    
+    .carousel-item.active .image-container::after {
+        opacity: 1;
+    }
+    
+
+    
+    /* Cart and Wishlist Styles */
+    .woocommerce-mini-cart__buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .th-btn.wishlist {
+        background: linear-gradient(to right, #f8f9fa, #e9ecef);
+        color: #333;
+        border: 1px solid #dee2e6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+    
+    .th-btn.wishlist:hover {
+        background: linear-gradient(to right, #e9ecef, #dee2e6);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .th-btn.wishlist .badge {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+    }
+    
+    /* Logo Gradient Styles */
+    .logo-gradient {
         display: inline-flex;
         align-items: center;
         text-decoration: none;
@@ -84,6 +239,126 @@
     
     .logo-gradient:hover::before {
         transform: rotate(0deg) scale(1.1);
+    }
+    
+    /* User Menu Styles */
+    .user-menu-btn {
+        display: flex;
+        align-items: center;
+        padding: 8px 16px;
+        border-radius: 50px;
+        background: linear-gradient(135deg, #FFAC00, #FFD700);
+        color: black;
+        font-weight: 900;
+        font-size: 16px;
+        box-shadow: 0 4px 10px rgba(255, 172, 0, 0.2);
+        transition: all 0.3s ease;
+    }
+    
+    .user-menu-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(255, 172, 0, 0.3);
+    }
+    
+    .user-menu-btn:after {
+        margin-left: 8px;
+        vertical-align: middle;
+    }
+    
+    .user-avatar-mini {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #FFAC00;
+        font-size: 18px;
+        margin-right: 8px;
+    }
+    
+    .user-dropdown-menu {
+        margin-top: 10px;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        padding: 8px 0;
+        min-width: 220px;
+        animation: dropdownFadeIn 0.3s ease;
+    }
+    
+    @keyframes dropdownFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .dropdown-header {
+        color: #888;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 8px 16px;
+    }
+    
+    .dropdown-item {
+        padding: 10px 16px;
+        font-size: 14px;
+        color: #333;
+        transition: all 0.2s ease;
+        width: 100%;
+        display: block;
+        margin-left: 0 !important;
+    }
+    
+    .dropdown-item:hover {
+        background-color: rgba(255, 172, 0, 0.1);
+        width: 100%;
+    }
+    
+    .dropdown-item i {
+        width: 20px;
+        text-align: center;
+    }
+    
+    .dropdown-divider {
+        margin: 8px 0;
+        opacity: 0.1;
+    }
+    
+    .text-danger {
+        color: #dc3545 !important;
+    }
+    
+    /* Login/Register Button Enhancements */
+    .th-btn {
+        border-radius: 50px;
+        padding: 10px 20px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+    }
+    
+    .th-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .th-btn.style3 {
+        background-color: #fff;
+        color: #FFAC00;
+        border: 2px solid #FFAC00;
+    }
+    
+    .th-btn.style3:hover {
+        background-color: #FFAC00;
+        color: #fff;
     }
      /* Base styles */
      .sub-title {
@@ -214,29 +489,6 @@
     <!--********************************
    		Code Start From Here 
 	********************************-->
-    <div class="sidemenu-wrapper sidemenu-cart">
-        <div class="sidemenu-content">
-            <button class="closeButton sideMenuCls"><i class="far fa-times"></i></button>
-            <div class="widget woocommerce widget_shopping_cart">
-                <h3 class="widget_title">Shopping cart</h3>
-                <div class="widget_shopping_cart_content">
-                    <ul class="woocommerce-mini-cart cart_list product_list_widget">
-                        <!-- Cart items will be dynamically inserted here by cart.js -->
-                    </ul>
-                    <p class="woocommerce-mini-cart__total total">
-                        <strong>Subtotal:</strong>
-                        <span class="woocommerce-Price-amount amount">
-                            <span class="woocommerce-Price-currencySymbol">$</span>0.00</span>
-                    </p>
-                    <p class="woocommerce-mini-cart__buttons buttons">
-                        <a href="cart.html" class="th-btn wc-forward">View cart</a>
-                        <a href="checkout.html" class="th-btn checkout wc-forward">Checkout</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
     <div class="popup-search-box d-none d-lg-block">
         <button class="searchClose"><i class="far fa-times"></i></button>
         <form action="#">
@@ -273,7 +525,13 @@
                 <li>
                     <a href="contact.html">Contact</a>
                 </li>
-
+                <li class="menu-item-has-children">
+                    <a href="#">My Account</a>
+                    <ul class="sub-menu">
+                        <li><a href="cart.html">Cart <span class="badge bg-primary ms-2">0</span></a></li>
+                        <li><a href="profile.html">My Profile</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
@@ -313,31 +571,55 @@
 
                             </ul>
                         </nav>
-                        <p class="header-notice"><img class="me-1" src="assets/img/icon/heart-icon.svg" alt="img">Are
-                            you ready to buy products? Let’s become buyer</p>
+                        <p class="header-notice" ><img class="me-1" src="assets/img/icon/heart-icon.svg" alt="img">Are you ready to buy products? Let's become buyer</p>
                     </div>
                     <div class="header-button">
                         <button type="button" class="icon-btn th-menu-toggle d-lg-none"><i
                                 class="far fa-bars"></i></button>
                     </div>
                     <div class="header-button">
-                        <button type="button" class="icon-btn style2 searchBoxToggler d-lg-block d-none"><i
+                        <button type="button" class="icon-btn style2 searchBoxToggler d-lg-block d-none" style="margin-left: 20px;"><i
                                 class="far fa-search"></i></button>
-                        <button type="button" class="icon-btn sideMenuToggler">
-                            <span class="badge">0</span>
-                            <i class="fa-regular fa-cart-shopping"></i>
-                        </button>
+
+                        <div class="d-none d-lg-flex ms-3">
+                            <a href="login.html" class="th-btn me-2" id="loginBtn">
+                                <i class="far fa-sign-in me-1"></i> Login
+                            </a>
+                            <a href="register.html" class="th-btn style3" id="registerBtn">
+                                <i class="far fa-user-plus me-1"></i> Register
+                            </a>
+                            <div class="dropdown d-none" id="userDropdown">
+                                <button class="th-btn dropdown-toggle user-menu-btn" type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <div class="user-avatar-mini me-2">
+                                        <i class="far fa-user"></i>
+                                    </div>
+                                    <span id="userNameDisplay"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end user-dropdown-menu" aria-labelledby="userMenuButton">
+                                    <li class="dropdown-header">My Account</li>
+                                    <li><a class="dropdown-item" href="profile.html">
+                                        <i class="far fa-user-circle me-2" style="margin-left: -50px;"></i><span >My Profile</span>
+                                    </a></li>
+                                    <li><a class="dropdown-item" href="cart.html">
+                                        <i class="far fa-shopping-cart me-2" style="margin-left: -65px;"></i><span >My Cart</span>
+                                    </a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-danger" href="#" id="logoutBtn">
+                                        <i class="far fa-sign-out me-2"></i> Logout
+                                    </a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-
     <!--==============================
 Hero Area
 ==============================-->
-    <div class="th-hero-wrapper hero-2" id="hero" data-bg-src="assets/img/hero/hero_bg_2_1.png" data-overlay="gray">
+    <div class="th-hero-wrapper hero-2" id="hero" data-overlay="gray">
         <div class="shape-mockup hero-shape-2-1 jump" data-top="14%" data-left="5%">
             <div class="color-masking">
                 <div class="masking-src" data-mask-src="assets/img/hero/hero-bg-shape2-1.png"></div>
@@ -381,34 +663,58 @@ Hero Area
             <div class="row gx-4 align-items-center flex-row-reverse">
                 <div class="col-lg-6">
                     <div class="hero-2-img">
-                        <!-- Carousel slider -->
-                        <div id="heroImageSlider" class="carousel slide shadow-lg" data-bs-ride="carousel">
-                            <div class="carousel-indicators">
+                        <!-- Modern Carousel slider -->
+                        <div id="heroImageSlider" class="carousel slide carousel-fade shadow-lg" data-bs-ride="carousel">
+                            <!-- Progress bar for active slide -->
+                            <div class="carousel-progress-bar">
+                                <div class="progress-indicator"></div>
+                            </div>
+                            
+                            <!-- Modern indicators -->
+                            <div class="carousel-indicators modern-indicators">
                                 <button type="button" data-bs-target="#heroImageSlider" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                                 <button type="button" data-bs-target="#heroImageSlider" data-bs-slide-to="1" aria-label="Slide 2"></button>
                                 <button type="button" data-bs-target="#heroImageSlider" data-bs-slide-to="2" aria-label="Slide 3"></button>
                                 <button type="button" data-bs-target="#heroImageSlider" data-bs-slide-to="3" aria-label="Slide 4"></button>
                             </div>
-                            <div class="carousel-inner rounded">
+                            
+                            <div class="carousel-inner rounded-lg overflow-hidden">
                                 <div class="carousel-item active">
-                                    <img src="assets/img/slider_img/Lead-01-_DSC0950.jpg" alt="Craftsmen 1" class="img-fluid hover-zoom">
+                                    <div class="image-container">
+                                        <img src="assets/img/slider_img/Lead-01-_DSC0950.jpg" alt="Craftsmen 1" class="img-fluid modern-slide-image">
+
+                                    </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="assets/img/slider_img/Lead-01-_DSC0950.jpg" alt="Craftsmen 2" class="img-fluid hover-zoom">
+                                    <div class="image-container">
+                                        <img src="assets/img/slider_img/Lead-01-_DSC0950.jpg" alt="Craftsmen 2" class="img-fluid modern-slide-image">
+
+                                    </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="assets/img/slider_img/Lead-01-_DSC0950.jpg" alt="Craftsmen 3" class="img-fluid hover-zoom">
+                                    <div class="image-container">
+                                        <img src="assets/img/slider_img/Lead-01-_DSC0950.jpg" alt="Craftsmen 3" class="img-fluid modern-slide-image">
+
+                                    </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="assets/img/slider_img/Lead-01-_DSC0950.jpg" alt="Craftsmen 4" class="img-fluid hover-zoom">
+                                    <div class="image-container">
+                                        <img src="assets/img/slider_img/Lead-01-_DSC0950.jpg" alt="Craftsmen 4" class="img-fluid modern-slide-image">
+
+                                    </div>
                                 </div>
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#heroImageSlider" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <!-- Enhanced modern navigation controls -->
+                            <button class="carousel-control-prev enhanced-control" type="button" data-bs-target="#heroImageSlider" data-bs-slide="prev">
+                                <span class="enhanced-control-icon">
+                                    <i class="fas fa-arrow-left"></i>
+                                </span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#heroImageSlider" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <button class="carousel-control-next enhanced-control" type="button" data-bs-target="#heroImageSlider" data-bs-slide="next">
+                                <span class="enhanced-control-icon">
+                                    <i class="fas fa-arrow-right"></i>
+                                </span>
                                 <span class="visually-hidden">Next</span>
                             </button>
                         </div>
@@ -426,6 +732,127 @@ Hero Area
                 </div>
             </div>
         </div>
+    </div>
+
+    <!--==============================
+    Featured Products Section
+    ==============================-->
+    <section class="space-top space-extra-bottom">
+        <div class="container">
+            <div class="title-area text-center">
+                <span class="sub-title">Our Collection</span>
+                <h2 class="sec-title">Featured Products</h2>
+            </div>
+            <div class="row">
+                <!-- Featured Product 1 - Medicine -->
+                <div class="col-sm-6 col-lg-3">
+                    <div class="th-product product-grid">
+                        <div class="product-img">
+                            <img src="assets/img/product/product_1_1.png" alt="Medicine">
+                            <span class="product-tag">Hot</span>
+                            <!-- Cart button removed -->
+                        </div>
+                        <div class="product-content">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(5.0)</span>
+                            </div>
+                            <h3 class="product-title"><a href="shop-details.html?id=medicine">Medicine</a></h3>
+                            <div class="product-price">
+                                <span class="price">$177.85</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Featured Product 2 - Chair-2 -->
+                <div class="col-sm-6 col-lg-3">
+                    <div class="th-product product-grid">
+                        <div class="product-img">
+                            <img src="assets/img/product/product_1_5.png" alt="Chair-2">
+                            <span class="product-tag">New</span>
+                            <!-- Cart button removed -->
+                        </div>
+                        <div class="product-content">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(5.0)</span>
+                            </div>
+                            <h3 class="product-title"><a href="shop-details.html?id=chair-2">Chair</a></h3>
+                            <div class="product-price">
+                                <span class="price">$32.85</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Featured Product 3 - Books -->
+                <div class="col-sm-6 col-lg-3">
+                    <div class="th-product product-grid">
+                        <div class="product-img">
+                            <img src="assets/img/product/product_1_3.png" alt="Books">
+                            <span class="product-tag">Hot</span>
+                            <!-- Cart button removed -->
+                        </div>
+                        <div class="product-content">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(5.0)</span>
+                            </div>
+                            <h3 class="product-title"><a href="shop-details.html?id=books">Books</a></h3>
+                            <div class="product-price">
+                                <span class="price">$96.85</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Featured Product 4 - Chair -->
+                <div class="col-sm-6 col-lg-3">
+                    <div class="th-product product-grid">
+                        <div class="product-img">
+                            <img src="assets/img/product/product_1_4.png" alt="Chair">
+                            <span class="product-tag">Sale</span>
+                            <!-- Cart button removed -->
+                        </div>
+                        <div class="product-content">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(5.0)</span>
+                            </div>
+                            <h3 class="product-title"><a href="shop-details.html?id=chair">Chair</a></h3>
+                            <div class="product-price">
+                                <span class="price">$08.85</span><del>$06.99</del>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="products.html" class="th-btn">View All Products <i class="fas fa-arrow-right ms-2"></i></a>
+            </div>
+        </div>
+    </section>
+    
+
+    
     <!--==============================
 Event Area  
 ==============================-->
@@ -584,9 +1011,114 @@ Event Area
     <!-- Main Js File -->
     <script src="assets/js/main.js"></script>
     <script src="assets/js/cart.js"></script>
+    <script src="assets/js/auth.js"></script>
 
     <script src="assets/js/search.js"></script>
+    
+    <script src="assets/js/product-actions.js"></script>
+    
+    <script src="assets/js/enhanced-ui.js"></script>
+    
+    <!-- Quick View Modal -->
+    <div class="modal fade" id="quickViewModal" tabindex="-1" aria-labelledby="quickViewModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="quickViewModalLabel">Product Quick View</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="" alt="Product Image" class="img-fluid modal-product-image">
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="modal-product-title"></h3>
+                            <div class="product-rating modal-product-rating mb-3">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span></span>
+                            </div>
+                            <div class="product-price mb-4">
+                                <span class="price modal-product-price"></span>
+                            </div>
+                            <p class="product-description mb-4">
+                                This handcrafted product showcases the exceptional skill and artistry of our village craftsmen. Each piece is unique and made with sustainable materials.
+                            </p>
+                            <div class="product-quantity d-flex align-items-center mb-4">
+                                <label class="me-3">Quantity:</label>
+                                <div class="quantity-input">
+                                    <button type="button" class="quantity-minus">-</button>
+                                    <input type="number" class="form-control" value="1" min="1" max="10">
+                                    <button type="button" class="quantity-plus">+</button>
+                                </div>
+                            </div>
+                            <div class="product-actions d-flex">
+                                <button class="th-btn me-3 modal-add-to-cart" data-product-id="">Add to Cart</button>
+                                <a href="#" class="icon-btn modal-add-to-wishlist" data-product-id=""><i class="far fa-heart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Login Prompt Modal -->
+    <div class="modal fade" id="loginPromptModal" tabindex="-1" aria-labelledby="loginPromptModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginPromptModalLabel">Login Required</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="loginPromptMessage">Please log in to continue.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <a href="login.html" class="th-btn">Login Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- All JavaScript Files -->
+    <!-- jQuery -->    
+    <script src="assets/js/vendor/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap JS -->    
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- Slider Animation Script -->    
+    <script src="assets/js/slider-animation.js"></script>
+    <!-- Wishlist UI Update Script -->    
+    <script src="assets/js/update-wishlist-ui.js"></script>
+    <!-- Notification System -->    
+    <script src="assets/js/notification-system.js"></script>
+    <!-- Authentication Script -->    
+    <script src="assets/js/auth.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize auth system
+            auth.checkAuthState();
+            
+            // Initialize Bootstrap dropdowns
+            var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'));
+            var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+                return new bootstrap.Dropdown(dropdownToggleEl);
+            });
+            
+            // Add event listener to logout button
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    auth.handleLogout(e);
+                });
+            }
+        });
+    </script>
 </body>
-
-
 </html>

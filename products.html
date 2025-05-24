@@ -40,6 +40,9 @@
     <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+    <link rel="stylesheet" href="assets/css/notification-styles.css">
 <!-- Add this in the head section of all HTML files -->
 <style>
     .logo-gradient {
@@ -218,14 +221,10 @@ Product Lightbox
                             <li>
                                 <a href="contact.html">Contact</a>
                             </li>
-                            <li>
-                                <a href="wishlist.html"><i class="far fa-heart"></i></a>
-                            </li>
 
                         </ul>
                     </nav>
-                    <p class="header-notice"><img class="me-1" src="assets/img/icon/heart-icon.svg" alt="img">Are
-                        you ready to buy products? Let's become buyer</p>
+                    <p class="header-notice"><img class="me-1" src="assets/img/icon/heart-icon.svg" alt="img">Are you ready to buy products? Let's become buyer</p>
                 </div>
                 <div class="header-button">
                     <button type="button" class="icon-btn th-menu-toggle d-lg-none"><i
@@ -244,7 +243,7 @@ Product Lightbox
     <!--==============================
     Breadcumb
 ============================== -->
-    <div class="breadcumb-wrapper " data-bg-src="assets/img/bg/breadcumb-bg.jpg" data-overlay="theme">
+    <div class="breadcumb-wrapper " data-overlay="theme">
         <div class="container">
             <div class="breadcumb-content">
                 <h1 class="breadcumb-title">Products</h1>
@@ -263,7 +262,10 @@ Product Area
             <div class="th-sort-bar">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-md">
-                        <p class="woocommerce-result-count">Showing 1–12 of 16 results</p>
+                        <p class="woocommerce-result-count showing-product-number">Showing 1–12 of 16 results</p>
+                    </div>
+                    <div class="col-md-auto">
+                        <button id="refresh-products" class="th-btn style2">Refresh Products</button>
                     </div>
 
                     <div class="col-md-auto">
@@ -280,16 +282,19 @@ Product Area
                     </div>
                 </div>
             </div>
-            <div class="row gy-30 gx-30">
-
+            <div class="row gy-40" id="product-container">
+                <!-- Products will be loaded dynamically from product-data.js -->
+            </div>
+            
+            <!-- Hidden template for static fallback -->
+            <div style="display: none;" id="static-product-template">
                 <div class="col-xl-3 col-lg-4 col-sm-6">
                     <div class="th-product product-grid">
                         <div class="product-img">
                             <img src="assets/img/product/product_1_1.png" alt="Product Image">
                             <span class="product-tag">Hot</span>
                             <div class="actions">
-                                <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
+
                             </div>
                         </div>
                         <div class="product-content">
@@ -310,11 +315,7 @@ Product Area
                         <div class="product-img">
                             <img src="assets/img/product/product_1_2.png" alt="Product Image">
                             <span class="product-tag">New</span>
-                            <div class="actions">
-                                <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                <a href="#" class="icon-btn add-to-cart-btn" data-product-id="dress" data-product-name="Dress" data-product-price="39.85" data-product-image="assets/img/product/product_1_2.png"><i class="far fa-cart-plus"></i></a>
-                                <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
-                            </div>
+
                         </div>
                         <div class="product-content">
                             <h3 class="product-title"><a href="shop-details.html?id=dress">Dress</a></h3>
@@ -335,8 +336,7 @@ Product Area
                             <img src="assets/img/product/product_1_3.png" alt="Product Image">
                             <span class="product-tag">Hot</span>
                             <div class="actions">
-                                <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
+
                             </div>
                         </div>
                         <div class="product-content">
@@ -359,8 +359,7 @@ Product Area
                             <img src="assets/img/product/product_1_4.png" alt="Product Image">
                             <span class="product-tag">Sale</span>
                             <div class="actions">
-                                <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
+
                             </div>
                         </div>
                         <div class="product-content">
@@ -383,8 +382,7 @@ Product Area
                             <img src="assets/img/product/product_1_5.png" alt="Product Image">
                             <span class="product-tag">New</span>
                             <div class="actions">
-                                <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
+
                             </div>
                         </div>
                         <div class="product-content">
@@ -407,8 +405,7 @@ Product Area
                             <img src="assets/img/product/product_1_6.png" alt="Product Image">
                             <span class="product-tag">Hot</span>
                             <div class="actions">
-                                <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
+
                             </div>
                         </div>
                         <div class="product-content">
@@ -431,8 +428,7 @@ Product Area
                             <img src="assets/img/product/product_1_7.png" alt="Product Image">
                             <span class="product-tag">New</span>
                             <div class="actions">
-                                <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
+
                             </div>
                         </div>
                         <div class="product-content">
@@ -455,8 +451,7 @@ Product Area
                             <img src="assets/img/product/product_1_8.png" alt="Product Image">
                             <span class="product-tag">Hot</span>
                             <div class="actions">
-                                <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
+
                             </div>
                         </div>
                         <div class="product-content">
@@ -479,8 +474,7 @@ Product Area
                             <img src="assets/img/product/product_1_9.png" alt="Product Image">
                             <span class="product-tag">New</span>
                             <div class="actions">
-                                <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
+
                             </div>
                         </div>
                         <div class="product-content">
@@ -503,8 +497,7 @@ Product Area
                             <img src="assets/img/product/product_1_10.png" alt="Product Image">
                             <span class="product-tag">Hot</span>
                             <div class="actions">
-                                <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
+
                             </div>
                         </div>
                         <div class="product-content">
@@ -527,8 +520,7 @@ Product Area
                             <img src="assets/img/product/product_1_11.png" alt="Product Image">
                             <span class="product-tag">New</span>
                             <div class="actions">
-                                <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
+
                             </div>
                         </div>
                         <div class="product-content">
@@ -551,8 +543,7 @@ Product Area
                             <img src="assets/img/product/product_1_12.png" alt="Product Image">
                             <span class="product-tag">Hot</span>
                             <div class="actions">
-                                <a href="#QuickView" class="icon-btn popup-content"><i class="far fa-eye"></i></a>
-                                <a href="javascript:void(0)" class="icon-btn add-to-wishlist-btn"><i class="far fa-heart"></i></a>
+
                             </div>
                         </div>
                         <div class="product-content">
@@ -569,6 +560,8 @@ Product Area
                 </div>
 
             </div>
+            </div> <!-- End of static product template -->
+            
             <div class="th-pagination text-center pt-50">
                 <ul>    
                     <li><a href="products.html"><i class="fas fa-arrow-left"></i></a></li>
@@ -696,8 +689,14 @@ All Js File
 <script src="assets/js/main.js"></script>
 <script src="assets/js/cart.js"></script>
 <script src="assets/js/product-sort.js"></script>
+<!-- Centralized Product Data -->
+<script src="assets/js/product-data.js"></script>
+<!-- Centralized Notification System -->
+<script src="assets/js/notification-system.js"></script>
+<script src="assets/js/auth.js"></script>
 <script src="assets/js/update-product-links.js"></script>
 <script src="assets/js/dynamic-content.js"></script>
+<script src="assets/js/search.js"></script>
 <script>
 // Fix for Add to Cart functionality in products.html
 document.addEventListener('DOMContentLoaded', function() {
@@ -1138,7 +1137,7 @@ document.addEventListener('DOMContentLoaded', function() {
             showMessage(`"${productName}" has been added to your wishlist.`);
         } else {
             // Show already exists message
-            showMessage(`"${productName}" is already in your wishlist.`);
+            showMessage(`"${productName}" has been added to your wishlist.`);
         }
     }
 
@@ -1176,6 +1175,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // as they are already handled by the existing cart.js file
     });
 </script>
+
+
 
 </body>
 </html>

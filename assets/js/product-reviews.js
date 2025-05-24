@@ -82,9 +82,6 @@ function displayReviews() {
         const reviewHtml = `
             <li class="review th-comment-item">
                 <div class="th-post-comment">
-                    <div class="comment-avater">
-                        <img src="assets/img/blog/comment-author-${Math.floor(Math.random() * 4) + 1}.jpg" alt="Comment Author">
-                    </div>
                     <div class="comment-content">
                         <h4 class="name">${review.name}</h4>
                         <span class="commented-on"><i class="far fa-calendar"></i>${review.date}</span>
@@ -520,71 +517,53 @@ function enhanceReviewFormUI(reviewForm) {
 
 // Helper function to show notifications
 function showNotification(message, type = 'success') {
-    // Check if notification container exists, if not create it
-    let notificationContainer = document.querySelector('.notification-container');
-    if (!notificationContainer) {
-        notificationContainer = document.createElement('div');
-        notificationContainer.className = 'notification-container';
-        document.body.appendChild(notificationContainer);
-        
-        // Add styles
-        const style = document.createElement('style');
-        style.textContent = `
-            .notification-container {
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                z-index: 9999;
-            }
-            .notification {
-                padding: 15px 20px;
-                margin-bottom: 10px;
-                border-radius: 4px;
-                color: white;
-                font-weight: bold;
-                opacity: 0;
-                transform: translateX(50px);
-                transition: all 0.5s ease;
-                display: flex;
-                align-items: center;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            }
-            .notification.show {
-                opacity: 1;
-                transform: translateX(0);
-            }
-            .notification.success {
-                background-color: #4CAF50;
-            }
-            .notification.error {
-                background-color: #F44336;
-            }
-            .notification.warning {
-                background-color: #FF9800;
-            }
-        `;
-        document.head.appendChild(style);
+    // Create a unique notification ID for reviews
+    const notificationId = 'review-notification';
+    
+    // Create notification element if it doesn't exist
+    if (!document.getElementById(notificationId)) {
+        const notification = document.createElement('div');
+        notification.id = notificationId;
+        notification.className = 'th-notification';
+        document.body.appendChild(notification);
     }
     
-    // Create notification
-    const notification = document.createElement('div');
-    notification.className = `notification ${type}`;
-    notification.textContent = message;
+    // Clear any existing timeout to prevent premature hiding
+    if (window.reviewNotificationTimeout) {
+        clearTimeout(window.reviewNotificationTimeout);
+    }
     
-    // Add to container
-    notificationContainer.appendChild(notification);
+    // Update notification message and show it
+    const notification = document.getElementById(notificationId);
     
-    // Show notification
+    // Clear any previous content and classes
+    notification.innerHTML = '';
+    notification.className = 'th-notification';
+    
+    // Add the message text node
+    const messageText = document.createTextNode(message);
+    notification.appendChild(messageText);
+    
+    // Set class based on notification type
+    notification.classList.add(type);
+    
+    // Show notification with animation
+    notification.style.display = 'flex';
+    notification.style.opacity = '0';
+    notification.style.transform = 'translateY(20px)';
+    
     setTimeout(() => {
-        notification.classList.add('show');
+        notification.style.opacity = '1';
+        notification.style.transform = 'translateY(0)';
     }, 10);
     
-    // Remove after 3 seconds
-    setTimeout(() => {
-        notification.classList.remove('show');
+    // Hide notification after 3 seconds
+    window.reviewNotificationTimeout = setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateY(20px)';
         setTimeout(() => {
-            notification.remove();
-        }, 500);
+            notification.style.display = 'none';
+        }, 300);
     }, 3000);
 }
 

@@ -3,6 +3,7 @@
 // Cart items storage in localStorage
 let cartItems = [];
 let cartTotal = 0;
+let appliedCoupon = null; // Track applied coupon code
 
 // Safely parse cart items from localStorage
 try {
@@ -11,6 +12,12 @@ try {
         cartItems = JSON.parse(storedCart) || [];
         // Filter out any invalid items
         cartItems = cartItems.filter(item => item && typeof item === 'object');
+    }
+    
+    // Load any previously applied coupon
+    const storedCoupon = localStorage.getItem('vaarahiCoupon');
+    if (storedCoupon) {
+        appliedCoupon = JSON.parse(storedCoupon);
     }
 } catch (e) {
     console.error('Error loading cart from localStorage:', e);
@@ -90,16 +97,72 @@ function calculateCartTotal() {
     // Filter out any undefined or null items
     cartItems = cartItems.filter(item => item !== null && item !== undefined);
     
-    cartTotal = cartItems.reduce((total, item) => {
+    // Calculate subtotal from all items
+    const subtotal = cartItems.reduce((total, item) => {
         const price = parseFloat(item.price) || 0;
         const quantity = parseInt(item.quantity) || 0;
         return total + (price * quantity);
     }, 0);
     
+    // Apply coupon discount if valid
+    if (appliedCoupon && appliedCoupon.code === 'VAARAHI') {
+        // Apply 10% discount
+        const discountAmount = subtotal * 0.1;
+        cartTotal = subtotal - discountAmount;
+    } else {
+        cartTotal = subtotal;
+    }
+    
     // Save updated cart to localStorage
     localStorage.setItem('vaarahiCart', JSON.stringify(cartItems));
     
+    // Save applied coupon to localStorage
+    if (appliedCoupon) {
+        localStorage.setItem('vaarahiCoupon', JSON.stringify(appliedCoupon));
+    } else {
+        localStorage.removeItem('vaarahiCoupon');
+    }
+    
     return cartTotal;
+}
+
+// Apply coupon code
+function applyCoupon(code) {
+    if (!code) {
+        showNotification('Please enter a coupon code', 'warning');
+        return false;
+    }
+    
+    // Check if the code is valid (VAARAHI for 10% discount)
+    if (code.toUpperCase() === 'VAARAHI') {
+        appliedCoupon = {
+            code: 'VAARAHI',
+            discount: 0.1, // 10% discount
+            discountType: 'percentage'
+        };
+        
+        // Recalculate cart total with the discount
+        calculateCartTotal();
+        updateCartDisplay();
+        
+        showNotification('Coupon applied successfully! You got 10% off.', 'success');
+        return true;
+    } else {
+        showNotification('Invalid coupon code', 'error');
+        return false;
+    }
+}
+
+// Remove applied coupon
+function removeCoupon() {
+    appliedCoupon = null;
+    localStorage.removeItem('vaarahiCoupon');
+    
+    // Recalculate cart total without the discount
+    calculateCartTotal();
+    updateCartDisplay();
+    
+    showNotification('Coupon removed', 'info');
 }
 
 // Update the mini cart in the sidebar
@@ -167,6 +230,12 @@ function updateCartPage() {
     const cartTable = document.querySelector('.woocommerce-cart-form .cart_table tbody');
     if (!cartTable) return;
     
+    // Save focus state before updating
+    const activeElement = document.activeElement;
+    const isCouponInputFocused = activeElement && activeElement.classList.contains('form-control') && 
+                               activeElement.closest('.th-cart-coupon');
+    const couponInputValue = isCouponInputFocused ? activeElement.value : '';
+    
     // Clear current items (except the last row with actions)
     const lastRow = cartTable.querySelector('tr:last-child');
     cartTable.innerHTML = '';
@@ -230,12 +299,80 @@ function updateCartPage() {
         cartTable.appendChild(lastRow);
     }
     
+    // Calculate subtotal (before discount)
+    const subtotal = cartItems.reduce((total, item) => {
+        const price = parseFloat(item.price) || 0;
+        const quantity = parseInt(item.quantity) || 0;
+        return total + (price * quantity);
+    }, 0);
+    
     // Update cart totals
-    const subtotalAmount = document.querySelector('.cart_totals tbody .amount');
+    const subtotalAmount = document.querySelector('.cart_totals tbody tr:first-child .amount');
     const orderTotalAmount = document.querySelector('.cart_totals tfoot .amount');
     
-    if (subtotalAmount) subtotalAmount.innerHTML = `<bdi><span>$</span>${cartTotal.toFixed(2)}</bdi>`;
+    if (subtotalAmount) subtotalAmount.innerHTML = `<bdi><span>$</span>${subtotal.toFixed(2)}</bdi>`;
+    
+    // Add discount row if coupon is applied
+    if (appliedCoupon) {
+        const discountAmount = subtotal * appliedCoupon.discount;
+        let discountRow = document.querySelector('.cart_totals tr.discount');
+        
+        if (!discountRow) {
+            // Create new discount row
+            discountRow = document.createElement('tr');
+            discountRow.className = 'discount';
+            discountRow.innerHTML = `
+                <th>Discount (${appliedCoupon.code})</th>
+                <td data-title="Discount">
+                    <span class="amount"><bdi><span>-$</span>${discountAmount.toFixed(2)}</bdi></span>
+                    <a href="#" class="remove-coupon" title="Remove coupon"><i class="fal fa-times-circle ms-2"></i></a>
+                </td>
+            `;
+            
+            // Insert after subtotal row
+            const subtotalRow = document.querySelector('.cart_totals tbody tr:first-child');
+            if (subtotalRow && subtotalRow.parentNode) {
+                subtotalRow.parentNode.insertBefore(discountRow, subtotalRow.nextSibling);
+            }
+            
+            // Add event listener to remove coupon button
+            const removeCouponBtn = discountRow.querySelector('.remove-coupon');
+            if (removeCouponBtn) {
+                removeCouponBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    removeCoupon();
+                });
+            }
+        } else {
+            // Update existing discount row
+            const discountCell = discountRow.querySelector('.amount');
+            if (discountCell) {
+                discountCell.innerHTML = `<bdi><span>-$</span>${discountAmount.toFixed(2)}</bdi>`;
+            }
+        }
+    } else {
+        // Remove discount row if no coupon is applied
+        const discountRow = document.querySelector('.cart_totals tr.discount');
+        if (discountRow) {
+            discountRow.remove();
+        }
+    }
+    
     if (orderTotalAmount) orderTotalAmount.innerHTML = `<bdi><span>$</span>${cartTotal.toFixed(2)}</bdi>`;
+    
+    // Restore focus to coupon input if it was focused before
+    if (isCouponInputFocused) {
+        const couponInput = document.querySelector('.th-cart-coupon input');
+        if (couponInput) {
+            couponInput.focus();
+            couponInput.value = couponInputValue;
+            // Place cursor at the end of the input text
+            const inputLength = couponInputValue.length;
+            if (couponInput.setSelectionRange) {
+                couponInput.setSelectionRange(inputLength, inputLength);
+            }
+        }
+    }
 }
 
 // Update the checkout page if we're on it
@@ -279,19 +416,63 @@ function updateCheckoutPage() {
         tbody.appendChild(row);
     });
     
+    // Calculate subtotal (before discount)
+    const subtotal = cartItems.reduce((total, item) => {
+        const price = parseFloat(item.price) || 0;
+        const quantity = parseInt(item.quantity) || 0;
+        return total + (price * quantity);
+    }, 0);
+    
     // Update checkout totals
     const subtotalAmount = document.querySelector('.cart-subtotal .woocommerce-Price-amount');
     const orderTotalAmount = document.querySelector('.order-total .woocommerce-Price-amount');
+    const discountRow = document.querySelector('.coupon-discount');
     
-    if (subtotalAmount) subtotalAmount.innerHTML = `<bdi><span class="woocommerce-Price-currencySymbol">$</span>${cartTotal.toFixed(2)}</bdi>`;
+    // Update subtotal
+    if (subtotalAmount) subtotalAmount.innerHTML = `<bdi><span class="woocommerce-Price-currencySymbol">$</span>${subtotal.toFixed(2)}</bdi>`;
+    
+    // Handle discount display
+    if (appliedCoupon && appliedCoupon.code === 'VAARAHI') {
+        const discountAmount = subtotal * 0.1; // 10% discount
+        
+        // Show discount row
+        if (discountRow) {
+            discountRow.style.display = 'table-row';
+            const discountAmountEl = discountRow.querySelector('.discount-amount .woocommerce-Price-amount');
+            if (discountAmountEl) {
+                discountAmountEl.innerHTML = `<bdi><span class="woocommerce-Price-currencySymbol">$</span>${discountAmount.toFixed(2)}</bdi>`;
+            }
+        }
+    } else {
+        // Hide discount row if no coupon applied
+        if (discountRow) {
+            discountRow.style.display = 'none';
+        }
+    }
+    
+    // Update order total
     if (orderTotalAmount) orderTotalAmount.innerHTML = `<bdi><span class="woocommerce-Price-currencySymbol">$</span>${cartTotal.toFixed(2)}</bdi>`;
 }
 
-// Add an item to the cart
+// Add a product to the cart
 function addToCart(productData) {
     if (!productData || !productData.id) {
-        console.error('Invalid product data');
-        showNotification('Error adding product to cart', 'error');
+        console.error('Invalid product data:', productData);
+        return;
+    }
+    
+    // Check if user is authenticated before adding to cart
+    if (typeof window.auth !== 'undefined' && typeof window.auth.requireAuth === 'function') {
+        // If auth system is available, check authentication
+        if (!window.auth.requireAuth()) {
+            return; // requireAuth will handle notification and redirect
+        }
+    } else {
+        console.error('Authentication system not loaded properly');
+        // Redirect to login without showing notification (auth.js will handle that)
+        setTimeout(() => {
+            window.location.href = 'login.html';
+        }, 1500);
         return;
     }
     
@@ -370,54 +551,51 @@ function updateItemQuantity(index, quantity) {
 
 // Show notification
 function showNotification(message, type = 'success') {
+    // Create a unique notification ID for cart
+    const notificationId = 'cart-notification';
+    
     // Create notification element if it doesn't exist
-    if (!document.getElementById('cart-notification')) {
+    if (!document.getElementById(notificationId)) {
         const notification = document.createElement('div');
-        notification.id = 'cart-notification';
-        notification.style.position = 'fixed';
-        notification.style.bottom = '20px';
-        notification.style.right = '20px';
-        notification.style.color = 'white';
-        notification.style.padding = '15px 20px';
-        notification.style.borderRadius = '5px';
-        notification.style.zIndex = '9999'; // Higher z-index to ensure visibility
-        notification.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
-        notification.style.transition = 'all 0.3s ease';
-        notification.style.opacity = '0';
-        notification.style.transform = 'translateY(20px)';
-        notification.style.fontSize = '14px';
-        notification.style.fontWeight = 'bold';
+        notification.id = notificationId;
+        notification.className = 'th-notification';
         document.body.appendChild(notification);
     }
     
     // Clear any existing timeout to prevent premature hiding
-    if (window.notificationTimeout) {
-        clearTimeout(window.notificationTimeout);
+    if (window.cartNotificationTimeout) {
+        clearTimeout(window.cartNotificationTimeout);
     }
     
     // Update notification message and show it
-    const notification = document.getElementById('cart-notification');
-    notification.textContent = message;
+    const notification = document.getElementById(notificationId);
     
-    // Set color based on notification type
-    if (type === 'error') {
-        notification.style.backgroundColor = '#dc3545'; // Red for errors
-    } else if (type === 'warning') {
-        notification.style.backgroundColor = '#ffc107'; // Yellow for warnings
-        notification.style.color = '#212529'; // Darker text for visibility
-    } else {
-        notification.style.backgroundColor = '#28a745'; // Green for success
-    }
+    // Clear any previous content and classes
+    notification.innerHTML = '';
+    notification.className = 'th-notification';
+    
+    // Add icon based on notification type
+    // The icon will be added via CSS :before pseudo-element
+    
+    // Add the message text node
+    const messageText = document.createTextNode(message);
+    notification.appendChild(messageText);
+    
+    // Set class based on notification type
+    notification.classList.add(type);
     
     // Show notification with animation
-    notification.style.display = 'block';
+    notification.style.display = 'flex';
+    notification.style.opacity = '0';
+    notification.style.transform = 'translateY(20px)';
+    
     setTimeout(() => {
         notification.style.opacity = '1';
         notification.style.transform = 'translateY(0)';
     }, 10);
     
     // Hide notification after 3 seconds
-    window.notificationTimeout = setTimeout(() => {
+    window.cartNotificationTimeout = setTimeout(() => {
         notification.style.opacity = '0';
         notification.style.transform = 'translateY(20px)';
         setTimeout(() => {
@@ -680,6 +858,20 @@ function setupEventListeners() {
             calculateCartTotal(); // Calculate first
             updateCartDisplay(); // Then update display
             showNotification('Cart updated!');
+        });
+    }
+    
+    // Apply coupon button
+    const applyCouponBtn = document.querySelector('.th-cart-coupon .th-btn');
+    if (applyCouponBtn) {
+        applyCouponBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const couponInput = document.querySelector('.th-cart-coupon input');
+            if (couponInput && couponInput.value) {
+                applyCoupon(couponInput.value.trim());
+            } else {
+                showNotification('Please enter a coupon code', 'warning');
+            }
         });
     }
     

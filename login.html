@@ -268,7 +268,7 @@
                 </li>
 
                 <li>
-                    <a href="#">Pictures</a>
+                    <a href="pictures.html">Pictures</a>
                 </li>
                 <li>
                     <a href="contact.html">Contact</a>
@@ -316,14 +316,6 @@
                                 <li>
                                     <a href="contact.html">Contact</a>
                                 </li>
-                                <li>
-                                    <a href="login.html">Login</a>
-                                </li>
-                                <li>
-                                    <a href="register.html">Register</a>
-                                </li>
-
-
                             </ul>
                         </nav>
                         <p class="header-notice"><img class="me-1" src="assets/img/icon/heart-icon.svg" alt="img">Are
@@ -334,12 +326,38 @@
                                 class="far fa-bars"></i></button>
                     </div>
                     <div class="header-button">
-                        <button type="button" class="icon-btn style2 searchBoxToggler d-lg-block d-none"><i
+                        <button type="button" class="icon-btn style2 searchBoxToggler d-lg-block d-none" style="margin-left: 20px;"><i
                                 class="far fa-search"></i></button>
-                        <button type="button" class="icon-btn sideMenuToggler">
-                            <span class="badge">0</span>
-                            <i class="fa-regular fa-cart-shopping"></i>
-                        </button>
+                        <!-- Cart button removed -->
+                        <div class="d-none d-lg-flex ms-3">
+                            <a href="login.html" class="th-btn me-2" id="loginBtn">
+                                <i class="far fa-sign-in me-1"></i> Login
+                            </a>
+                            <a href="register.html" class="th-btn style3" id="registerBtn">
+                                <i class="far fa-user-plus me-1"></i> Register
+                            </a>
+                            <div class="dropdown d-none" id="userDropdown">
+                                <button class="th-btn dropdown-toggle user-menu-btn" type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <div class="user-avatar-mini me-2">
+                                        <i class="far fa-user"></i>
+                                    </div>
+                                    <span id="userNameDisplay"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end user-dropdown-menu" aria-labelledby="userMenuButton">
+                                    <li class="dropdown-header">My Account</li>
+                                    <li><a class="dropdown-item" href="profile.html">
+                                        <i class="far fa-user-circle me-2"></i><span>My Profile</span>
+                                    </a></li>
+                                    <li><a class="dropdown-item" href="wishlist.html">
+                                        <i class="far fa-heart me-2"></i><span>Wishlist</span>
+                                    </a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-danger" href="#" id="logoutBtn">
+                                        <i class="far fa-sign-out me-2"></i> Logout
+                                    </a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -347,7 +365,7 @@
     </header>
 
     <!-- Breadcrumb -->
-    <div class="breadcumb-wrapper" data-bg-src="assets/img/bg/breadcumb-bg.jpg" data-overlay="theme">
+    <div class="breadcumb-wrapper" data-overlay="theme">
         <div class="container">
             <div class="breadcumb-content">
                 <h1 class="breadcumb-title">Login</h1>
@@ -366,24 +384,35 @@
                 <div class="card shadow">
                     <div class="card-body p-5">
                         <h2 class="text-center mb-4">Welcome Back</h2>
-                        <form id="loginForm">
-                            <div class="form-group mb-3">
-                                <label for="loginEmail">Email Address</label>
-                                <input type="email" class="form-control" id="loginEmail" required>
+                        <form id="loginForm" class="login-form">
+                            <div id="loginAlert" class="alert d-none mb-3"></div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                                <div class="invalid-feedback">Please enter a valid email address</div>
                             </div>
-                            <div class="form-group mb-3">
-                                <label for="loginPassword">Password</label>
-                                <input type="password" class="form-control" id="loginPassword" required>
-                            </div>
-                            <div class="form-group mb-3 d-flex justify-content-between align-items-center">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="remembermylogin">
-                                    <label class="form-check-label" for="remembermylogin">Remember Me</label>
+                            <div class="form-group mt-3">
+                                <label for="password">Password</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                                    <button class="btn btn-outline-secondary toggle-password" type="button" tabindex="-1">
+                                        <i class="far fa-eye"></i>
+                                    </button>
                                 </div>
-                                <a href="#" id="forgotPassword" class="text-primary">Forgot Password?</a>
+                                <div class="invalid-feedback">Please enter your password</div>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100">Login</button>
-                            <p class="text-center mt-3">Don't have an account? <a href="register.html">Sign Up</a></p>
+                            <div class="form-check mt-3">
+                                <input type="checkbox" class="form-check-input" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">Remember me</label>
+                            </div>
+                            <button type="submit" class="th-btn w-100 mt-4" id="loginButton">
+                                <span class="button-text">Login</span>
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                            </button>
+                            <div class="login-footer mt-4">
+                                <span>Don't have an account? <a href="register.html">Sign Up</a></span>
+                                <a href="#" class="forgot-link" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">Forgot Password?</a>
+                            </div>
                         </form>
 
                         <div class="social-login mt-4">
@@ -485,6 +514,32 @@
 			Code End  Here 
 	******************************** -->
 
+<!-- Forgot Password Modal -->
+<div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="forgotPasswordModalLabel">Reset Your Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="forgotPasswordAlert" class="alert d-none mb-3"></div>
+                <form id="forgotPasswordForm">
+                    <div class="form-group mb-3">
+                        <label for="resetEmail">Email Address</label>
+                        <input type="email" class="form-control" id="resetEmail" placeholder="Enter your registered email" required>
+                        <div class="form-text">We'll send a password reset link to this email.</div>
+                    </div>
+                    <button type="submit" class="th-btn w-100" id="resetPasswordBtn">
+                        <span class="button-text">Send Reset Link</span>
+                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
     <!-- Scroll To Top -->
     <div class="scroll-top">
         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
@@ -517,7 +572,9 @@
 
     <!-- Main Js File -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/notification-system.js"></script>
     <script src="assets/js/cart.js"></script>
+    <script src="assets/js/auth.js"></script>
 
     <script src="assets/js/search.js"></script>
 </body>
@@ -732,11 +789,202 @@
     <!-- Add JWT Decode -->
     <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
     
+    <!-- Authentication Script -->
+    <script>
+        $(document).ready(function() {
+            // Check if user is logged in
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const userEmail = localStorage.getItem('userEmail');
+            const userName = localStorage.getItem('userName');
+            
+            // Update UI based on login state
+            if (isLoggedIn && userName) {
+                // Hide login/register buttons and show user dropdown
+                $('#loginBtn, #registerBtn').addClass('d-none');
+                $('#userDropdown').removeClass('d-none');
+                $('#userNameDisplay').text(userName.split(' ')[0]); // Show first name only
+                
+                // Handle logout
+                $('#logoutBtn').on('click', function(e) {
+                    e.preventDefault();
+                    localStorage.removeItem('isLoggedIn');
+                    localStorage.removeItem('userEmail');
+                    localStorage.removeItem('userName');
+                    window.location.href = 'index.html';
+                });
+                
+                // Redirect to home page if already logged in
+                window.location.href = 'index.html';
+            } else {
+                // Show login/register buttons and hide user dropdown
+                $('#loginBtn, #registerBtn').removeClass('d-none');
+                $('#userDropdown').addClass('d-none');
+            }
+            
+            // Password visibility toggle
+            $('.toggle-password').on('click', function() {
+                const passwordField = $(this).closest('.input-group').find('input');
+                const icon = $(this).find('i');
+                
+                if (passwordField.attr('type') === 'password') {
+                    passwordField.attr('type', 'text');
+                    icon.removeClass('fa-eye').addClass('fa-eye-slash');
+                } else {
+                    passwordField.attr('type', 'password');
+                    icon.removeClass('fa-eye-slash').addClass('fa-eye');
+                }
+            });
+            
+            // Handle login form submission with enhanced validation
+            $('#loginForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                // Reset previous validation states
+                $(this).find('.is-invalid').removeClass('is-invalid');
+                $('#loginAlert').addClass('d-none');
+                
+                // Get form values
+                const email = $('#loginEmail').val().trim();
+                const password = $('#loginPassword').val();
+                const rememberMe = $('#remembermylogin').is(':checked');
+                
+                // Validate email
+                if (!email) {
+                    $('#loginEmail').addClass('is-invalid');
+                    showLoginAlert('danger', 'Please enter your email address');
+                    return;
+                }
+                
+                if (!isValidEmail(email)) {
+                    $('#loginEmail').addClass('is-invalid');
+                    showLoginAlert('danger', 'Please enter a valid email address');
+                    return;
+                }
+                
+                // Validate password
+                if (!password) {
+                    $('#loginPassword').addClass('is-invalid');
+                    showLoginAlert('danger', 'Please enter your password');
+                    return;
+                }
+                
+                // Show loading state
+                $('#loginButton .button-text').addClass('d-none');
+                $('#loginButton .spinner-border').removeClass('d-none');
+                $('#loginButton').prop('disabled', true);
+                
+                // Simulate a slight delay for better UX (remove in production with real API)
+                setTimeout(function() {
+                    // Get users from localStorage
+                    const users = JSON.parse(localStorage.getItem('users') || '[]');
+                    const user = users.find(u => u.email === email && u.password === btoa(password));
+                    
+                    if (user) {
+                        // Store login state
+                        localStorage.setItem('isLoggedIn', 'true');
+                        localStorage.setItem('userEmail', email);
+                        localStorage.setItem('userName', user.fullName);
+                        
+                        if (rememberMe) {
+                            localStorage.setItem('rememberMe', 'true');
+                            localStorage.setItem('savedEmail', email);
+                        } else {
+                            localStorage.removeItem('rememberMe');
+                            localStorage.removeItem('savedEmail');
+                        }
+                        
+                        showLoginAlert('success', 'Login successful! Redirecting...');
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 1000);
+                    } else {
+                        // Reset loading state
+                        $('#loginButton .button-text').removeClass('d-none');
+                        $('#loginButton .spinner-border').addClass('d-none');
+                        $('#loginButton').prop('disabled', false);
+                        
+                        showLoginAlert('danger', 'Invalid email or password');
+                    }
+                }, 800);
+            });
+            
+            // Handle forgot password form
+            $('#forgotPasswordForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                const email = $('#resetEmail').val().trim();
+                
+                // Validate email
+                if (!email || !isValidEmail(email)) {
+                    showForgotPasswordAlert('danger', 'Please enter a valid email address');
+                    return;
+                }
+                
+                // Show loading state
+                $('#resetPasswordBtn .button-text').addClass('d-none');
+                $('#resetPasswordBtn .spinner-border').removeClass('d-none');
+                $('#resetPasswordBtn').prop('disabled', true);
+                
+                // Simulate API call delay
+                setTimeout(function() {
+                    // Check if user exists
+                    const users = JSON.parse(localStorage.getItem('users') || '[]');
+                    const userExists = users.some(u => u.email === email);
+                    
+                    if (userExists) {
+                        showForgotPasswordAlert('success', 'Password reset link sent to your email!');
+                        setTimeout(() => {
+                            $('#forgotPasswordModal').modal('hide');
+                        }, 2000);
+                    } else {
+                        showForgotPasswordAlert('danger', 'Email not found in our records');
+                        $('#resetPasswordBtn .button-text').removeClass('d-none');
+                        $('#resetPasswordBtn .spinner-border').addClass('d-none');
+                        $('#resetPasswordBtn').prop('disabled', false);
+                    }
+                }, 1000);
+            });
+            
+            // Check remember me on page load
+            if (localStorage.getItem('rememberMe') === 'true') {
+                $('#remembermylogin').prop('checked', true);
+                $('#loginEmail').val(localStorage.getItem('savedEmail'));
+            }
+            
+            // Reset forgot password form when modal is closed
+            $('#forgotPasswordModal').on('hidden.bs.modal', function() {
+                $('#forgotPasswordForm')[0].reset();
+                $('#forgotPasswordAlert').addClass('d-none');
+                $('#resetPasswordBtn .button-text').removeClass('d-none');
+                $('#resetPasswordBtn .spinner-border').addClass('d-none');
+                $('#resetPasswordBtn').prop('disabled', false);
+            });
+            
+            // Helper functions
+            function showLoginAlert(type, message) {
+                const alertBox = $('#loginAlert');
+                alertBox.removeClass('d-none alert-danger alert-success alert-warning')
+                       .addClass('alert-' + type)
+                       .html(message);
+            }
+            
+            function showForgotPasswordAlert(type, message) {
+                const alertBox = $('#forgotPasswordAlert');
+                alertBox.removeClass('d-none alert-danger alert-success alert-warning')
+                       .addClass('alert-' + type)
+                       .html(message);
+            }
+            
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+        });
+    </script>
     </body>
     
     
     </html>
-    
 
     <!-- JavaScript -->
     <script src="assets/js/vendor/jquery-3.7.1.min.js"></script>
