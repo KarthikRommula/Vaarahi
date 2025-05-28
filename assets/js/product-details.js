@@ -72,9 +72,19 @@ function loadProductDetails() {
     const priceElements = document.querySelectorAll('.product-about .price');
     priceElements.forEach(el => {
         if (product.oldPrice) {
-            el.innerHTML = `$${product.price.toFixed(2)}<del>$${product.oldPrice.toFixed(2)}</del>`;
+            // Use the currency utility if available, otherwise fallback
+            if (window.CurrencyUtils) {
+                el.innerHTML = `${window.CurrencyUtils.formatPrice(product.price)}<del>${window.CurrencyUtils.formatPrice(product.oldPrice)}</del>`;
+            } else {
+                el.innerHTML = `₹${product.price.toFixed(2)}<del>₹${product.oldPrice.toFixed(2)}</del>`;
+            }
         } else {
-            el.textContent = `$${product.price.toFixed(2)}`;
+            // Use the currency utility if available, otherwise fallback
+            if (window.CurrencyUtils) {
+                el.innerHTML = window.CurrencyUtils.formatPrice(product.price);
+            } else {
+                el.textContent = `₹${product.price.toFixed(2)}`;
+            }
         }
     });
     
@@ -115,6 +125,7 @@ function loadProductDetails() {
 
 // Function to update related products
 function updateRelatedProducts(currentProductId) {
+    const relatedProductsSlider = document.querySelector('#productSlider1');
     const relatedProductsContainer = document.querySelector('#productSlider1 .swiper-wrapper');
     if (!relatedProductsContainer) return;
     
@@ -139,7 +150,7 @@ function updateRelatedProducts(currentProductId) {
                     </div>
                     <div class="product-content">
                         <h3 class="product-title"><a href="shop-details.html?id=${product.id}">${product.name}</a></h3>
-                        <span class="price">$${product.price.toFixed(2)}${product.oldPrice ? `<del>$${product.oldPrice.toFixed(2)}</del>` : ''}</span>
+                        <span class="price">${window.CurrencyUtils ? window.CurrencyUtils.formatPrice(product.price) : `₹${product.price.toFixed(2)}`}${product.oldPrice ? `<del>${window.CurrencyUtils ? window.CurrencyUtils.formatPrice(product.oldPrice) : `₹${product.oldPrice.toFixed(2)}`}</del>` : ''}</span>
                         <div class="woocommerce-product-rating">
                             <span class="count">(120 Reviews)</span>
                             <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
@@ -153,10 +164,42 @@ function updateRelatedProducts(currentProductId) {
         relatedProductsContainer.insertAdjacentHTML('beforeend', productHTML);
     });
     
-    // Reinitialize swiper if needed
-    if (window.productSlider) {
-        window.productSlider.update();
+    // Destroy existing swiper instance if it exists
+    if (window.productSlider && window.productSlider.destroy) {
+        window.productSlider.destroy(true, true);
     }
+    
+    // Get slider options from data attribute
+    let sliderOptions = {};
+    if (relatedProductsSlider && relatedProductsSlider.getAttribute('data-slider-options')) {
+        try {
+            sliderOptions = JSON.parse(relatedProductsSlider.getAttribute('data-slider-options'));
+        } catch (e) {
+            console.error('Error parsing slider options:', e);
+        }
+    }
+    
+    // Default options if parsing fails
+    const defaultOptions = {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: false,
+        breakpoints: {
+            0: { slidesPerView: 1 },
+            576: { slidesPerView: 2 },
+            768: { slidesPerView: 2 },
+            992: { slidesPerView: 3 },
+            1200: { slidesPerView: 4 }
+        }
+    };
+    
+    // Merge options
+    const options = Object.assign({}, defaultOptions, sliderOptions);
+    
+    // Initialize new swiper
+    setTimeout(() => {
+        window.productSlider = new Swiper(relatedProductsSlider, options);
+    }, 100); // Small delay to ensure DOM is ready
 }
 
 // Load product details when page loads

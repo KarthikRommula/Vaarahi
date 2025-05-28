@@ -200,7 +200,7 @@ function updateMiniCart() {
                 <a href="#"><img src="${imageSrc}" alt="${item.name || 'Product'}"> ${item.name || 'Product'}</a>
                 <span class="quantity">${itemQuantity} ×
                     <span class="woocommerce-Price-amount amount">
-                        <span class="woocommerce-Price-currencySymbol">$</span>${itemPrice.toFixed(2)}</span>
+                        ${window.CurrencyUtils ? window.CurrencyUtils.formatPrice(itemPrice) : `<span class="woocommerce-Price-currencySymbol">₹</span>${itemPrice.toFixed(2)}`}</span>
                 </span>
             `;
             miniCartList.appendChild(listItem);
@@ -221,7 +221,7 @@ function updateMiniCart() {
     // Update mini cart total
     const miniCartTotal = document.querySelector('.woocommerce-mini-cart__total .woocommerce-Price-amount');
     if (miniCartTotal) {
-        miniCartTotal.innerHTML = `<span class="woocommerce-Price-currencySymbol">$</span>${cartTotal.toFixed(2)}`;
+        miniCartTotal.innerHTML = `${window.CurrencyUtils ? window.CurrencyUtils.formatPrice(cartTotal) : `<span class="woocommerce-Price-currencySymbol">₹</span>${cartTotal.toFixed(2)}`}`;
     }
 }
 
@@ -274,7 +274,7 @@ function updateCartPage() {
                     <a class="cart-productname" href="shop-details.html">${productName}</a>
                 </td>
                 <td data-title="Price">
-                    <span class="amount"><bdi><span>$</span>${itemPrice.toFixed(2)}</bdi></span>
+                    <span class="amount"><bdi>${window.CurrencyUtils ? window.CurrencyUtils.formatPrice(itemPrice) : `<span>₹</span>${itemPrice.toFixed(2)}`}</bdi></span>
                 </td>
                 <td data-title="Quantity">
                     <div class="quantity">
@@ -429,7 +429,7 @@ function updateCheckoutPage() {
     const discountRow = document.querySelector('.coupon-discount');
     
     // Update subtotal
-    if (subtotalAmount) subtotalAmount.innerHTML = `<bdi><span class="woocommerce-Price-currencySymbol">$</span>${subtotal.toFixed(2)}</bdi>`;
+    if (subtotalAmount) subtotalAmount.innerHTML = `<bdi>${window.CurrencyUtils ? window.CurrencyUtils.formatPrice(subtotal) : `<span class="woocommerce-Price-currencySymbol">₹</span>${subtotal.toFixed(2)}`}</bdi>`;
     
     // Handle discount display
     if (appliedCoupon && appliedCoupon.code === 'VAARAHI') {
@@ -440,7 +440,7 @@ function updateCheckoutPage() {
             discountRow.style.display = 'table-row';
             const discountAmountEl = discountRow.querySelector('.discount-amount .woocommerce-Price-amount');
             if (discountAmountEl) {
-                discountAmountEl.innerHTML = `<bdi><span class="woocommerce-Price-currencySymbol">$</span>${discountAmount.toFixed(2)}</bdi>`;
+                discountAmountEl.innerHTML = `<bdi>${window.CurrencyUtils ? window.CurrencyUtils.formatPrice(discountAmount) : `<span class="woocommerce-Price-currencySymbol">₹</span>${discountAmount.toFixed(2)}`}</bdi>`;
             }
         }
     } else {
@@ -451,7 +451,7 @@ function updateCheckoutPage() {
     }
     
     // Update order total
-    if (orderTotalAmount) orderTotalAmount.innerHTML = `<bdi><span class="woocommerce-Price-currencySymbol">$</span>${cartTotal.toFixed(2)}</bdi>`;
+    if (orderTotalAmount) orderTotalAmount.innerHTML = `<bdi>${window.CurrencyUtils ? window.CurrencyUtils.formatPrice(cartTotal) : `<span class="woocommerce-Price-currencySymbol">₹</span>${cartTotal.toFixed(2)}`}</bdi>`;
 }
 
 // Add a product to the cart
@@ -617,7 +617,7 @@ function setupQuickView() {
             const priceText = product.querySelector('.price').textContent;
             // Carefully extract the price
             let price = 0;
-            const priceMatch = priceText.match(/\$\s*(\d+(\.\d+)?)/);
+            const priceMatch = priceText.match(/[₹$]\s*(\d+(\.\d+)?)/); // Updated to match both $ and ₹
             if (priceMatch && priceMatch[1]) {
                 price = parseFloat(priceMatch[1]);
             }
@@ -635,7 +635,7 @@ function setupQuickView() {
             const quickView = document.querySelector('#QuickView');
             if (quickView) {
                 quickView.querySelector('.product-title').textContent = name;
-                quickView.querySelector('.price').innerHTML = `$${price.toFixed(2)}${salePrice}`;
+                quickView.querySelector('.price').innerHTML = `${window.CurrencyUtils ? window.CurrencyUtils.formatPrice(price) : `₹${price.toFixed(2)}`}${salePrice}`;
                 quickView.querySelector('.product-big-img img').src = image;
                 
                 // Update SKU with product name
@@ -673,7 +673,7 @@ function setupEventListeners() {
             
             // Carefully extract the price
             let price = 0;
-            const priceMatch = priceText.match(/\$\s*(\d+(\.\d+)?)/);
+            const priceMatch = priceText.match(/[₹$]\s*(\d+(\.\d+)?)/); // Updated to match both $ and ₹
             if (priceMatch && priceMatch[1]) {
                 price = parseFloat(priceMatch[1]);
             }
@@ -706,7 +706,7 @@ function setupEventListeners() {
             
             // Carefully extract the price
             let price = 0;
-            const priceMatch = priceText.match(/\$\s*(\d+(\.\d+)?)/);
+            const priceMatch = priceText.match(/[₹$]\s*(\d+(\.\d+)?)/); // Updated to match both $ and ₹
             if (priceMatch && priceMatch[1]) {
                 price = parseFloat(priceMatch[1]);
             }
@@ -752,7 +752,7 @@ function setupEventListeners() {
             
             // Carefully extract the price
             let price = 0;
-            const priceMatch = priceText.match(/\$\s*(\d+(\.\d+)?)/);
+            const priceMatch = priceText.match(/[₹$]\s*(\d+(\.\d+)?)/); // Updated to match both $ and ₹
             if (priceMatch && priceMatch[1]) {
                 price = parseFloat(priceMatch[1]);
             }
