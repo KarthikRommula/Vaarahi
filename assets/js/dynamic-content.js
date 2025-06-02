@@ -390,7 +390,7 @@ function loadProductsFromCentralData(page = 1, sortMethod = currentSortMethod) {
                             <span class="rating-count">(${product.reviews} Reviews)</span>
                         </div>
                         <h3 class="product-title"><a href="shop-details.html?id=${product.id}">${product.name}</a></h3>
-                        <span class="price">${product.oldPrice ? `<del>$${product.oldPrice.toFixed(2)}</del> ` : ''}$${product.price.toFixed(2)}</span>
+                        <span class="price">${product.oldPrice ? `<del>${window.CurrencyUtils ? window.CurrencyUtils.formatPrice(product.oldPrice) : `₹${product.oldPrice.toFixed(2)}`}</del> ` : ''}${window.CurrencyUtils ? window.CurrencyUtils.formatPrice(product.price) : `₹${product.price.toFixed(2)}`}</span>
                     </div>
                 </div>
             </div>

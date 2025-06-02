@@ -2040,11 +2040,55 @@ textarea.is-invalid {
 
 .th-slider.has-shadow .swiper-wrapper {
   padding: 25px 0;
+  display: flex;
+  align-items: stretch;
 }
 
 .swiper-fade .swiper-slide {
   -webkit-transition: 0.6s ease-in-out;
   transition: 0.6s ease-in-out;
+}
+
+.swiper-slide .th-product {
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+}
+
+#productSlider1 .swiper-slide {
+  height: auto;
+}
+
+#productSlider1 .product-img {
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#productSlider1 .product-img img {
+  width: auto;
+  max-width: 100%;
+  max-height: 230px;
+  object-fit: contain;
+}
+
+#productSlider1 .product-title {
+  height: 50px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 18px;
+  margin: 4px 0 6px 0;
+}
+
+#productSlider1 .product-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .swiper-fade .swiper-slide-prev {
@@ -11492,6 +11536,17 @@ table.woocommerce-product-attributes {
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.05);
   border-radius: 20px;
   padding: 18px;
+  height: 450px; /* Fixed height for all product cards */
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px; /* Consistent margin between cards */
+}
+
+.th-product .product-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .th-product .product-title {
@@ -11575,6 +11630,10 @@ table.woocommerce-product-attributes {
   background-color: var(--smoke-color);
   z-index: 2;
   border-radius: 20px;
+  height: 250px; /* Fixed height for product images */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .th-product .product-img:before {
@@ -11598,7 +11657,10 @@ table.woocommerce-product-attributes {
 }
 
 .th-product .product-img img {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
+  max-height: 230px; /* Maximum height for product images */
+  object-fit: contain; /* Maintain aspect ratio */
   -webkit-transition: all ease 0.4s;
   transition: all ease 0.4s;
   -webkit-transform: scale(1);
