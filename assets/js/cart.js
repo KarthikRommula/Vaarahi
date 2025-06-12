@@ -284,7 +284,7 @@ function updateCartPage() {
                     </div>
                 </td>
                 <td data-title="Total">
-                    <span class="amount"><bdi><span>$</span>${itemTotal.toFixed(2)}</bdi></span>
+                    <span class="amount"><bdi><span>₹</span>${itemTotal.toFixed(2)}</bdi></span>
                 </td>
                 <td data-title="Remove">
                     <a href="#" class="remove" data-index="${index}"><i class="fal fa-trash-alt"></i></a>
@@ -310,7 +310,7 @@ function updateCartPage() {
     const subtotalAmount = document.querySelector('.cart_totals tbody tr:first-child .amount');
     const orderTotalAmount = document.querySelector('.cart_totals tfoot .amount');
     
-    if (subtotalAmount) subtotalAmount.innerHTML = `<bdi><span>$</span>${subtotal.toFixed(2)}</bdi>`;
+    if (subtotalAmount) subtotalAmount.innerHTML = `<bdi><span>₹</span>${subtotal.toFixed(2)}</bdi>`;
     
     // Add discount row if coupon is applied
     if (appliedCoupon) {
@@ -324,7 +324,7 @@ function updateCartPage() {
             discountRow.innerHTML = `
                 <th>Discount (${appliedCoupon.code})</th>
                 <td data-title="Discount">
-                    <span class="amount"><bdi><span>-$</span>${discountAmount.toFixed(2)}</bdi></span>
+                    <span class="amount"><bdi><span>-₹</span>${discountAmount.toFixed(2)}</bdi></span>
                     <a href="#" class="remove-coupon" title="Remove coupon"><i class="fal fa-times-circle ms-2"></i></a>
                 </td>
             `;
@@ -347,7 +347,7 @@ function updateCartPage() {
             // Update existing discount row
             const discountCell = discountRow.querySelector('.amount');
             if (discountCell) {
-                discountCell.innerHTML = `<bdi><span>-$</span>${discountAmount.toFixed(2)}</bdi>`;
+                discountCell.innerHTML = `<bdi><span>-₹</span>${discountAmount.toFixed(2)}</bdi>`;
             }
         }
     } else {
@@ -358,7 +358,7 @@ function updateCartPage() {
         }
     }
     
-    if (orderTotalAmount) orderTotalAmount.innerHTML = `<bdi><span>$</span>${cartTotal.toFixed(2)}</bdi>`;
+    if (orderTotalAmount) orderTotalAmount.innerHTML = `<bdi><span>₹</span>${cartTotal.toFixed(2)}</bdi>`;
     
     // Restore focus to coupon input if it was focused before
     if (isCouponInputFocused) {
@@ -404,7 +404,7 @@ function updateCheckoutPage() {
                 <a class="cart-productname" href="shop-details.html">${item.name}</a>
             </td>
             <td data-title="Price">
-                <span class="amount"><bdi><span>$</span>${itemPrice.toFixed(2)}</bdi></span>
+                <span class="amount"><bdi><span>₹</span>${itemPrice.toFixed(2)}</bdi></span>
             </td>
             <td data-title="Quantity">
                 <strong class="product-quantity">${itemQuantity}</strong>

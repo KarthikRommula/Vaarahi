@@ -273,12 +273,6 @@
                 <li>
                     <a href="contact.html">Contact</a>
                 </li>
-                <li>
-                    <a href="login.html">Login</a>
-                </li>
-                <li>
-                    <a href="register.html">Register</a>
-                </li>
 
             </ul>
         </div>
@@ -328,36 +322,6 @@
                     <div class="header-button">
                         <button type="button" class="icon-btn style2 searchBoxToggler d-lg-block d-none" style="margin-left: 20px;"><i
                                 class="far fa-search"></i></button>
-                        <!-- Cart button removed -->
-                        <div class="d-none d-lg-flex ms-3">
-                            <a href="login.html" class="th-btn me-2" id="loginBtn">
-                                <i class="far fa-sign-in me-1"></i> Login
-                            </a>
-                            <a href="register.html" class="th-btn style3" id="registerBtn">
-                                <i class="far fa-user-plus me-1"></i> Register
-                            </a>
-                            <div class="dropdown d-none" id="userDropdown">
-                                <button class="th-btn dropdown-toggle user-menu-btn" type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <div class="user-avatar-mini me-2">
-                                        <i class="far fa-user"></i>
-                                    </div>
-                                    <span id="userNameDisplay"></span>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end user-dropdown-menu" aria-labelledby="userMenuButton">
-                                    <li class="dropdown-header">My Account</li>
-                                    <li><a class="dropdown-item" href="profile.html">
-                                        <i class="far fa-user-circle me-2"></i><span>My Profile</span>
-                                    </a></li>
-                                    <li><a class="dropdown-item" href="wishlist.html">
-                                        <i class="far fa-heart me-2"></i><span>Wishlist</span>
-                                    </a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item text-danger" href="#" id="logoutBtn">
-                                        <i class="far fa-sign-out me-2"></i> Logout
-                                    </a></li>
-                                </ul>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -411,7 +375,6 @@
                             </button>
                             <div class="login-footer mt-4">
                                 <span>Don't have an account? <a href="register.html">Sign Up</a></span>
-                                <a href="#" class="forgot-link" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">Forgot Password?</a>
                             </div>
                         </form>
 
@@ -513,33 +476,6 @@
     <!--********************************
 			Code End  Here 
 	******************************** -->
-
-<!-- Forgot Password Modal -->
-<div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="forgotPasswordModalLabel">Reset Your Password</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div id="forgotPasswordAlert" class="alert d-none mb-3"></div>
-                <form id="forgotPasswordForm">
-                    <div class="form-group mb-3">
-                        <label for="resetEmail">Email Address</label>
-                        <input type="email" class="form-control" id="resetEmail" placeholder="Enter your registered email" required>
-                        <div class="form-text">We'll send a password reset link to this email.</div>
-                    </div>
-                    <button type="submit" class="th-btn w-100" id="resetPasswordBtn">
-                        <span class="button-text">Send Reset Link</span>
-                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
     <!-- Scroll To Top -->
     <div class="scroll-top">
         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
@@ -633,31 +569,6 @@
                     showWarning('Invalid email or password');
                 }
             });
-
-            // Handle forgot password
-            $('#forgotPassword').on('click', function(e) {
-                e.preventDefault();
-                const email = $('#loginEmail').val();
-                if (!email) {
-                    showWarning('Please enter your email address first');
-                    return;
-                }
-                if (!isValidEmail(email)) {
-                    showWarning('Please enter a valid email address');
-                    return;
-                }
-
-                // Check if email exists
-                const users = JSON.parse(localStorage.getItem('users') || '[]');
-                const user = users.find(u => u.email === email);
-
-                if (user) {
-                    showSuccess('Password reset instructions have been sent to your email');
-                } else {
-                    showWarning('Email address not found. Please check your email or sign up.');
-                }
-            });
-
             // Handle Google login
             $('#googleLogin').on('click', function(e) {
                 e.preventDefault();
@@ -908,57 +819,13 @@
                 }, 800);
             });
             
-            // Handle forgot password form
-            $('#forgotPasswordForm').on('submit', function(e) {
-                e.preventDefault();
-                
-                const email = $('#resetEmail').val().trim();
-                
-                // Validate email
-                if (!email || !isValidEmail(email)) {
-                    showForgotPasswordAlert('danger', 'Please enter a valid email address');
-                    return;
-                }
-                
-                // Show loading state
-                $('#resetPasswordBtn .button-text').addClass('d-none');
-                $('#resetPasswordBtn .spinner-border').removeClass('d-none');
-                $('#resetPasswordBtn').prop('disabled', true);
-                
-                // Simulate API call delay
-                setTimeout(function() {
-                    // Check if user exists
-                    const users = JSON.parse(localStorage.getItem('users') || '[]');
-                    const userExists = users.some(u => u.email === email);
-                    
-                    if (userExists) {
-                        showForgotPasswordAlert('success', 'Password reset link sent to your email!');
-                        setTimeout(() => {
-                            $('#forgotPasswordModal').modal('hide');
-                        }, 2000);
-                    } else {
-                        showForgotPasswordAlert('danger', 'Email not found in our records');
-                        $('#resetPasswordBtn .button-text').removeClass('d-none');
-                        $('#resetPasswordBtn .spinner-border').addClass('d-none');
-                        $('#resetPasswordBtn').prop('disabled', false);
-                    }
-                }, 1000);
-            });
-            
             // Check remember me on page load
             if (localStorage.getItem('rememberMe') === 'true') {
                 $('#remembermylogin').prop('checked', true);
                 $('#loginEmail').val(localStorage.getItem('savedEmail'));
             }
             
-            // Reset forgot password form when modal is closed
-            $('#forgotPasswordModal').on('hidden.bs.modal', function() {
-                $('#forgotPasswordForm')[0].reset();
-                $('#forgotPasswordAlert').addClass('d-none');
-                $('#resetPasswordBtn .button-text').removeClass('d-none');
-                $('#resetPasswordBtn .spinner-border').addClass('d-none');
-                $('#resetPasswordBtn').prop('disabled', false);
-            });
+
             
             // Helper functions
             function showLoginAlert(type, message) {
@@ -968,13 +835,7 @@
                        .html(message);
             }
             
-            function showForgotPasswordAlert(type, message) {
-                const alertBox = $('#forgotPasswordAlert');
-                alertBox.removeClass('d-none alert-danger alert-success alert-warning')
-                       .addClass('alert-' + type)
-                       .html(message);
-            }
-            
+        
             function isValidEmail(email) {
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 return emailRegex.test(email);
