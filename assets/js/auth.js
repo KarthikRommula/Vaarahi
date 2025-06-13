@@ -47,48 +47,48 @@ function checkAuthState() {
                 userNameDisplay.textContent = currentUser.name;
             }
         }
-        
-        // Update mobile menu as well
-        const mobileLoginLink = document.querySelector('.th-mobile-menu .menu-item-has-children');
-        if (mobileLoginLink) {
-            const submenu = mobileLoginLink.querySelector('.sub-menu');
-            if (submenu) {
-                // Update the mobile menu to show profile instead of login/register
-                mobileLoginLink.querySelector('a').textContent = currentUser.name;
-                // Update submenu to include profile and logout
-                if (!submenu.querySelector('a[href="profile.html"]')) {
-                    submenu.innerHTML = `
-                        <li><a href="cart.html">Cart <span class="badge bg-primary ms-2">0</span></a></li>
-                        <li><a href="profile.html">My Profile</a></li>
-                        <li><a href="#" id="mobileLogoutBtn">Logout</a></li>
-                    `;
-                    // Add event listener to mobile logout button
+        // --- Enhanced Mobile Auth Menu Logic ---
+        const mobileAuthMenu = document.querySelector('.mobile-auth-menu');
+        if (mobileAuthMenu) {
+            const mobileAccountLink = mobileAuthMenu.querySelector('#mobileAccountLink');
+            const mobileAuthSubMenu = mobileAuthMenu.querySelector('#mobileAuthSubMenu');
+            if (mobileAccountLink) mobileAccountLink.textContent = currentUser.name || 'My Account';
+            if (mobileAuthSubMenu) {
+                mobileAuthSubMenu.innerHTML = `
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="profile.html">My Profile</a></li>
+                    <li><a href="#" id="mobileLogoutBtn">Logout</a></li>
+                `;
+                // Attach logout event
+                setTimeout(function() {
                     const mobileLogoutBtn = document.getElementById('mobileLogoutBtn');
                     if (mobileLogoutBtn) {
                         mobileLogoutBtn.addEventListener('click', handleLogout);
                     }
-                }
+                }, 100);
             }
         }
+        // --- End Enhanced Mobile Auth Menu Logic ---
     } else {
         // User is not logged in
         if (loginBtn) loginBtn.classList.remove('d-none');
         if (registerBtn) registerBtn.classList.remove('d-none');
         if (userDropdown) userDropdown.classList.add('d-none');
         
-        // Reset mobile menu
-        const mobileLoginLink = document.querySelector('.th-mobile-menu .menu-item-has-children');
-        if (mobileLoginLink) {
-            mobileLoginLink.querySelector('a').textContent = 'My Account';
-            const submenu = mobileLoginLink.querySelector('.sub-menu');
-            if (submenu) {
-                submenu.innerHTML = `
-                    <li><a href="cart.html">Cart <span class="badge bg-primary ms-2">0</span></a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="register.html">Register</a></li>
+        // --- Enhanced Mobile Auth Menu Logic ---
+        const mobileAuthMenu = document.querySelector('.mobile-auth-menu');
+        if (mobileAuthMenu) {
+            const mobileAccountLink = mobileAuthMenu.querySelector('#mobileAccountLink');
+            const mobileAuthSubMenu = mobileAuthMenu.querySelector('#mobileAuthSubMenu');
+            if (mobileAccountLink) mobileAccountLink.textContent = 'My Account';
+            if (mobileAuthSubMenu) {
+                mobileAuthSubMenu.innerHTML = `
+                    <li><a href="login.html" id="mobileLoginBtn">Login</a></li>
+                    <li><a href="register.html" id="mobileRegisterBtn">Register</a></li>
                 `;
             }
         }
+        // --- End Enhanced Mobile Auth Menu Logic ---
     }
 }
 

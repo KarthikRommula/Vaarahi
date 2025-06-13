@@ -143,29 +143,6 @@
           transform: rotate(0deg) scale(1.1);
       }
       
-      /* PhonePe styling */
-      .phonepe-button {
-          background: #5f259f;
-          color: white;
-          border: none;
-          padding: 12px 30px;
-          border-radius: 5px;
-          font-size: 16px;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          transition: background 0.3s ease;
-      }
-      
-      .phonepe-button:hover {
-          background: #4b1d7d;
-      }
-      
-      .phonepe-button img {
-          width: 30px;
-          height: 30px;
-      }
       
       /* Loading spinner */
       .loading-spinner {
@@ -356,34 +333,34 @@ Checkout Arae
                         <h2 class="h4 fw-semibold">Billing Details</h2>
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                <input type="text" id="firstName" class="form-control" placeholder="First Name *" required>
+                                <input type="text" id="billing_first_name" class="form-control" placeholder="First Name *" required>
                                 <div class="error-message">First name is required</div>
                             </div>
                             <div class="col-md-6 form-group">
-                                <input type="text" id="lastName" class="form-control" placeholder="Last Name *" required>
+                                <input type="text" id="billing_last_name" class="form-control" placeholder="Last Name *" required>
                                 <div class="error-message">Last name is required</div>
                             </div>
                             <div class="col-12 form-group">
-                                <input type="email" id="email" class="form-control" placeholder="Email Address *" required>
+                                <input type="email" id="billing_email" class="form-control" placeholder="Email Address *" required>
                                 <div class="error-message">Valid email is required</div>
                             </div>
                             <div class="col-12 form-group">
-                                <input type="tel" id="phone" class="form-control" placeholder="Phone Number *" required pattern="[0-9]{10}">
+                                <input type="tel" id="billing_phone" class="form-control" placeholder="Phone Number *" required pattern="[0-9]{10}">
                                 <div class="error-message">Valid 10-digit phone number is required</div>
                             </div>
                             <div class="col-12 form-group">
-                                <input type="text" id="streetAddress" class="form-control" placeholder="Street Address *" required>
+                                <input type="text" id="billing_address_1" class="form-control" placeholder="Street Address *" required>
                                 <div class="error-message">Street address is required</div>
                             </div>
                             <div class="col-12 form-group">
                                 <input type="text" class="form-control" placeholder="Apartment, suite, unit etc. (optional)">
                             </div>
                             <div class="col-12 form-group">
-                                <input type="text" id="city" class="form-control" placeholder="Town / City *" required>
+                                <input type="text" id="billing_city" class="form-control" placeholder="Town / City *" required>
                                 <div class="error-message">City is required</div>
                             </div>
                             <div class="col-md-6 form-group">
-                                <select id="state" class="form-select" required>
+                                <select id="billing_state" class="form-select" required>
                                     <option value="">Select State *</option>
                                     <option value="Andhra Pradesh">Andhra Pradesh</option>
                                     <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -425,7 +402,7 @@ Checkout Arae
                                 <div class="error-message">State is required</div>
                             </div>
                             <div class="col-md-6 form-group">
-                                <input type="text" id="pincode" class="form-control" placeholder="Pincode *" required pattern="[0-9]{6}">
+                                <input type="text" id="billing_postcode" class="form-control" placeholder="Pincode *" required pattern="[0-9]{6}">
                                 <div class="error-message">Valid 6-digit pincode is required</div>
                             </div>
                         </div>
@@ -489,21 +466,9 @@ Checkout Arae
             </form>
             <div class="mt-lg-3 mb-30">
                 <div class="woocommerce-checkout-payment">
-                    <ul class="wc_payment_methods payment_methods methods">
-                        <li class="wc_payment_method payment_method_phonepe">
-                            <input id="payment_method_phonepe" type="radio" class="input-radio" name="payment_method"
-                                value="phonepe" checked="checked">
-                            <label for="payment_method_phonepe">
-                                <img src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8yIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxMzIgNDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxzdHlsZT4uc3Qwe2ZpbGw6IzVmMjU5Zn08L3N0eWxlPjxjaXJjbGUgdHJhbnNmb3JtPSJyb3RhdGUoLTc2LjcxNCAxNy44NyAyNC4wMDEpIiBjbGFzcz0ic3QwIiBjeD0iMTcuOSIgY3k9IjI0IiByPSIxNy45Ii8+PHBhdGggY2xhc3M9InN0MCIgZD0iTTkwLjUgMzQuMnYtNi41YzAtMS42LS42LTIuNC0yLjEtMi40LS42IDAtMS4zLjEtMS43LjJWMzVjMCAuMy0uMy42LS42LjZoLTIuM2MtLjMgMC0uNi0uMy0uNi0uNlYyMy45YzAtLjQuMy0uNy42LS44IDEuNS0uNSAzLS44IDQuNi0uOCAzLjYgMCA1LjYgMS45IDUuNiA1LjR2Ny40YzAgLjMtLjMuNi0uNi42SDkyYy0uOSAwLTEuNS0uNy0xLjUtMS41em05LTMuOWwtLjEuOWMwIDEuMi44IDEuOSAyLjEgMS45IDEgMCAxLjktLjMgMi45LS44LjEgMCAuMi0uMS4zLS4xLjIgMCAuMy4xLjQuMi4xLjEuMy40LjMuNC4yLjMuNC43LjQgMSAwIC41LS4zIDEtLjcgMS4yLTEuMS42LTIuNC45LTMuOC45LTEuNiAwLTIuOS0uNC0zLjktMS4yLTEtLjktMS42LTIuMS0xLjYtMy42di0zLjljMC0zLjEgMi01IDUuNC01IDMuMyAwIDUuMiAxLjggNS4yIDV2Mi40YzAgLjMtLjMuNi0uNi42aC02LjN6bS0uMS0yLjJIMTAzLjJ2LTFjMC0xLjItLjctMi0xLjktMnMtMS45LjctMS45IDJ2MXptMjUuNSAyLjJsLS4xLjljMCAxLjIuOCAxLjkgMi4xIDEuOSAxIDAgMS45LS4zIDIuOS0uOC4xIDAgLjItLjEuMy0uMS4yIDAgLjMuMS40LjIuMS4xLjMuNC4zLjQuMi4zLjQuNy40IDEgMCAuNS0uMyAxLS43IDEuMi0xLjEuNi0yLjQuOS0zLjguOS0xLjYgMC0yLjktLjQtMy45LTEuMi0xLS45LTEuNi0yLjEtMS42LTMuNnYtMy45YzAtMy4xIDItNSA1LjQtNSAzLjMgMCA1LjIgMS44IDUuMiA1djIuNGMwIC4zLS4zLjYtLjYuNmgtNi4zem0tLjEtMi4ySDEyOC42di0xYzAtMS4yLS43LTItMS45LTJzLTEuOS43LTEuOSAydjF6TTY2IDM1LjdoMS40Yy4zIDAgLjYtLjMuNi0uNnYtNy40YzAtMy40LTEuOC01LjQtNC44LTUuNC0uOSAwLTEuOS4yLTIuNS40VjE5YzAtLjgtLjctMS41LTEuNS0xLjVoLTEuNGMtLjMgMC0uNi4zLS42LjZ2MTdjMCAuMy4zLjYuNi42aDIuM2MuMyAwIC42LS4zLjYtLjZ2LTkuNGMuNS0uMiAxLjItLjMgMS43LS4zIDEuNSAwIDIuMS43IDIuMSAyLjR2Ni41Yy4xLjcuNyAxLjQgMS41IDEuNHptMTUuMS04LjRWMzFjMCAzLjEtMi4xIDUtNS42IDUtMy40IDAtNS42LTEuOS01LjYtNXYtMy43YzAtMy4xIDIuMS01IDUuNi01IDMuNSAwIDUuNiAxLjkgNS42IDV6bS0zLjUgMGMwLTEuMi0uNy0yLTItMnMtMiAuNy0yIDJWMzFjMCAxLjIuNyAxLjkgMiAxLjlzMi0uNyAyLTEuOXYtMy43em0tMjIuMy0xLjdjMCAzLjItMi40IDUuNC01LjYgNS40LS44IDAtMS41LS4xLTIuMi0uNHY0LjVjMCAuMy0uMy42LS42LjZoLTIuM2MtLjMgMC0uNi0uMy0uNi0uNlYxOS4yYzAtLjQuMy0uNy42LS44IDEuNS0uNSAzLS44IDQuNi0uOCAzLjYgMCA2LjEgMi4yIDYuMSA1LjZ2Mi40ek01MS43IDIzYzAtMS42LTEuMS0yLjQtMi42LTIuNC0uOSAwLTEuNS4zLTEuNS4zdjYuNmMuNi4zLjkuNCAxLjYuNCAxLjUgMCAyLjYtLjkgMi42LTIuNFYyM3ptNjguMiAyLjZjMCAzLjItMi40IDUuNC01LjYgNS40LS44IDAtMS41LS4xLTIuMi0uNHY0LjVjMCAuMy0uMy42LS42LjZoLTIuM2MtLjMgMC0uNi0uMy0uNi0uNlYxOS4yYzAtLjQuMy0uNy42LS44IDEuNS0uNSAzLS44IDQuNi0uOCAzLjYgMCA2LjEgMi4yIDYuMSA1LjZ2Mi40em0tMy42LTIuNmMwLTEuNi0xLjEtMi40LTIuNi0yLjQtLjkgMC0xLjUuMy0xLjUuM3Y2LjZjLjYuMy45LjQgMS42LjQgMS41IDAgMi42LS45IDIuNi0yLjRWMjN6Ii8+PHBhdGggZD0iTTI2IDE5LjNjMC0uNy0uNi0xLjMtMS4zLTEuM2gtMi40bC01LjUtNi4zYy0uNS0uNi0xLjMtLjgtMi4xLS42bC0xLjkuNmMtLjMuMS0uNC41LS4yLjdsNiA1LjdIOS41Yy0uMyAwLS41LjItLjUuNXYxYzAgLjcuNiAxLjMgMS4zIDEuM2gxLjR2NC44YzAgMy42IDEuOSA1LjcgNS4xIDUuNyAxIDAgMS44LS4xIDIuOC0uNXYzLjJjMCAuOS43IDEuNiAxLjYgMS42aDEuNGMuMyAwIC42LS4zLjYtLjZWMjAuOGgyLjNjLjMgMCAuNS0uMi41LS41di0xem0tNi40IDguNmMtLjYuMy0xLjQuNC0yIC40LTEuNiAwLTIuNC0uOC0yLjQtMi42di00LjhoNC40djd6IiBmaWxsPSIjZmZmIi8+PC9zdmc+" alt="PhonePe" style="height: 25px; margin-left: 5px; margin-top: -5px;">
-                            </label>
-                            <div class="payment_box payment_method_phonepe">
-                                <p>Pay securely using PhonePe. You will be redirected to PhonePe to complete your payment.</p>
-                            </div>
-                        </li>
-                    </ul>
                     <div class="form-row place-order">
-                        <button type="button" id="place-order-btn" class="phonepe-button th-btn">
-                            Pay with PhonePe
+                        <button type="button" id="place-order-btn" class="razorpay-button th-btn">
+                            Pay with Razorpay
                             <span class="loading-spinner"></span>
                         </button>
                     </div>
@@ -626,301 +591,59 @@ Checkout Arae
     <script src="assets/js/isotope.pkgd.min.js"></script>
 
     <!-- Main Js File -->
-    <script src="assets/js/jquery-3.6.0.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/notification-system.js"></script>
     <script src="assets/js/cart.js"></script>
-    <script src="assets/js/phonepe-integration.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="assets/js/razorpay-integration.js"></script>
     <script src="assets/js/main.js"></script>
-    
-    <!-- Checkout functionality -->
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Form validation function
-            function validateForm() {
-                let isValid = true;
-                const requiredFields = [
-                    'firstName', 'lastName', 'email', 'phone', 
-                    'streetAddress', 'city', 'state', 'pincode'
-                ];
-                
-                requiredFields.forEach(fieldId => {
-                    const field = document.getElementById(fieldId);
-                    const errorMessage = field.parentElement.querySelector('.error-message');
-                    
-                    if (!field.value.trim()) {
-                        field.classList.add('error');
-                        errorMessage.style.display = 'block';
-                        isValid = false;
-                    } else {
-                        field.classList.remove('error');
-                        errorMessage.style.display = 'none';
-                    }
-                });
-                
-                // Email validation
-                const emailField = document.getElementById('email');
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (emailField.value && !emailRegex.test(emailField.value)) {
-                    emailField.classList.add('error');
-                    emailField.parentElement.querySelector('.error-message').style.display = 'block';
-                    isValid = false;
-                }
-                
-                // Phone validation (10 digits)
-                const phoneField = document.getElementById('phone');
-                const phoneRegex = /^[0-9]{10}$/;
-                if (phoneField.value && !phoneRegex.test(phoneField.value)) {
-                    phoneField.classList.add('error');
-                    phoneField.parentElement.querySelector('.error-message').style.display = 'block';
-                    isValid = false;
-                }
-                
-                // Pincode validation (6 digits)
-                const pincodeField = document.getElementById('pincode');
-                const pincodeRegex = /^[0-9]{6}$/;
-                if (pincodeField.value && !pincodeRegex.test(pincodeField.value)) {
-                    pincodeField.classList.add('error');
-                    pincodeField.parentElement.querySelector('.error-message').style.display = 'block';
-                    isValid = false;
-                }
-                
-                if (!isValid) {
-                    // Show error notification using the centralized notification system
-                    showNotification('Please fill in all required fields correctly.', 'error', 5000);
-                }
-                
-                return isValid;
-            }
-            
-            // Define the handlePlaceOrder function
-            function handlePlaceOrder(e) {
-                e.preventDefault();
-                console.log('PhonePe button clicked');
-                
-                // Validate form
-                if (!validateForm()) {
-                    return;
-                }
-                
-                // Get cart items from localStorage
-                const cartItems = JSON.parse(localStorage.getItem('vaarahiCart')) || [];
-                if (cartItems.length === 0) {
-                    alert('Your cart is empty. Please add items to your cart before checking out.');
-                    return;
-                }
-                
-                // Show loading spinner
-                const loadingSpinner = document.querySelector('.loading-spinner');
-                loadingSpinner.style.display = 'inline-block';
-                this.disabled = true;
-                
-                // Collect form data
-                const formData = {
-                    firstName: document.getElementById('firstName').value,
-                    lastName: document.getElementById('lastName').value,
-                    email: document.getElementById('email').value,
-                    phone: document.getElementById('phone').value,
-                    streetAddress: document.getElementById('streetAddress').value,
-                    city: document.getElementById('city').value,
-                    state: document.getElementById('state').value,
-                    pincode: document.getElementById('pincode').value,
-                    cartItems: cartItems,
-                    total: calculateCartTotal(cartItems)
-                };
-                
-                try {
-                    // Generate order ID
-                    const orderId = 'ORD' + Date.now();
-                    
-                    // Prepare order data
-                    const orderData = {
-                        ...formData,
-                        orderId: orderId
-                    };
-                    
-                    console.log('Initializing PhonePe payment with data:', orderData);
-                    
-                    // Initialize PhonePe payment
-                    if (window.PhonePeIntegration && window.PhonePeIntegration.initializePayment) {
-                        window.PhonePeIntegration.initializePayment(orderData)
-                            .then(() => {
-                                // Show success notification using the centralized notification system
-                                showNotification('Order placed successfully! Thank you for your purchase.', 'success', 5000);
-                            })
-                            .catch(error => {
-                                console.error('Payment error:', error);
-                                // Show error notification using the centralized notification system
-                                showNotification('Payment initialization failed: ' + error.message, 'error', 5000);
-                                loadingSpinner.style.display = 'none';
-                                this.disabled = false;
-                            });
-                    } else {
-                        throw new Error('PhonePe integration not available');
-                    }
-                } catch (error) {
-                    console.error('Payment error:', error);
-                    alert('Payment initialization failed: ' + error.message);
-                    loadingSpinner.style.display = 'none';
-                    this.disabled = false;
-                }
-            }
-            
-            // Calculate cart total function
-            function calculateCartTotal(cartItems) {
-                return cartItems.reduce((total, item) => {
-                    return total + (parseFloat(item.price) * parseInt(item.quantity));
-                }, 0);
-            }
-            
-            // Direct event listener for the PhonePe button
-            const phonepeButton = document.getElementById('place-order-btn');
-            if (phonepeButton) {
-                console.log('PhonePe button found, adding event listener');
-                phonepeButton.addEventListener('click', handlePlaceOrder);
+      document.addEventListener('DOMContentLoaded', function() {
+        const placeOrderBtn = document.getElementById('place-order-btn');
+        if (!placeOrderBtn) return;
+        const loadingSpinner = placeOrderBtn.querySelector('.loading-spinner');
+        placeOrderBtn.addEventListener('click', async function(e) {
+          e.preventDefault();
+          this.disabled = true;
+          if (loadingSpinner) loadingSpinner.style.display = 'inline-block';
+          try {
+            // Null-safe form field access
+            const formData = {
+              firstName: document.getElementById('billing_first_name')?.value || '',
+              lastName: document.getElementById('billing_last_name')?.value || '',
+              email: document.getElementById('billing_email')?.value || '',
+              phone: document.getElementById('billing_phone')?.value || '',
+              streetAddress: document.getElementById('billing_address_1')?.value || '',
+              city: document.getElementById('billing_city')?.value || '',
+              state: document.getElementById('billing_state')?.value || '',
+              pincode: document.getElementById('billing_postcode')?.value || ''
+            };
+            await window.RazorpayIntegration.initializePayment(formData);
+          } catch (error) {
+            if (window.RazorpayIntegration && window.RazorpayIntegration.showPaymentNotification) {
+              window.RazorpayIntegration.showPaymentNotification('Payment initialization failed: ' + (error?.message || error), false);
             } else {
-                console.error('PhonePe button not found');
+              alert('Payment initialization failed: ' + (error?.message || error));
             }
-            
-            // Check if this is a payment callback
-            const urlParams = new URLSearchParams(window.location.search);
-            const paymentStatus = urlParams.get('payment');
-            
-            if (paymentStatus === 'callback' || paymentStatus === 'success') {
-                // This is a payment callback, handle it with PhonePe integration
-                // Hide checkout form while processing payment
-                const checkoutForm = document.getElementById('checkout-form');
-                if (checkoutForm) {
-                    checkoutForm.style.display = 'none';
-                }
-                
-                // Show a processing message
-                const processingDiv = document.createElement('div');
-                processingDiv.id = 'payment-processing';
-                processingDiv.className = 'text-center my-5';
-                processingDiv.innerHTML = `
-                    <div class="spinner-border text-primary" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                    <h3 class="mt-3">Processing your payment...</h3>
-                    <p>Please do not close this window.</p>
-                `;
-                
-                // Insert after the breadcrumb
-                const breadcrumb = document.querySelector('.breadcumb-wrapper');
-                if (breadcrumb && breadcrumb.nextElementSibling) {
-                    breadcrumb.nextElementSibling.prepend(processingDiv);
-                } else {
-                    document.body.appendChild(processingDiv);
-                }
-                
-                // Hide other checkout elements
-                const checkoutElements = document.querySelectorAll('.woocommerce-cart-form, .woocommerce-checkout-payment');
-                checkoutElements.forEach(el => {
-                    if (el) el.style.display = 'none';
-                });
-                
-                return; // Let the PhonePe integration handle the rest
-            }
-            
-            // Normal checkout flow
-            // Get cart items from localStorage
-            const cartItems = JSON.parse(localStorage.getItem('vaarahiCart')) || [];
-            
-            // Update order summary
-            updateOrderSummary(cartItems);
-            
-            // Form validation
-            const checkoutForm = document.getElementById('checkout-form');
-            const orderSuccess = document.getElementById('order-success');
-            
-            // Normal checkout flow continues here
-            
-            // Place order button
-            const placeOrderBtn = document.querySelector('.place-order .th-btn');
-            const loadingSpinner = document.querySelector('.loading-spinner');
-            
-            placeOrderBtn.addEventListener('click', async function(e) {
-                e.preventDefault();
-                
-                // Validate form
-                if (!validateForm()) {
-                    return;
-                }
-                
-                // Show loading spinner
-                loadingSpinner.style.display = 'inline-block';
-                placeOrderBtn.disabled = true;
-                
-                // Collect form data
-                const formData = {
-                    firstName: document.getElementById('firstName').value,
-                    lastName: document.getElementById('lastName').value,
-                    email: document.getElementById('email').value,
-                    phone: document.getElementById('phone').value,
-                    streetAddress: document.getElementById('streetAddress').value,
-                    city: document.getElementById('city').value,
-                    state: document.getElementById('state').value,
-                    pincode: document.getElementById('pincode').value,
-                    cartItems: cartItems,
-                    total: calculateCartTotal(cartItems)
-                };
-                
-                try {
-                    // Generate order ID
-                    const orderId = 'ORD' + Date.now();
-                    
-                    // Prepare order data
-                    const orderData = {
-                        ...formData,
-                        orderId: orderId
-                    };
-                    
-                    // Initialize PhonePe payment
-                    if (window.PhonePeIntegration && window.PhonePeIntegration.initializePayment) {
-                        await window.PhonePeIntegration.initializePayment(orderData);
-                    } else {
-                        throw new Error('PhonePe integration not available');
-                    }
-                } catch (error) {
-                    // Show error notification using the centralized notification system
-                    showNotification('Payment initialization failed. Please try again.', 'error', 5000);
-                    console.error('Payment error:', error);
-                } finally {
-                    loadingSpinner.style.display = 'none';
-                    placeOrderBtn.disabled = false;
-                }
-            });
-            
-            // Calculate cart total
-            function calculateCartTotal(cartItems) {
-                return cartItems.reduce((total, item) => {
-                                            return total + (parseFloat(item.price) * parseInt(item.quantity));
-                }, 0);
-            }
-            
-            // Add input event listeners for real-time validation
-            const inputFields = document.querySelectorAll('.form-control, .form-select');
-            inputFields.forEach(field => {
-                field.addEventListener('input', function() {
-                    if (this.value.trim()) {
-                        this.classList.remove('error');
-                        const errorMessage = this.parentElement.querySelector('.error-message');
-                        if (errorMessage) {
-                            errorMessage.style.display = 'none';
-                        }
-                    }
-                });
-            });
+            if (loadingSpinner) loadingSpinner.style.display = 'none';
+            this.disabled = false;
+          }
         });
+      });
     </script>
-    
-    <!-- jQuery from CDN with local fallback -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-        if (typeof jQuery === 'undefined') {
-            document.write('<script src="assets/js/vendor/jquery-3.7.1.min.js"><\/script>');
-        }
+    <!-- Fallback hidden fields for missing IDs -->
+
+
+    <!-- Scroll To Top -->
+    <div class="scroll-top">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
+                style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 307.919;">
+            </path>
+        </svg>
+    </div>
+
+        
     </script>
     
     <!-- Bootstrap JS from CDN with local fallback -->
@@ -934,10 +657,5 @@ Checkout Arae
     <!-- Authentication System -->
     <script src="assets/js/auth.js"></script>
     
-    <!-- Notification System -->
-    <script src="assets/js/notification-system.js"></script>
-    
-    <!-- Checkout System -->
-    <script src="assets/js/checkout.js"></script>
 </body>
 </html>
