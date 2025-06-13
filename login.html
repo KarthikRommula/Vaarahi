@@ -378,19 +378,7 @@
                             </div>
                         </form>
 
-                        <div class="social-login mt-4">
-                            <div class="text-center mb-3">
-                                <span class="text-muted">Or login with</span>
-                            </div>
-                            <div class="d-grid gap-2">
-                                <button class="btn btn-outline-dark" id="googleLogin">
-                                    <i class="fab fa-google me-2"></i> Continue with Google
-                                </button>
-                                <button class="btn btn-outline-primary" id="facebookLogin">
-                                    <i class="fab fa-facebook-f me-2"></i> Continue with Facebook
-                                </button>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -528,101 +516,10 @@
                 return;
             }
 
-            // Handle login form submission
-            $('#loginForm').on('submit', function(e) {
-                e.preventDefault();
-                
-                const email = $('#loginEmail').val();
-                const password = $('#loginPassword').val();
-                const rememberMe = $('#remembermylogin').is(':checked');
-
-                // Validation
-                if (!email || !password) {
-                    showWarning('Please fill in all fields');
-                    return;
-                }
-
-                if (!isValidEmail(email)) {
-                    showWarning('Please enter a valid email address');
-                    return;
-                }
-
-                // Get users from localStorage
-                const users = JSON.parse(localStorage.getItem('users') || '[]');
-                const user = users.find(u => u.email === email && u.password === btoa(password));
-
-                if (user) {
-                    // Store login state
-                    localStorage.setItem('isLoggedIn', 'true');
-                    localStorage.setItem('userEmail', email);
-                    localStorage.setItem('userName', user.fullName);
-                    
-                    if (rememberMe) {
-                        localStorage.setItem('rememberMe', 'true');
-                    }
-
-                    showSuccess('Login successful! Redirecting to profile page...');
-                    setTimeout(() => {
-                        window.location.href = 'profile.html';
-                    }, 1500);
-                } else {
-                    showWarning('Invalid email or password');
-                }
-            });
-            // Handle Google login
-            $('#googleLogin').on('click', function(e) {
-                e.preventDefault();
-                // Initialize Google Sign-In
-                google.accounts.id.initialize({
-                    client_id: 'YOUR_GOOGLE_CLIENT_ID', // Replace with your Google Client ID
-                    callback: handleGoogleSignIn
-                });
-                google.accounts.id.renderButton(
-                    document.getElementById('googleLogin'),
-                    { theme: 'outline', size: 'large', width: '100%' }
-                );
-            });
-
-            // Handle Facebook login
-            $('#facebookLogin').on('click', function(e) {
-                e.preventDefault();
-                FB.login(function(response) {
-                    if (response.authResponse) {
-                        FB.api('/me', function(response) {
-                            // Check if user exists
-                            const users = JSON.parse(localStorage.getItem('users') || '[]');
-                            let user = users.find(u => u.email === response.email);
-
-                            if (!user) {
-                                // Create new user if doesn't exist
-                                user = {
-                                    fullName: response.name,
-                                    email: response.email,
-                                    password: btoa(Math.random().toString(36).slice(-8)), // Generate random password
-                                    isSocialLogin: true
-                                };
-                                users.push(user);
-                                localStorage.setItem('users', JSON.stringify(users));
-                            }
-
-                            // Login user
-                            localStorage.setItem('isLoggedIn', 'true');
-                            localStorage.setItem('userEmail', user.email);
-                            localStorage.setItem('userName', user.fullName);
-                            
-                            showSuccess('Login successful! Redirecting to home page...');
-                            setTimeout(() => {
-                                window.location.href = 'index.html';
-                            }, 1500);
-                        });
-                    }
-                }, { scope: 'email,public_profile' });
-            });
-
             // Check remember me on page load
             if (localStorage.getItem('rememberMe') === 'true') {
                 $('#remembermylogin').prop('checked', true);
-                $('#loginEmail').val(localStorage.getItem('userEmail'));
+                $('#loginEmail').val(localStorage.getItem('savedEmail'));
             }
 
             // Email validation helper function
@@ -653,7 +550,7 @@
             // Google Sign-In callback
             function handleGoogleSignIn(response) {
                 const responsePayload = jwt_decode(response.credential);
-                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                const users = JSON.parse(localStorage.getItem('vaarahiUsers') || '[]');
                 let user = users.find(u => u.email === responsePayload.email);
 
                 if (!user) {
@@ -665,13 +562,20 @@
                         isSocialLogin: true
                     };
                     users.push(user);
-                    localStorage.setItem('users', JSON.stringify(users));
+                    localStorage.setItem('vaarahiUsers', JSON.stringify(users));
                 }
 
                 // Login user
-                localStorage.setItem('isLoggedIn', 'true');
-                localStorage.setItem('userEmail', user.email);
-                localStorage.setItem('userName', user.fullName);
+                const userData = {
+                    id: user.id || user.email, // fallback for legacy users
+                    name: user.fullName || user.name || '',
+                    email: user.email,
+                    phone: user.phone || ''
+                };
+                localStorage.setItem('vaarahiCurrentUser', JSON.stringify(userData));
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userEmail');
+                localStorage.removeItem('userName');
                 
                 showSuccess('Login successful! Redirecting to home page...');
                 setTimeout(() => {
@@ -755,26 +659,26 @@
                 $('#loginAlert').addClass('d-none');
                 
                 // Get form values
-                const email = $('#loginEmail').val().trim();
-                const password = $('#loginPassword').val();
-                const rememberMe = $('#remembermylogin').is(':checked');
+                const email = $('#email').val().trim();
+                const password = $('#password').val();
+                const rememberMe = $('#rememberMe').is(':checked');
                 
                 // Validate email
                 if (!email) {
-                    $('#loginEmail').addClass('is-invalid');
+                    $('#email').addClass('is-invalid');
                     showLoginAlert('danger', 'Please enter your email address');
                     return;
                 }
                 
                 if (!isValidEmail(email)) {
-                    $('#loginEmail').addClass('is-invalid');
+                    $('#email').addClass('is-invalid');
                     showLoginAlert('danger', 'Please enter a valid email address');
                     return;
                 }
                 
                 // Validate password
                 if (!password) {
-                    $('#loginPassword').addClass('is-invalid');
+                    $('#password').addClass('is-invalid');
                     showLoginAlert('danger', 'Please enter your password');
                     return;
                 }
@@ -786,43 +690,53 @@
                 
                 // Simulate a slight delay for better UX (remove in production with real API)
                 setTimeout(function() {
-                    // Get users from localStorage
-                    const users = JSON.parse(localStorage.getItem('users') || '[]');
-                    const user = users.find(u => u.email === email && u.password === btoa(password));
-                    
+                    // Get users from standardized storage
+                    const users = JSON.parse(localStorage.getItem('vaarahiUsers') || '[]');
+                    let user = null;
+                    if (users.length > 0) {
+                        user = users.find(u => (u.email === email || u.username === email) && u.password === btoa(password));
+                    }
                     if (user) {
-                        // Store login state
-                        localStorage.setItem('isLoggedIn', 'true');
-                        localStorage.setItem('userEmail', email);
-                        localStorage.setItem('userName', user.fullName);
-                        
+                        // Store login state in vaarahiCurrentUser
+                        const userData = {
+                            id: user.id || user.email, // fallback for legacy users
+                            name: user.fullName || user.name || '',
+                            email: user.email,
+                            phone: user.phone || ''
+                        };
                         if (rememberMe) {
+                            localStorage.setItem('vaarahiCurrentUser', JSON.stringify(userData));
                             localStorage.setItem('rememberMe', 'true');
                             localStorage.setItem('savedEmail', email);
                         } else {
+                            sessionStorage.setItem('vaarahiCurrentUser', JSON.stringify(userData));
                             localStorage.removeItem('rememberMe');
                             localStorage.removeItem('savedEmail');
                         }
-                        
-                        showLoginAlert('success', 'Login successful! Redirecting...');
+                        // Remove legacy login state
+                        localStorage.removeItem('isLoggedIn');
+                        localStorage.removeItem('userEmail');
+                        // Redirect to home page on success, no notification
                         setTimeout(() => {
                             window.location.href = 'index.html';
                         }, 1000);
+                        return;
                     } else {
                         // Reset loading state
                         $('#loginButton .button-text').removeClass('d-none');
                         $('#loginButton .spinner-border').addClass('d-none');
                         $('#loginButton').prop('disabled', false);
-                        
+                        // Show error notification for failed login
                         showLoginAlert('danger', 'Invalid email or password');
+                        return;
                     }
                 }, 800);
             });
             
             // Check remember me on page load
             if (localStorage.getItem('rememberMe') === 'true') {
-                $('#remembermylogin').prop('checked', true);
-                $('#loginEmail').val(localStorage.getItem('savedEmail'));
+                $('#rememberMe').prop('checked', true);
+                $('#email').val(localStorage.getItem('savedEmail'));
             }
             
 

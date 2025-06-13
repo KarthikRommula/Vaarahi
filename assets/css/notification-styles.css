@@ -21,8 +21,8 @@
     display: flex;
     align-items: center;
     line-height: 1.5;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    /*backdrop-filter: blur(10px);*/
+    border: 1px solid #e5e5e5;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -31,7 +31,7 @@
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+    background-color: #fffbe7;
     color: #333;
     padding: 18px 20px;
     border-radius: 15px;
@@ -46,7 +46,7 @@
     display: flex;
     align-items: center;
     line-height: 1.5;
-    backdrop-filter: blur(10px);
+    /*backdrop-filter: blur(10px);*/
     border-left: 5px solid #FFAC00;
     animation: vaarahiNotificationPopIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), vaarahiNotificationPulse 2s infinite alternate;
     transition: all 0.3s ease;
@@ -57,7 +57,7 @@
     position: fixed !important;
     bottom: 30px !important;
     right: 30px !important;
-    background-color: rgba(255, 255, 255, 0.95) !important;
+    background-color: #fff !important;
     color: #333 !important;
     padding: 16px !important;
     border-radius: 12px !important;
@@ -72,8 +72,8 @@
     display: flex !important;
     align-items: center !important;
     transition: all 0.3s ease !important;
-    backdrop-filter: blur(10px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    /*backdrop-filter: blur(10px) !important;*/
+    border: 1px solid #e5e5e5 !important;
 }
 
 /* Success notification */
@@ -83,7 +83,7 @@
 .toast.success {
     border-left: none;
     border-top: 4px solid #28a745;
-    background-color: rgba(40, 167, 69, 0.08) !important;
+    background-color: #d4edda !important;
 }
 
 
@@ -95,7 +95,7 @@
 .toast.error {
     border-left: none;
     border-top: 4px solid #dc3545;
-    background-color: rgba(220, 53, 69, 0.08) !important;
+    background-color: #f8d7da !important;
 }
 
 
@@ -106,7 +106,7 @@
 .toast.warning {
     border-left: none;
     border-top: 4px solid #ffc107;
-    background-color: rgba(255, 193, 7, 0.08) !important;
+    background-color: #fff3cd !important;
 }
 
 
@@ -115,7 +115,7 @@
 #cart-notification.info {
     border-left: none;
     border-top: 4px solid var(--theme-color, #FFAC00);
-    background-color: rgba(255, 172, 0, 0.08) !important;
+    background-color: #ffeeba !important;
 }
 
 
@@ -256,12 +256,12 @@
 /* VAARAHI notification variants */
 .vaarahi-notification.success {
     border-left: 5px solid #28a745;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 255, 240, 0.85));
+    background-color: #d4edda;
 }
 
 .vaarahi-notification.error {
     border-left: 5px solid #dc3545;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 240, 240, 0.85));
+    background-color: #f8d7da;
 }
 
 .vaarahi-notification.warning {
@@ -271,7 +271,7 @@
 
 .vaarahi-notification.info {
     border-left: 5px solid #17a2b8;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 250, 255, 0.85));
+    background-color: #d1ecf1;
 }
 
 .vaarahi-notification.primary {

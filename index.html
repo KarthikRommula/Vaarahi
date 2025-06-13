@@ -675,7 +675,15 @@
                 <li>
                     <a href="contact.html">Contact</a>
                 </li>
-                
+                <!-- Mobile Auth Menu Entry -->
+                <li class="menu-item-has-children mobile-auth-menu">
+                    <a href="#" id="mobileAccountLink">My Account</a>
+                    <ul class="sub-menu" id="mobileAuthSubMenu">
+                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="login.html" id="mobileLoginBtn">Login</a></li>
+                        <li><a href="register.html" id="mobileRegisterBtn">Register</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
@@ -1063,15 +1071,45 @@ About Us Area
 
                 <!-- Right Side: Image Gallery -->
                 <div class="col-lg-4">
-                    <div class="about-image-gallery position-relative" style="margin-left: 20px;">
-                        <img src="assets/img/team/Diezephe02.jpg" class="img-fluid main-image" alt="Vaarahi Artisans"
-                            style="border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.25); transform: rotate(2deg); width: 120%; max-width: 450px;">
-                        <div class="floating-badge position-absolute py-2 px-3" style="background: linear-gradient(45deg, #FFAC00, #FFD700); color: #fff; border-radius: 50px; bottom: 20px; left: 20px; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(255, 172, 0, 0.3);">
-                            <i class="fas fa-heart me-2"></i> Supporting Local Artisans
-                        </div>
-                        <!-- Adding a decorative element -->
-                        <div class="position-absolute" style="width: 100px; height: 100px; border: 3px dashed #FFD700; border-radius: 12px; top: -15px; right: -15px; z-index: -1; opacity: 0.6;"></div>
-                    </div>
+                    <style>
+@media (max-width: 576px) {
+  .about-image-gallery {
+    margin-left: 0 !important;
+    text-align: center;
+  }
+  .about-image-gallery .main-image {
+    width: 100% !important;
+    max-width: 350px !important;
+    min-width: 0 !important;
+    transform: rotate(1deg) !important;
+    margin: 0 auto !important;
+    display: block;
+  }
+  .about-image-gallery .floating-badge {
+    bottom: 8px !important;
+    left: 8px !important;
+    font-size: 0.78rem !important;
+    padding: 6px 12px !important;
+    border-radius: 30px !important;
+  }
+  .about-image-gallery .position-absolute[style*='dashed'] {
+    width: 54px !important;
+    height: 54px !important;
+    top: -10px !important;
+    right: -10px !important;
+    border-radius: 8px !important;
+  }
+}
+</style>
+<div class="about-image-gallery position-relative" style="margin-left: 20px;">
+    <img src="assets/img/team/Diezephe02.jpg" class="img-fluid main-image" alt="Vaarahi Artisans"
+        style="border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.25); transform: rotate(2deg); width: 120%; max-width: 450px;">
+    <div class="floating-badge position-absolute py-2 px-3" style="background: linear-gradient(45deg, #FFAC00, #FFD700); color: #fff; border-radius: 50px; bottom: 20px; left: 20px; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(255, 172, 0, 0.3);">
+        <i class="fas fa-heart me-2"></i> Supporting Local Artisans
+    </div>
+    <!-- Adding a decorative element -->
+    <div class="position-absolute" style="width: 100px; height: 100px; border: 3px dashed #FFD700; border-radius: 12px; top: -15px; right: -15px; z-index: -1; opacity: 0.6;"></div>
+</div>
                 </div>
             </div>
         </div>

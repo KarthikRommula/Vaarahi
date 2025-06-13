@@ -93,19 +93,21 @@ function hidePaymentProcessingOverlay() {
 // Initialize Razorpay payment
 async function initializeRazorpayPayment(orderData) {
     try {
-        // Lock the cart to prevent modifications during payment
         if (typeof lockCart === 'function') lockCart();
         showPaymentProcessingOverlay();
-        // Generate unique transaction ID
-        const transactionId = 'TRX' + Date.now() + Math.random().toString(36).substr(2, 9);
-        // Get cart items and total from localStorage
         const cartItems = JSON.parse(localStorage.getItem('vaarahiCart')) || [];
         const cartTotal = cartItems.reduce((total, item) => total + (parseFloat(item.price) * parseInt(item.quantity)), 0);
-        // Use cart total if orderData.total is not provided
         const amount = orderData.total || cartTotal;
-        // Store payment information for later verification
+        // 1. Create order on backend
+        const orderRes = await fetch('/api/create-order', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ amount: amount * 100, currency: RAZORPAY_CONFIG.currency })
+        });
+        const orderDataBackend = await orderRes.json();
+        if (!orderDataBackend.order_id) throw new Error('Failed to create order on backend');
         const paymentInfo = {
-            transactionId,
+            orderId: orderDataBackend.order_id,
             amount,
             status: PAYMENT_STATUS.PENDING,
             timestamp: new Date().toISOString(),
@@ -116,17 +118,44 @@ async function initializeRazorpayPayment(orderData) {
             }
         };
         storePaymentInfo(paymentInfo);
-        // Create Razorpay options
+
+        // 2. Razorpay options with backend order_id
         const options = {
             key: RAZORPAY_CONFIG.key_id,
             amount: amount * 100, // Razorpay expects amount in paise
             currency: RAZORPAY_CONFIG.currency,
             name: 'Vaarahi',
             description: 'Payment for your order',
-            order_id: transactionId,
-            handler: function (response) {
-                console.log('Razorpay payment success:', response);
-                handlePaymentSuccess(response, paymentInfo);
+            order_id: orderDataBackend.order_id, // Use backend order_id
+            handler: async function (response) {
+                // 3. Send payment details to backend for verification
+                showPaymentProcessingOverlay();
+                try {
+                    const verifyRes = await fetch('/api/verify-payment', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            razorpay_order_id: response.razorpay_order_id,
+                            razorpay_payment_id: response.razorpay_payment_id,
+                            razorpay_signature: response.razorpay_signature
+                        })
+                    });
+                    const verifyData = await verifyRes.json();
+                    if (verifyData.status === 'success') {
+                        handlePaymentSuccess(response, paymentInfo);
+                    } else {
+                        // Verification failed
+                        hidePaymentProcessingOverlay();
+                        showPaymentNotification('Payment verification failed: ' + (verifyData.message || 'Unknown error'), false);
+                        paymentInfo.status = PAYMENT_STATUS.FAILURE;
+                        storePaymentInfo(paymentInfo);
+                    }
+                } catch (err) {
+                    hidePaymentProcessingOverlay();
+                    showPaymentNotification('Payment verification failed: ' + err.message, false);
+                    paymentInfo.status = PAYMENT_STATUS.FAILURE;
+                    storePaymentInfo(paymentInfo);
+                }
             },
             prefill: {
                 name: `${orderData.firstName || ''} ${orderData.lastName || ''}`,
@@ -141,6 +170,8 @@ async function initializeRazorpayPayment(orderData) {
                     console.warn('Razorpay modal dismissed by user');
                     hidePaymentProcessingOverlay();
                     showPaymentNotification('Payment cancelled by user.', false);
+                    paymentInfo.status = PAYMENT_STATUS.CANCELLED;
+                    storePaymentInfo(paymentInfo);
                 }
             }
         };
@@ -155,6 +186,8 @@ async function initializeRazorpayPayment(orderData) {
                 message += '\nReason: ' + response.error.reason;
             }
             showPaymentNotification(message, false);
+            paymentInfo.status = PAYMENT_STATUS.FAILURE;
+            storePaymentInfo(paymentInfo);
         });
         hidePaymentProcessingOverlay();
         razorpay.open();
