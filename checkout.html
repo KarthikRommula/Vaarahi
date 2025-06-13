@@ -356,34 +356,34 @@ Checkout Arae
                         <h2 class="h4 fw-semibold">Billing Details</h2>
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                <input type="text" id="firstName" class="form-control" placeholder="First Name *" required>
+                                <input type="text" id="billing_first_name" class="form-control" placeholder="First Name *" required>
                                 <div class="error-message">First name is required</div>
                             </div>
                             <div class="col-md-6 form-group">
-                                <input type="text" id="lastName" class="form-control" placeholder="Last Name *" required>
+                                <input type="text" id="billing_last_name" class="form-control" placeholder="Last Name *" required>
                                 <div class="error-message">Last name is required</div>
                             </div>
                             <div class="col-12 form-group">
-                                <input type="email" id="email" class="form-control" placeholder="Email Address *" required>
+                                <input type="email" id="billing_email" class="form-control" placeholder="Email Address *" required>
                                 <div class="error-message">Valid email is required</div>
                             </div>
                             <div class="col-12 form-group">
-                                <input type="tel" id="phone" class="form-control" placeholder="Phone Number *" required pattern="[0-9]{10}">
+                                <input type="tel" id="billing_phone" class="form-control" placeholder="Phone Number *" required pattern="[0-9]{10}">
                                 <div class="error-message">Valid 10-digit phone number is required</div>
                             </div>
                             <div class="col-12 form-group">
-                                <input type="text" id="streetAddress" class="form-control" placeholder="Street Address *" required>
+                                <input type="text" id="billing_address_1" class="form-control" placeholder="Street Address *" required>
                                 <div class="error-message">Street address is required</div>
                             </div>
                             <div class="col-12 form-group">
                                 <input type="text" class="form-control" placeholder="Apartment, suite, unit etc. (optional)">
                             </div>
                             <div class="col-12 form-group">
-                                <input type="text" id="city" class="form-control" placeholder="Town / City *" required>
+                                <input type="text" id="billing_city" class="form-control" placeholder="Town / City *" required>
                                 <div class="error-message">City is required</div>
                             </div>
                             <div class="col-md-6 form-group">
-                                <select id="state" class="form-select" required>
+                                <select id="billing_state" class="form-select" required>
                                     <option value="">Select State *</option>
                                     <option value="Andhra Pradesh">Andhra Pradesh</option>
                                     <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -425,7 +425,7 @@ Checkout Arae
                                 <div class="error-message">State is required</div>
                             </div>
                             <div class="col-md-6 form-group">
-                                <input type="text" id="pincode" class="form-control" placeholder="Pincode *" required pattern="[0-9]{6}">
+                                <input type="text" id="billing_postcode" class="form-control" placeholder="Pincode *" required pattern="[0-9]{6}">
                                 <div class="error-message">Valid 6-digit pincode is required</div>
                             </div>
                         </div>
@@ -625,59 +625,58 @@ Checkout Arae
     <script src="assets/js/isotope.pkgd.min.js"></script>
 
     <!-- Main Js File -->
-    <script src="assets/js/jquery-3.6.0.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/notification-system.js"></script>
     <script src="assets/js/cart.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script src="assets/js/razorpay-integration.js"></script>
     <script src="assets/js/main.js"></script>
-    
-    <!-- Add Razorpay SDK -->
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const placeOrderBtn = document.getElementById('place-order-btn');
-            const loadingSpinner = placeOrderBtn.querySelector('.loading-spinner');
-            
-            placeOrderBtn.addEventListener('click', async function() {
-                try {
-                    // Disable button and show loading spinner
-                    this.disabled = true;
-                    loadingSpinner.style.display = 'inline-block';
-                    
-                    // Get form data
-                    const formData = {
-                        firstName: document.getElementById('billing_first_name').value,
-                        lastName: document.getElementById('billing_last_name').value,
-                        email: document.getElementById('billing_email').value,
-                        phone: document.getElementById('billing_phone').value,
-                        streetAddress: document.getElementById('billing_address_1').value,
-                        city: document.getElementById('billing_city').value,
-                        state: document.getElementById('billing_state').value,
-                        pincode: document.getElementById('billing_postcode').value
-                    };
-                    
-                    // Initialize Razorpay payment
-                    if (window.RazorpayIntegration && window.RazorpayIntegration.initializePayment) {
-                        await window.RazorpayIntegration.initializePayment(formData);
-                    } else {
-                        throw new Error('Razorpay integration not available');
-                    }
-                } catch (error) {
-                    console.error('Payment error:', error);
-                    window.RazorpayIntegration.showPaymentNotification('Payment initialization failed: ' + error.message, false);
-                    loadingSpinner.style.display = 'none';
-                    this.disabled = false;
-                }
-            });
+      document.addEventListener('DOMContentLoaded', function() {
+        const placeOrderBtn = document.getElementById('place-order-btn');
+        if (!placeOrderBtn) return;
+        const loadingSpinner = placeOrderBtn.querySelector('.loading-spinner');
+        placeOrderBtn.addEventListener('click', async function(e) {
+          e.preventDefault();
+          this.disabled = true;
+          if (loadingSpinner) loadingSpinner.style.display = 'inline-block';
+          try {
+            // Null-safe form field access
+            const formData = {
+              firstName: document.getElementById('billing_first_name')?.value || '',
+              lastName: document.getElementById('billing_last_name')?.value || '',
+              email: document.getElementById('billing_email')?.value || '',
+              phone: document.getElementById('billing_phone')?.value || '',
+              streetAddress: document.getElementById('billing_address_1')?.value || '',
+              city: document.getElementById('billing_city')?.value || '',
+              state: document.getElementById('billing_state')?.value || '',
+              pincode: document.getElementById('billing_postcode')?.value || ''
+            };
+            await window.RazorpayIntegration.initializePayment(formData);
+          } catch (error) {
+            if (window.RazorpayIntegration && window.RazorpayIntegration.showPaymentNotification) {
+              window.RazorpayIntegration.showPaymentNotification('Payment initialization failed: ' + (error?.message || error), false);
+            } else {
+              alert('Payment initialization failed: ' + (error?.message || error));
+            }
+            if (loadingSpinner) loadingSpinner.style.display = 'none';
+            this.disabled = false;
+          }
         });
+      });
     </script>
-    
-    <!-- jQuery from CDN with local fallback -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-        if (typeof jQuery === 'undefined') {
-            document.write('<script src="assets/js/vendor/jquery-3.7.1.min.js"><\/script>');
+    <!-- Fallback hidden fields for missing IDs -->
+
+
+    <!-- Scroll To Top -->
+    <div class="scroll-top">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
+                style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 307.919;">
+            </path>
+        </svg>
+    </div>
+
         }
     </script>
     
@@ -692,10 +691,5 @@ Checkout Arae
     <!-- Authentication System -->
     <script src="assets/js/auth.js"></script>
     
-    <!-- Notification System -->
-    <script src="assets/js/notification-system.js"></script>
-    
-    <!-- Checkout System -->
-    <script src="assets/js/checkout.js"></script>
 </body>
 </html>
