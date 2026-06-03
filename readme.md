@@ -96,20 +96,21 @@ npm install
 
 ## Configuration
 
-Razorpay credentials are referenced in two places. Replace the placeholder/test values with your own keys before using real payments:
+Razorpay credentials are read from environment variables. The backend never hardcodes the key secret.
 
-- **Backend** (`backend/server.js`):
-  ```js
-  const razorpay = new Razorpay({
-      key_id: 'YOUR_RAZORPAY_KEY_ID',
-      key_secret: 'YOUR_RAZORPAY_KEY_SECRET'
-  });
+- **Backend** (`backend/server.js`): reads `RAZORPAY_KEY_ID` and `RAZORPAY_KEY_SECRET` from the environment via [`dotenv`](https://www.npmjs.com/package/dotenv). Create a `.env` file in the **repository root** (it is git-ignored). Copy `.env.example` and fill in your real values:
+  ```bash
+  cp .env.example .env
   ```
-- **Frontend** (`assets/js/razorpay-integration.js`): set `RAZORPAY_CONFIG.key_id` to your public Razorpay `key_id` (never put the secret on the frontend).
+  ```env
+  RAZORPAY_KEY_ID=your_razorpay_key_id_here
+  RAZORPAY_KEY_SECRET=your_razorpay_key_secret_here
+  ```
+- **Frontend** (`assets/js/razorpay-integration.js`): set `RAZORPAY_CONFIG.key_id` to your public Razorpay `key_id`. The `key_id` is publishable by design; **never** put the key secret on the frontend.
 
 The backend port can be set via the `PORT` environment variable (defaults to `3001`).
 
-> Note: The repository currently ships with Razorpay **test** keys. Rotate these and use your own credentials—never commit live secrets.
+> Note: Never commit your `.env` or live credentials. Rotate any keys that may have been exposed previously.
 
 ## Usage / Running Locally
 
